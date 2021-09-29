@@ -1,3 +1,10 @@
+<?php
+    session_start(); 
+
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        header('Location: index.php');  
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,6 +23,7 @@
         <br />
         
         <div class="container d-flex justify-content-center">
+
             <!-- Form para el login -->
             <form action="./auth.php" method="POST">
                 <div class="form-group">
