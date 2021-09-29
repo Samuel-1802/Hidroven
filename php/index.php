@@ -2,7 +2,6 @@
 session_start();
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     
-    
 } else {
     header('Location: login.php');
 }
@@ -24,5 +23,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     echo "Hello world";
 
     ?>
+
+    <form action="./auth.php" method="POST">
+        <button type="submit" class="btn btn btn-primary m-2">Salir</button>
+    </form>
+
     </body>
 </html>
