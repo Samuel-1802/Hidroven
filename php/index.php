@@ -1,43 +1,45 @@
-<!-- Revisar si la sesión inició -->
 <?php
-session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    
-} else {
-    header('Location: login.php');
-}
+    session_start(); 
+
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        header('Location: index.php');  
+    } else {
+        
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Hidroven</title>
+        <title>Ingreso</title>
         
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/style.css">
-    </head>  
-    <body>
+    </head>
 
-        <div>
-            <!-- Header aquí -->
+    <body class="container-fluid">
+        
+        <h3 class="d-flex justify-content-center">Inicio de Sesión</h3>
+        <br />
+        
+        <div class="container d-flex justify-content-center">
+
+            <!-- Form para el login -->
+            <form action="./auth.php" method="POST">
+                <div class="form-group">
+                    <label for="Username">Usuario</label>
+                    <input type="email" class="form-control" id="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
+                </div>
+                <div class="form-group">
+                    <label for="Password">Clave</label>
+                    <input type="password" class="form-control" id="Password" placeholder="Clave">
+                </div>
+                <button type="submit" class="btn btn btn-primary m-2">Entrar</button>
+            </form>
         </div>
-
-        <!-- Cuerpo -->
-        <div>
-            <div>
-                <!-- Barra lateral? -->
-            </div>
-            <div>
-                <!-- Contenido -->
-            </div>
-        </div>
-
-        <!-- Logout dummy -->
-        <form action="./auth.php" method="POST">
-            <button type="submit" class="btn btn btn-primary m-2">Salir</button>
-        </form>
 
     </body>
 </html>
