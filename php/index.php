@@ -1,10 +1,6 @@
 <?php
-    session_start(); 
-
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-        header('Location: index.php');  
-    } else {
-        
+        header('Location: home.php');  
     }
 ?>
 
@@ -27,15 +23,15 @@
         
         <div class="container d-flex justify-content-center">
 
-            <!-- Form para el login -->
+            <!-- Form para el login, dummy solo activa sesión sin revisar base de datos -->
             <form action="./auth.php" method="POST">
                 <div class="form-group">
                     <label for="Username">Usuario</label>
-                    <input type="email" class="form-control" id="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
+                    <input type="email" class="form-control" id="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario" required>
                 </div>
                 <div class="form-group">
                     <label for="Password">Clave</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Clave">
+                    <input type="password" class="form-control" id="Password" placeholder="Clave" required>
                 </div>
                 <button type="submit" class="btn btn btn-primary m-2">Entrar</button>
             </form>
