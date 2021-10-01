@@ -28,6 +28,7 @@
                 // } else {
                 //     echo 'Bienvenido, ' .$_SESSION['usuario'];
                 // }
+                
 
                 echo "Bienvenido " .(isset($_SESSION['clave']) ? $_SESSION['usuario'] .', su clave es: ' .$_SESSION['clave'] : $_SESSION['usuario']) .'.';
             ?>

@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+
     // Iniciar/Cerrar sesión
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         session_destroy();
@@ -20,15 +21,17 @@
         if (isset($_POST['Username']) && isset($_POST['Password']) && $_POST['Username'] != '' && $_POST['Password'] != '') {
             $_SESSION['usuario'] = $_POST['Username'];
             $_SESSION['clave'] = $_POST['Password'];
+            header('Location: home.php');
         } else if ($_POST['Username'] == '' && $_POST['Password'] == '') {
             $_SESSION['usuario'] = 'Invitado';
+            header('Location: home.php');
         } else {
             $_SESSION['error'] = 'ingrese usuario y clave, o deje ambos campos vacíos';
             $_SESSION['loggedin'] = false;
             header('Location: index.php');
         }
 
-        header('Location: home.php');
+        
     }
     
 ?>
