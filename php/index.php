@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         header('Location: home.php');  
     }
@@ -27,14 +28,25 @@
             <form action="./auth.php" method="POST">
                 <div class="form-group">
                     <label for="Username">Usuario</label>
-                    <input type="email" class="form-control" id="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario" required>
+                    <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
                 </div>
                 <div class="form-group">
                     <label for="Password">Clave</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Clave" required>
+                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Clave">
                 </div>
                 <button type="submit" class="btn btn btn-primary m-2">Entrar</button>
             </form>
+        </div>
+        <br />
+        
+        <div class="container d-flex justify-content-center">
+            <?php 
+            
+                if (isset($_SESSION['error'])) {
+                    echo 'Error: ' .$_SESSION['error'];
+                }
+
+            ?>
         </div>
 
     </body>

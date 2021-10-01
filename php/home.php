@@ -1,11 +1,9 @@
 <!-- Revisar si la sesión inició -->
 <?php
-session_start();
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-    
-} else {
-    header('Location: login.php');
-}
+    session_start();
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: index.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,24 +18,30 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     </head>  
     <body>
 
-        <div>
-            <!-- Header aquí -->
-        </div>
+        <div class="container d-flex justify-content-center">
 
-        <!-- Cuerpo -->
-        <div>
-            <div>
-                <!-- Barra lateral? -->
-            </div>
-            <div>
-                <!-- Contenido -->
-            </div>
+            <!-- Mensaje de bienvenida -->
+            <?php 
+            
+                // if (isset($_SESSION['clave'])) {
+                //     echo 'Bienvenido, ' .$_SESSION['usuario'] .', su clave es: ' .$_SESSION['clave'];
+                // } else {
+                //     echo 'Bienvenido, ' .$_SESSION['usuario'];
+                // }
+
+                echo "Bienvenido " .(isset($_SESSION['clave']) ? $_SESSION['usuario'] .', su clave es: ' .$_SESSION['clave'] : $_SESSION['usuario']) .'.';
+            ?>
+            
         </div>
+        
+        <br />
 
         <!-- Logout dummy -->
-        <form action="./auth.php" method="POST">
-            <button type="submit" class="btn btn btn-primary m-2">Salir</button>
-        </form>
+        <div class="container d-flex justify-content-center">
+            <form action="./auth.php" method="POST">
+                <button type="submit" class="btn btn btn-primary m-2">Salir</button>
+            </form>
+        </div>
 
     </body>
 </html>
