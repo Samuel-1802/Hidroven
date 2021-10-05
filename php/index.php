@@ -1,8 +1,8 @@
+<!-- Página home -->
+
 <?php
     session_start();
-    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-        header('Location: home.php');  
-    }
+    include_once './connection.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,42 +12,41 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>Ingreso</title>
-        
+        <script src="../js/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/style.css">
     </head>
 
-    <body class="container-fluid">
-        
-        <h3 class="d-flex justify-content-center">Inicio de Sesión</h3>
-        <br />
-        
-        <div class="container d-flex justify-content-center">
+    <body class="container-fluid mx-auto" style="width: 70%;">
 
-            <!-- Form para el login, dummy solo activa sesión sin revisar base de datos -->
-            <form action="./auth.php" method="POST">
-                <div class="form-group">
-                    <label for="Username">Usuario</label>
-                    <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
-                </div>
-                <div class="form-group">
-                    <label for="Password">Clave</label>
-                    <input type="password" class="form-control" id="Password" name="Password" placeholder="Clave">
-                </div>
-                <button type="submit" class="btn btn btn-primary m-2">Entrar</button>
-            </form>
-        </div>
-        <br />
-        
-        <div class="container d-flex justify-content-center">
-            <?php 
+        <?php
+            include "../assets/header.php";
+        ?>
+
+        <h3>Home</h3>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <br>
+
+        <?php
             
-                if (isset($_SESSION['error'])) {
-                    echo 'Error: ' .$_SESSION['error'];
-                }
+            // $sql = "SELECT * FROM usuarios;";
+            // $result = mysqli_query($conn, $sql);
+            // $resultCheck = mysqli_num_rows($result);
 
-            ?>
-        </div>
+            // if ($resultCheck > 0){
+            //     while ($row = mysqli_fetch_assoc($result)) {
+            //         print_r($row);
+            //     }
+            // } else {
+            //     echo "No hay resultados";
+            // }
+
+            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                echo "Bienvenido(a) " .$_SESSION['nombre'] ." " .$_SESSION['apellido'];
+            }
+        ?>
 
     </body>
 </html>

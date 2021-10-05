@@ -1,9 +1,20 @@
+<!-- Función de autenticación de usuario -->
+
 <?php
 
     session_start();
+    include_once './connection.php';
+
+    // Query de usuario
+    $sql = 'SELECT * FROM usuarios WHERE userid = "' .$_POST['Username'] .'" AND clave = "' .$_POST['Password'] .'" AND activo = 1;';
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    $uservars = mysqli_fetch_assoc($result);
 
     // Iniciar/Cerrar sesión
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        // Cerrar sesión
+        $_SESSION = [];
         session_destroy();
         header('Location: index.php');
     } else {
@@ -14,24 +25,28 @@
         }
 
         // Log in
-        $_SESSION['loggedin'] = true;
 
-        // Si hubo input en ambos campos del login, guardar las variables, si no hubo input en ningún campo,
-        // colocar usuario Invitado, si solo se rellenó uno de los dos campos, regresar a index.php y desplegar un mensaje de error.
-        if (isset($_POST['Username']) && isset($_POST['Password']) && $_POST['Username'] != '' && $_POST['Password'] != '') {
-            $_SESSION['usuario'] = $_POST['Username'];
-            $_SESSION['clave'] = $_POST['Password'];
-            header('Location: home.php');
-        } else if ($_POST['Username'] == '' && $_POST['Password'] == '') {
-            $_SESSION['usuario'] = 'Invitado';
-            header('Location: home.php');
-        } else {
-            $_SESSION['error'] = 'ingrese usuario y clave, o deje ambos campos vacíos';
+        // Revisar si los campos están vaciós, de ser así, desplegar mensaje de error
+        if ($_POST['Username'] == '' || $_POST['Password'] == '') {
+
+            $_SESSION['error'] = 'por favor ingrese usuario y clave.';
             $_SESSION['loggedin'] = false;
-            header('Location: index.php');
-        }
+            header('Location: login.php');
 
-        
+        } else if ($resultCheck > 0) {
+
+            // Si la combinación de usuario y clave son correctas, log in, si no, desplegar mensaje
+            $_SESSION['nombre'] = $uservars['nombre'];
+            $_SESSION['apellido'] = $uservars['apellido'];
+            $_SESSION['isAdmin'] = $uservars['isAdmin'];
+            $_SESSION['loggedin'] = true;
+            header('Location: index.php');
+
+        } else {
+            $_SESSION['error'] = 'usuario y/o clave no válidos.';
+            $_SESSION['loggedin'] = false;
+            header('Location: login.php');
+        }
     }
     
 ?>
