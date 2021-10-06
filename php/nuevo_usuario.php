@@ -18,16 +18,16 @@
         unset($_SESSION['confirm']);
     }
 
-    if ($resultCheck < 0) {
+    if ($resultCheck > 0) {
         $_SESSION['confirm'] = 'Error: este usuario ya se encuentra registrado';
-        header('Location: edit_usuario.php?edit=failed');
+        header('Location: admin.php?register=failed');
     } else {
 
         $sql = 'INSERT INTO usuarios VALUES ('.$_POST['n_cedula'] .', "' .$_POST['n_nombre'] .'","' .$_POST['n_apellido'] .'","' .$_POST['n_nacionalidad'] .'","' .$_POST['n_userid'] .'","' .$_POST['n_clave'] .'",' .$_POST['n_admin'] .', 1);';
         mysqli_query($conn, $sql);
 
         $_SESSION['confirm'] = 'El usuario fue registrado exitosamente';
-        header('Location: edit_usuario.php?edit=success');
+        header('Location: admin.php?register=success');
     }
 
 ?>

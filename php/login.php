@@ -22,7 +22,7 @@
             include "../assets/header.php";
         ?>
 
-        <h3 class="d-flex justify-content-center">BEINVENIDO A LA INTRANET C.A. HIDROVEN</h3>
+        <h3 class="d-flex justify-content-center">BIENVENIDO A LA INTRANET C.A. HIDROVEN</h3>
         <br />
         <h3 class="d-flex justify-content-center">INICIO DE SESIÓN</h3>
         <br />
