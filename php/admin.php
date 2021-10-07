@@ -13,6 +13,7 @@
         <script src="../js/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="icon" type="image/png" href="../img/favicon.png"/>
 
         <style>
             input[type=number]::-webkit-inner-spin-button, 
@@ -24,11 +25,13 @@
 
     </head>
 
-    <body class="container-fluid mx-auto" style="width: 70%;">
+    <body>
 
         <?php
             include "../assets/header.php";
         ?>
+
+        <div  class="container-fluid mx-auto" style="width: 80%;">
 
         <h3>Agregar usuarios</h3>
         <br>
@@ -96,78 +99,101 @@
         </form>
 
         <div class="container d-flex justify-content-center">
-            <?php 
-            
-                if (isset($_SESSION['confirm'])) {
-                    echo $_SESSION['confirm'];
-                    unset($_SESSION['confirm']);
-                }
-            ?>
-
-        </div>
-        
-        <br>
-        <br>
-        <h3>Buscar y modificar usuarios</h3>
-        <br>
-
-        <form action="./search.php" class="form-inline" method="POST">
-            <div class="form-group">
-                <input type="number" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
-            </div>
-            <button type="submit" class="btn btn btn-primary mb-2">Buscar</button>
-        </form>
-
-        <br>
-        <?php
-            if(isset($_SESSION['search_confirm'])) {
-                echo $_SESSION['search_confirm'];
-                unset($_SESSION['search_confirm']);
+                <?php 
                 
-            }
-        ?>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Cédula</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col" colspan="2">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            <?php
-                if (isset($_SESSION['search'])) {
-                    if ($_SESSION['search']){
-                        
-                    ?>
-                <tr>
-                    <th scope="row"><?php echo $_SESSION['s_cedula']; ?></th>
-                    <td><?php echo $_SESSION['s_nombre']; ?></td>
-                    <td><?php echo $_SESSION['s_apellido']; ?></td>
-                    <td><?php echo $_SESSION['s_userid']; ?></td>
-                    <td><?php echo $_SESSION['s_estado']; ?></td>
-                    <td><a href="./edit_usuario.php">Editar</a></td>
-                    <td><a href="./toggle_usuario.php"><?php echo $_SESSION['s_estado'] == 'Activo' ? "Desactivar": "Activar"; ?></a></td>
-                </tr>
-            
-                <?php
+                    if (isset($_SESSION['confirm'])) {
+                        echo $_SESSION['confirm'];
+                        unset($_SESSION['confirm']);
                     }
-                }
-            ?>
-            </tbody>
-        </table>
-        <br>
-        
-        <?php
-            if(isset($_SESSION['d_confirm'])) {
-                echo $_SESSION['d_confirm'];
-                unset($_SESSION['d_confirm']);
-            }
+                ?>
+
+            </div>
+            
+            <br>
+            <br>
+            <h3>Buscar y modificar usuarios</h3>
+            <br>
+
+            <form action="./search.php" class="form-inline" method="POST">
+                <div class="form-group">
+                    <input type="number" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
+                </div>
+                <button type="submit" class="btn btn btn-primary mb-2">Buscar</button>
+            </form>
+
+            <br>
+            <div class="container d-flex justify-content-center">
+                <?php 
+                
+                    if (isset($_SESSION['search_confirm'])) {
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                        <?php
+                        echo $_SESSION['search_confirm'];
+                        unset($_SESSION['search_confirm']);?>
+                    </div>
+                    <?php
+                    }
+                ?> 
+            </div>
+
+            <div class="container d-flex justify-content-center">
+                <?php 
+                
+                    if (isset($_SESSION['d_confirm'])) {
+                        ?>
+                        <div class="alert alert-success" role="alert">
+                        <?php
+                        echo $_SESSION['d_confirm'];
+                        unset($_SESSION['d_confirm']);?>
+                    </div>
+                    <?php
+                    }
+                ?> 
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Cédula</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" colspan="2">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                <?php
+                    if (isset($_SESSION['search'])) {
+                        if ($_SESSION['search']){
+                            
+                        ?>
+                    <tr>
+                        <th scope="row"><?php echo $_SESSION['s_cedula']; ?></th>
+                        <td><?php echo $_SESSION['s_nombre']; ?></td>
+                        <td><?php echo $_SESSION['s_apellido']; ?></td>
+                        <td><?php echo $_SESSION['s_userid']; ?></td>
+                        <td><?php echo $_SESSION['s_estado'] == 1 ? "Activo": "Inactivo"; ?></td>
+                        <td><a href="./edit_usuario.php">Editar</a></td>
+                        <td><a href="./toggle_usuario.php"><?php echo $_SESSION['s_estado'] == 1 ? "Desactivar": "Activar"; ?></a></td>
+                    </tr>
+                
+                    <?php
+                        
+                            $_SESSION['search'] = false;
+                        }
+                    }
+                ?>
+                </tbody>
+            </table>
+            <br>
+                       
+        </div>
+
+        <?
+            include "../assets/footer.php";
         ?>
     </body>
 </html>

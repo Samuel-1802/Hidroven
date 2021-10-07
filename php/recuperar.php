@@ -16,10 +16,20 @@
         <link rel="stylesheet" href="../css/style.css">
     </head>
 
-    <body class="container-fluid mx-auto" style="width: 70%;">
+    <body>
 
         <?php
             include "../assets/header.php";
+        ?>
+
+        <div class="container-fluid mx-auto" style="width: 80%;">
+
+            <!-- contenido -->
+
+        </div>
+
+        <?
+            include "../assets/footer.php";
         ?>
 
     </body>

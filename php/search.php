@@ -24,6 +24,7 @@ if ($resultCheck < 1) {
     $_SESSION['s_nombre'] = '';
     $_SESSION['s_apellido'] = '';
     $_SESSION['s_userid'] = '';
+    $_SESSION['s_admin'] = '';
     $_SESSION['s_estado'] = '';
     $_SESSION['search'] = false;
     header('Location: admin.php?search=failed');
@@ -33,15 +34,10 @@ if ($resultCheck < 1) {
     $_SESSION['s_nombre'] = $uservars['nombre'];
     $_SESSION['s_apellido'] = $uservars['apellido'];
     $_SESSION['s_userid'] = $uservars['userid'];
-    $_SESSION['s_clave'] = $uservalues['clave'];
+    $_SESSION['s_clave'] = $uservars['clave'];
     $_SESSION['s_nacionalidad'] = $uservars['nacionalidad'];
     $_SESSION['s_admin'] = $uservars['isAdmin'];
-    
-    if ($uservars['activo'] == 1) {
-        $_SESSION['s_estado'] = 'Activo';
-    } else {
-        $_SESSION['s_estado'] = 'Inactivo';
-    }
+    $_SESSION['s_estado'] = $uservars['activo'];
     
     $_SESSION['search'] = true;
 
