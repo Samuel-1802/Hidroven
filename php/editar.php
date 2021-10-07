@@ -51,8 +51,6 @@
                     <?php
                     }
                 ?> 
-                
-
             </div>
 
             <form action="./update_usuario_noadmin.php" method="POST">
