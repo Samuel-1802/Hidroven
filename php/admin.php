@@ -1,37 +1,9 @@
 <!-- Página de Administración -->
+
 <?php
-    session_start();    
+    $title = "Administración";
+    include "../assets/header.php";
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Ingreso</title>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="icon" type="image/png" href="../img/favicon.png"/>
-
-        <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-            }
-        </style>
-
-    </head>
-
-    <body>
-
-        <?php
-            include "../assets/header.php";
-        ?>
-
-        <div  class="container-fluid mx-auto" style="width: 80%;">
 
         <h3>Agregar usuarios</h3>
         <br>
@@ -39,7 +11,7 @@
         <form action="./nuevo_usuario.php" method="POST">
             <div class="form-group">
                 <label for="n_cedula">Cédula</label>
-                <input type="number" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" step="1" required>
+                <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" step="1" required>
             </div>
             <br>
             <div class="form-group">
@@ -116,7 +88,7 @@
 
             <form action="./search.php" class="form-inline" method="POST">
                 <div class="form-group">
-                    <input type="number" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
                 </div>
                 <button type="submit" class="btn btn btn-primary mb-2">Buscar</button>
             </form>
@@ -189,11 +161,7 @@
                 </tbody>
             </table>
             <br>
-                       
-        </div>
 
-        <?
-            include "../assets/footer.php";
-        ?>
-    </body>
-</html>
+<?php
+    include "../assets/footer.php";
+?>

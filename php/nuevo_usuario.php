@@ -13,7 +13,7 @@
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
-    //Vaciar menjase
+    //Vaciar mensaje
     if (isset($_SESSION['confirm'])){
         unset($_SESSION['confirm']);
     }

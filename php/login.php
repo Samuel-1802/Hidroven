@@ -1,28 +1,10 @@
 <!-- Página de inicio de sesión -->
 
 <?php
-    session_start();
+    $title = "Ingreso";
+    include "../assets/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Ingreso</title>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="icon" type="image/png" href="../img/favicon.png"/>
-    </head>
-
-    <body>
-
-        <?php
-            include "../assets/header.php";
-        ?>
-        <div  class="container-fluid mx-auto" style="width: 80%;">
             <h3 class="d-flex justify-content-center">BIENVENIDO A LA INTRANET C.A. HIDROVEN</h3>
             <br />
             <h3 class="d-flex justify-content-center">INICIO DE SESIÓN</h3>
@@ -62,11 +44,7 @@
                 </form>
             </div>
             <br />
-            
-           
-        </div>
-        <?
-            include "../assets/footer.php";
-        ?>
-    </body>
-</html>
+                       
+<?php
+    include "../assets/footer.php";
+?>

@@ -1,39 +1,11 @@
 <!-- Función para editar usuarios -->
 
 <!-- Página de Administración -->
+
 <?php
-    session_start();    
+    $title = "Editar Usuario";
+    include "../assets/header.php";
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Ingreso</title>
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="icon" type="image/png" href="../img/favicon.png"/>
-
-        <style>
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-            }
-        </style>
-
-    </head>
-
-    <body>
-
-        <?php
-            include "../assets/header.php";
-        ?>
-
-        <div class="container d-flex justify-content-center">
             <?php 
             
                 if (isset($_SESSION['confirm'])) {
@@ -56,7 +28,7 @@
             <form action="./update_usuario.php" method="POST">
                 <div class="form-group">
                     <label for="n_cedula">Cédula</label>
-                    <input type="number" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" value=<?php echo $_SESSION['s_cedula'];?> step="1" required>
+                    <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" value=<?php echo $_SESSION['s_cedula'];?> step="1" required>
                 </div>
                 <br>
                 <div class="form-group">
@@ -115,8 +87,6 @@
             </form>
         </div>
 
-        <?
-            include "../assets/footer.php";
-        ?>
-    </body>
-</html>
+<?php
+    include "../assets/footer.php";
+?>
