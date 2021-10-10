@@ -6,22 +6,14 @@
     include "../assets/header.php";
 ?>
 
-            <h6><a href="./perfil.php">← Regresar</a></h6>
+            <h6><a href="./perfil.php" class="text-decoration-none">← Regresar</a></h6>
             <h3>Editar usuario</h3>
             <br>
 
             <div class="container d-flex justify-content-center">
                 <?php 
                 
-                    if (isset($_SESSION['confirm'])) {
-                        ?>
-                        <div class="alert alert-success" role="alert">
-                        <?php
-                        echo $_SESSION['confirm'];
-                        unset($_SESSION['confirm']);?>
-                    </div>
-                    <?php
-                    }
+                    include_once "../assets/alert.php";
                 ?> 
             </div>
 

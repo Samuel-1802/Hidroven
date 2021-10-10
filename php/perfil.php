@@ -4,10 +4,16 @@
     $title = "Perfil";
     include "../assets/header.php";
 ?>
-
+    <div class="container row d-flex justify-content-center">
+        
+        <div class="container d-flex justify-content-center">
             <h3>Perfíl de usuario</h3>
+        </div>
 
-            <table class="table">
+            <br>
+            <br>
+
+            <table class="table" style="width: 50%">
                 
                 <tr>
                     <th>Nombre</th>
@@ -48,9 +54,18 @@
                 
             </table>
 
-            <form action="./editar.php" method="POST">
-                <button type="submit" class="btn btn btn-primary mb-2">Editar</button>
-            </form>
+            <br>
+            <br>
+
+            <div class="container d-flex justify-content-center">
+                <form action="./editar.php" method="POST">
+                    <button type="submit" class="btn btn btn-primary">Editar</button>
+                </form>
+                
+                <form action="./cambio_clave.php" method="POST">
+                    <button type="submit" class="btn btn btn-primary mx-3">Cambiar Clave</button>
+                </form>
+            </div>
 
         </div>
         

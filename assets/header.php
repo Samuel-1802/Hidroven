@@ -70,4 +70,4 @@
         <br>
 
         
-        <div class="container-fluid mx-auto" style="width: 80%">
+        <div class="container-fluid mx-auto " style="width: 80%">

@@ -21,7 +21,7 @@
         </div>
 
         <div  class="container-fluid mx-auto" style="width: 80%;">
-            <h6><a href="./admin.php">← Regresar</a></h6>
+            <h6><a href="./admin.php" class="text-decoration-none">← Regresar</a></h6>
             <h3>Editar usuario</h3>
             <br>
 
