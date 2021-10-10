@@ -53,6 +53,15 @@
                                 }
                             ?>
                             <?php
+                                if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="./index.php">Solicitudes</a>
+                            </li>
+                            <?php
+                                }
+                            ?>
+                            <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1){
                             ?>
                             <li class="nav-item"><a class="nav-link" href="./admin.php">Admin</a></li>

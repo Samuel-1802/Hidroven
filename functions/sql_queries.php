@@ -105,7 +105,8 @@
             "estado" => 1,
             "fecha_nac" => "0000-00-00",
             "fecha_ing" => "0000-00-00",
-            "cargo" => ""
+            "cargo" => "",
+            "dpto" => ""
         );
 
         // Escapamos el dato ingresado primero

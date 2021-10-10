@@ -8,7 +8,6 @@
 
             <h6><a href="./perfil.php" class="text-decoration-none">← Regresar</a></h6>
             <h3>Editar usuario</h3>
-            <br>
 
             <div class="container d-flex justify-content-center">
                 <?php 
@@ -73,7 +72,17 @@
                     <label for="n_clave">Fecha de nacimiento</label>
                     <input type="date" class="form-control" id="n_clave" name="n_clave" placeholder="dd-mm-yyyy" value="<?php echo $user['fecha_nac']?>">
                 </div>
+                <div class="form-group container">
+                    <label for="n_cedula">Cargo</label>
+                    <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" value=<?php echo $user['cargo'];?> required>
+                </div>
+                <div class="form-group container">
+                    <label for="n_cedula">Departamento</label>
+                    <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Gerencia" value="<?php echo $user['dpto']; ?>" required>
+                </div>
+                <div class="container">
                 <button type="submit" class="btn btn btn-primary my-3">Editar</button>
+</div>
             </form>
             </div>
 <?php
