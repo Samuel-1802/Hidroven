@@ -24,7 +24,7 @@
 
     <body>
 
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light d-flex flex-column">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-column">
                 <div class="container-fluid">
                     <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;" width="30%">
                     <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;" width="15%">
