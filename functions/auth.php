@@ -17,7 +17,7 @@
         if (empty_login($userid, $clave) !== false) {
 
             // Algún campo está vacío
-            $_SESSION['mensaje'] = "Error:" .$_SESSION['mensaje'];
+            $_SESSION['mensaje'] = $_SESSION['mensaje'];
             header("location: ../php/login.php");
             exit();
 

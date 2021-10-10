@@ -24,6 +24,7 @@
             $_SESSION['tipo_mensaje'] = 2;
             header('location: /php/login.php');
             return $login;
+            exit();
 
         } else {
 
@@ -40,7 +41,7 @@
             if (!($resultCheck > 0) || !(password_verify($clave, $uservars['clave']))) {
                 
                 // Usuario o clave incorrectos incorrecto
-                $_SESSION['mensaje'] = "Usuario y/o clave no válidos.";
+                $_SESSION['mensaje'] = "<br> Usuario y/o clave no válidos.";
                 $_SESSION['tipo_mensaje'] = 1;
                 return $login;
                 exit();
@@ -133,9 +134,8 @@
             // Correr statement con datos
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
-            $resultCheck = mysqli_num_rows($result);
             $userinfo = mysqli_fetch_assoc($result);
-            
+
             return $userinfo;
              
         }

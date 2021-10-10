@@ -10,7 +10,7 @@
             <?php
         } else if ($_SESSION['tipo_mensaje'] == 1) {?>
             <!-- Mensaje rojo (danger) -->
-            <div class="alert alert-danger" role="alert"><?php echo $_SESSION['mensaje']?></div>
+            <div class="alert alert-danger" role="alert"><?php echo "Error: " .$_SESSION['mensaje']?></div>
         <?php
         } else if ($_SESSION['tipo_mensaje'] == 2) {?>
             <!-- Mensaje amarillo (warning) -->

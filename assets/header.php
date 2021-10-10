@@ -27,7 +27,7 @@
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light d-flex flex-column">
                 <div class="container-fluid">
                     <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;" width="30%">
-                    <img class="img-fluid float-right" src="../img/200-rif.png" style="background: transparent;" width="15%">
+                    <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;" width="15%">
                 </div>
                 <div class="container-fluid justify-content-between">
                     <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
@@ -47,7 +47,7 @@
                                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                             ?>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="./perfil.php">Perfil</a>
+                                <a class="nav-link" aria-current="page" href="./perfil.php">Perfíl</a>
                             </li>
                             <?php
                                 }

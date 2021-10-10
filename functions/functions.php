@@ -1,9 +1,6 @@
 <!-- Funciones de la intranet -->
 <?php
 
-    session_start();
-    include_once "./connection.php";
-
     // Función para validar que los datos en el login no estén vacíos
     function empty_login($userid, $clave) {
         
