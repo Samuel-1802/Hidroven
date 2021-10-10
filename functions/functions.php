@@ -1,151 +1,171 @@
 <!-- Funciones de la intranet -->
 <?php
 
-    // Función para validar que los datos en el login no estén vacíos
-    function empty_login($userid, $clave) {
-        
+// Función para validar que los datos en el login no estén vacíos
+function empty_login($userid, $clave)
+{
+
+    $result = false;
+
+    if (empty($userid) || empty($clave)) {
+
+        $result = true;
+        $_SESSION['mensaje'] .= "<br> Por favor ingrese usuario y clave.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $result;
+    } else {
         $result = false;
+        return $result;
+    }
+}
 
-        if (empty($userid) || empty($clave)) {
+// Función para sanitizar userid
+function sanitize_userid($userid)
+{
 
-            $result = true;
-            $_SESSION['mensaje'] .= "<br> Por favor ingrese usuario y clave.";
+    //Sanitizar y validar userid
+    $sanitized = filter_var($userid, FILTER_SANITIZE_STRING);
+
+    if (ctype_alpha($sanitized)) {
+        return $sanitized;
+    } else {
+
+        if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
+            $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto.";
             $_SESSION['tipo_mensaje'] = 1;
-            return $result;
-
-        } else {
-            $result = false;
-            return $result;
         }
-
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar userid
-    function sanitize_userid($userid) {
+// Función para sanitizar clave
+function sanitize_clave($clave)
+{
 
-        //Sanitizar y validar userid
-        $sanitized = filter_var($userid, FILTER_SANITIZE_STRING);
-        
-        if (ctype_alpha($sanitized)) {
-            return $sanitized;
-        } else {
+    // Sanitizar y validar clave
+    $sanitized = filter_var($clave, FILTER_SANITIZE_STRING);
 
-            if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-                $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto.";
-                $_SESSION['tipo_mensaje'] = 1;
-            }
-            return $sanitized;
-        }
+    if (preg_match('~^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,@$!%*?&])[A-Za-z\d.,@$!%*?&]{8,16}$~', $clave)) {
+        return $sanitized;
+    } else {
 
-    }
-
-    // Función para sanitizar clave
-    function sanitize_clave($clave) {
-
-        // Sanitizar y validar clave
-        $sanitized = filter_var($clave, FILTER_SANITIZE_STRING);
-
-        if(preg_match('~^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,@$!%*?&])[A-Za-z\d.,@$!%*?&]{8,16}$~', $clave)) {
-            return $sanitized;
-        } else {
-            
-            if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-                $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto.";
-                $_SESSION['tipo_mensaje'] = 1;
-            }
-            return $sanitized;
-        }
-    }
-
-    // Función para sanitizar cedula
-    function sanitize_cedula($cedula) {
-        
-        // Sanitizar y validar cedula
-        $sanitized = filter_var($cedula, FILTER_SANITIZE_STRING);
-
-        if (ctype_digit($sanitized)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto.";
+        if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
+            $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto.";
             $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
         }
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar nombre/apellido
-    function sanitize_nombre($nombre) {
-        
-        // Sanitizar y validar nombre/apellido
-        $sanitized = filter_var($nombre, FILTER_SANITIZE_STRING);
+// Función para sanitizar cedula
+function sanitize_cedula($cedula)
+{
 
-        if (ctype_alpha($sanitized)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de nombre o apellido incorrecto.";
-            $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
-        }
+    // Sanitizar y validar cedula
+    $sanitized = filter_var($cedula, FILTER_SANITIZE_STRING);
+
+    if (ctype_digit($sanitized) && preg_match('~^(?=.*[0-9])[0-9]{1,8}$~', $cedula)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar email
-    function sanitize_correo($correo) {
+// Función para sanitizar nombre/apellido
+function sanitize_nombre($nombre)
+{
 
-        // Sanitizar y validar correo
-        $sanitized = filter_var($correo, FILTER_SANITIZE_EMAIL);
+    // Sanitizar y validar nombre/apellido
+    $sanitized = filter_var($nombre, FILTER_SANITIZE_STRING);
 
-        if (filter_var($sanitized, FILTER_VALIDATE_EMAIL)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de correo incorrecto.";
-            $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
-        }
-
+    if (ctype_alpha($sanitized)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de nombre o apellido incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar fechas
-    function sanitize_fecha($fecha) {
+// Función para sanitizar email
+function sanitize_correo($correo)
+{
 
-        // Sanitizar y validar fechas
-        $sanitized = preg_replace("([^0-9-])", "", $fecha);
+    // Sanitizar y validar correo
+    $sanitized = filter_var($correo, FILTER_SANITIZE_EMAIL);
 
-        if (preg_match("~^(?=.*[0-9])(?=.*-)[0-9]{4}[-]{1}[0-9]{2}[-][0-9]{2}$~", $sanitized)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de fecha incorrecto.";
-            $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
-        }
+    if (filter_var($sanitized, FILTER_VALIDATE_EMAIL)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de correo incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar teléfonos
-    function sanitize_telefono($telefono) {
+// Función para sanitizar fechas
+function sanitize_fecha($fecha)
+{
 
-        // Sanitizar y validar número de teléfono/celular
-        $sanitized = preg_replace("([^0-9])", "", $telefono);
+    // Sanitizar y validar fechas
+    $sanitized = preg_replace("([^0-9-])", "", $fecha);
 
-        if (preg_match("~^(?=.*[0-9])[0-9]{11}$~", $sanitized)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de número telefónico o celular incorrecto.";
-            $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
-        }
+    if (preg_match("~^(?=.*[0-9])(?=.*-)[0-9]{4}[-]{1}[0-9]{2}[-][0-9]{2}$~", $sanitized)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de fecha incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
     }
+}
 
-    // Función para sanitizar números enteros
-    function sanitize_numero($numero) {
+// Función para sanitizar teléfonos
+function sanitize_telefono($telefono)
+{
 
-        //Sanitizar y validar números enteros
-        $sanitized = filter_var($numero, FILTER_SANITIZE_NUMBER_INT);
+    // Sanitizar y validar número de teléfono/celular
+    $sanitized = preg_replace("([^0-9])", "", $telefono);
 
-        if (filter_var($sanitized, FILTER_VALIDATE_INT)) {
-            return $sanitized;
-        } else {
-            $_SESSION['mensaje'] .= "<br> Formato de número incorrecto.";
-            $_SESSION['tipo_mensaje'] = 1;
-            return $sanitized;
-        }
+    if (preg_match("~^(?=.*[0-9])[0-9]{11}$~", $sanitized)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de número telefónico o celular incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
     }
+}
+
+// Función para sanitizar id de departamento
+function sanitize_dpto($dpto)
+{
+    //Sanitizar y validar id de departamento
+    $sanitized = filter_var($dpto, FILTER_SANITIZE_NUMBER_INT);
+
+    if (preg_match('~^(?=.*[0-9])[0-9]{2}$~', $sanitized)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de departamento incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
+    }
+}
+
+// Función para sanitizar números enteros
+function sanitize_numero($numero)
+{
+
+    //Sanitizar y validar números enteros
+    $sanitized = filter_var($numero, FILTER_SANITIZE_NUMBER_INT);
+
+    if (filter_var($sanitized, FILTER_VALIDATE_INT)) {
+        return $sanitized;
+    } else {
+        $_SESSION['mensaje'] .= "<br> Formato de número incorrecto.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $sanitized;
+    }
+}
 
 ?>
