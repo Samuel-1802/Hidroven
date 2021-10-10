@@ -1,6 +1,11 @@
 <!-- Página de inicio de sesión -->
 
 <?php
+    // Redireccionar a la p'agina de inicio si la sesión está activa
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
+        header('location: index.php');
+    }
+
     $title = "Ingreso";
     include "../assets/header.php";
 ?>
@@ -13,22 +18,15 @@
             <div class="container d-flex justify-content-center">
                 <?php 
                 
-                    if (isset($_SESSION['error'])) {
-                        ?>
-                        <div class="alert alert-danger" role="alert">
-                        <?php
-                        echo "Error: " .$_SESSION['error'];
-                        unset($_SESSION['error']);?>
-                    </div>
-                    <?php
-                    }
+                    include_once '../assets/alert.php';
+
                 ?> 
             </div>
             
             <div class="container d-flex justify-content-center p-3">
 
                 <!-- Form para el login, dummy solo activa sesión sin revisar base de datos -->
-                <form action="./auth.php" method="POST">
+                <form action="../functions/auth.php" method="POST">
                     <div class="form-group">
                         <label for="Username">Usuario</label>
                         <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">

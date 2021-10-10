@@ -6,7 +6,7 @@
     include_once './connection.php';
 
     // Query de usuario
-    $sql = 'SELECT * FROM usuarios WHERE userid = "' .$_POST['Username'] .'" AND activo = 1;';
+    $sql = 'SELECT * FROM usuarios WHERE userid = "' .$_POST['Username'] .'" AND estado = 1;';
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     $uservars = mysqli_fetch_assoc($result);
@@ -40,14 +40,14 @@
             //Verificar clave ingresada, si es correcta, hacer login
 
             if (password_verify($_POST['Password'], $uservars['clave'])) {
-                $_SESSION['nombre'] = $uservars['nombre'];
-                $_SESSION['apellido'] = $uservars['apellido'];
+                $_SESSION['nombre'] = $uservars['p_nombre'] ." " .$uservars['s_nombre'];
+                $_SESSION['apellido'] = $uservars['p_apellido'] ." " .$uservars['s_apellido'];
                 $_SESSION['nacionalidad'] = $uservars['nacionalidad'];
                 $_SESSION['userid'] = $uservars['userid'];
-                $_SESSION['isAdmin'] = $uservars['isAdmin'];
+                $_SESSION['isAdmin'] = $uservars['admin'];
                 $_SESSION['loggedin'] = true;
                 $_SESSION['cedula'] = $uservars['cedula'];
-                $_SESSION['estado'] = $uservars['activo'];
+                $_SESSION['estado'] = $uservars['estado'];
                 header('Location: index.php');
             } else {
                 $_SESSION['error'] = 'usuario y/o clave no válidos.';

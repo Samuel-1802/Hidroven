@@ -7,7 +7,7 @@
             <div class="container d-flex justify-content-end">
             <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                    echo "Bienvenido(a), " .$_SESSION['nombre'] ." " .$_SESSION['apellido'];
+                    echo "Bienvenido(a), " .$user['p_nombre'] ." " .$user['s_nombre'] ." " .$user['p_apellido'] ." " .$user['s_apellido'];
                 }
             ?>
             </div>
