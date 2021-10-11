@@ -2,13 +2,12 @@
 
 <?php
 
-session_start();
-
 if (isset($_POST)) {
 
     session_start();
     include_once "./functions.php";
     include_once "./sql_queries.php";
+    $_SESSION['post'] = $_POST;
 
     //El usuario rellenó el formulario de login, sanitizar los datos ingresados
     $cedula = sanitize_cedula($_POST['n_cedula']);
@@ -44,18 +43,18 @@ if (isset($_POST)) {
     } else {
 
         // Hacer una copia del usuario en la BD
-        temp_copy($conn, $_SESSION['userid']);
+        temp_copy($conn, $oguserid);
 
         // Revisar que la cédula o el nombre de usuario no se repitan
-        if (user_exists($conn, $cedula, $userid) !== false && ($oguserid != $userid) && ($_POST['cedula'] != $ogcedula)) {
+        if (user_exists($conn, $cedula, $userid) !== false && $cedula != $ogcedula && $userid != $oguserid) {
             // Redireccionar
             header("location: ../php/editar.php");
             exit();
         } else {
             // Actualizar los datos en la BD
-            update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $ogcedula, $ogcedula);
+            update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $ogcedula);
 
-            $_SESSION['mensaje'] = "Datos actualizados exitosamente.";
+            $_SESSION['mensaje'] .= "Datos actualizados exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;
             header("location: ../php/editar.php");
             exit();

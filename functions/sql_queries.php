@@ -189,8 +189,11 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 
     if (!empty($clave)) {
         $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
+
+        $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     } else {
         $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
+        $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     }
 
     $stmt = mysqli_stmt_init($conn);
@@ -199,7 +202,7 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
     if (!mysqli_stmt_prepare($stmt, $sql)) {
 
         // Falla del query
-        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
         $_SESSION['tipo_mensaje'] = 2;
         header('location: ../php/editar.php');
         exit();
@@ -208,9 +211,11 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 
         // Ejecutar query
         if (!empty($clave)) {
-            mysqli_stmt_bind_param($stmt, "ssssssssssss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            // mysqli_stmt_bind_param($stmt, "ssssssssssss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            mysqli_stmt_bind_param($stmt, "s", $checkOriginal);
         } else {
-            mysqli_stmt_bind_param($stmt, "sssssssssss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            // mysqli_stmt_bind_param($stmt, "sssssssssss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            mysqli_stmt_bind_param($stmt, "s", $checkOriginal);
         }
         mysqli_stmt_execute($stmt);
     }
