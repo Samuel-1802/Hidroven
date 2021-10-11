@@ -17,10 +17,9 @@ if (isset($_POST)) {
     if (empty_login($userid, $clave) !== false) {
 
         // Algún campo está vacío
-        $_SESSION['mensaje'] = $_SESSION['mensaje'];
         header("location: ../php/login.php");
         exit();
-    } else if (search_user_login($conn, $userid, $clave) == false) {
+    } else if (user_login($conn, $userid, $clave) == false) {
 
         // El usuario no está registrado y/o la clave es incorrecta
         header("location: ../php/login.php");

@@ -3,7 +3,7 @@
 include_once "./connection.php";
 
 // Función para buscar usuario por userid
-function search_user_login($conn, $userid, $clave)
+function user_login($conn, $userid, $clave)
 {
 
     $login = false;
@@ -55,6 +55,44 @@ function search_user_login($conn, $userid, $clave)
     }
 }
 
+// Función para copiar un usuario a la tabla temporal
+function temp_copy($conn, $userid)
+{
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+    $sql = "DELETE FROM temp WHERE userid=?;";
+    $sql2 = "INSERT INTO temp SELECT * FROM usuarios WHERE userid=?;";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    // Preparar prepared statement
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la autenticación de usuario.";
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/editar.php');
+        exit();
+    } else {
+
+        // Eliminar datos de temp
+        mysqli_stmt_bind_param($stmt, "s", $checkUser);
+        mysqli_stmt_execute($stmt);
+
+        $stmt = mysqli_stmt_init($conn);
+
+        if (!mysqli_stmt_prepare($stmt, $sql2)) {
+            // Falla del query
+            $_SESSION['mensaje'] .= "<br> Falla en la autenticación de usuario.";
+            $_SESSION['tipo_mensaje'] = 2;
+            header('location: ../php/editar.php');
+            exit();
+        } else {
+            mysqli_stmt_bind_param($stmt, "s", $checkUser);
+            mysqli_stmt_execute($stmt);
+        }
+    }
+}
+
 // Función para buscar usuario por cedula y nombre de usuario
 function search_user_add($conn, $cedula, $userid)
 {
@@ -65,18 +103,120 @@ function search_user($conn, $cedula)
 {
 }
 
-// Función para realizar login
-function login($conn, $userird, $password)
-{
-}
-
 // Función para crear un usuario nuevo
 function create_user($conn)
 {
 }
 
+// Función que verifica si un usuario determinado está registrado en el sistema
+function user_exists($conn, $userid, $cedula)
+{
+
+    $exists = false;
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+    $checkCedula = mysqli_real_escape_string($conn, $cedula);
+
+    $sql = "SELECT * FROM usuarios WHERE cedula=?";
+    $sql2 = "SELECT * FROM usuarios WHERE userid=?";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+        return $exists;
+    } else {
+        // Asociar parámetros a la plantilla
+        mysqli_stmt_bind_param($stmt, "s", $checkCedula);
+
+        // Correr statement con datos
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $resultCheck = mysqli_num_rows($result);
+
+        // Revisar si se ingresaron datos correctos
+        if (!($resultCheck > 0)) {
+            // Cedula repetida
+            $_SESSION['mensaje'] .= "<br> La cédula ingresada ya se encuentra registrada.";
+            $_SESSION['tipo_mensaje'] = 1;
+            $exists = true;
+        }
+
+        if (!mysqli_stmt_prepare($stmt, $sql2)) {
+            // Falla del query
+            $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+            $_SESSION['tipo_mensaje'] = 2;
+            return $exists;
+        } else {
+            // Asociar parámetros a la plantilla
+            mysqli_stmt_bind_param($stmt, "s", $checkUser);
+
+            // Correr statement con datos
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $resultCheck = mysqli_num_rows($result);
+
+            // Revisar si se ingresaron datos correctos
+            if (!($resultCheck > 0)) {
+                // Cedula repetida
+                $_SESSION['mensaje'] .= "<br> El nombre de usuario ya se encuentra registrado.";
+                $_SESSION['tipo_mensaje'] = 1;
+                $exists = true;
+            }
+
+            return $exists;
+        }
+    }
+}
+
 // Función para actualizar datos de usuario
-function update_user($conn)
+function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $original)
+{
+
+    $checkCedula = mysqli_real_escape_string($conn, $cedula);
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+    $checkClave = mysqli_real_escape_string($conn, $clave);
+    $checkPnombre = mysqli_real_escape_string($conn, $pnombre);
+    $checkSnombre = mysqli_real_escape_string($conn, $snombre);
+    $checkPapellido = mysqli_real_escape_string($conn, $papellido);
+    $checkSapellido = mysqli_real_escape_string($conn, $sapellido);
+    $checkNacionalidad = mysqli_real_escape_string($conn, $nacionalidad);
+    $checkFechaNac = mysqli_real_escape_string($conn, $fechanac);
+    $checkCargo = mysqli_real_escape_string($conn, $cargo);
+    $checkDpto = mysqli_real_escape_string($conn, $dpto);
+    $checkOriginal = mysqli_real_escape_string($conn, $original);
+
+    if (!empty($clave)) {
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
+    } else {
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
+    }
+
+    $stmt = mysqli_stmt_init($conn);
+
+    // Preparar prepared statement
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/editar.php');
+        exit();
+        
+    } else {
+
+        // Ejecutar query
+        if (!empty($clave)) {
+            mysqli_stmt_bind_param($stmt, "ssssssssssss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+        } else {
+            mysqli_stmt_bind_param($stmt, "sssssssssss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+        }
+        mysqli_stmt_execute($stmt);
+    }
+}
+
+function update_clave()
 {
 }
 
@@ -135,6 +275,7 @@ function fetch_user($conn, $userid)
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $userinfo = mysqli_fetch_assoc($result);
+        $_SESSION['userid'] = $userinfo['userid'];
 
         return $userinfo;
     }
@@ -170,8 +311,7 @@ function fetch_dpto($conn, $id)
         // Correr statement con datos
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
-        $row = mysqli_fetch_assoc($result);
-        $dpto = $row[0];
+        $dpto = mysqli_fetch_assoc($result);
 
         return $dpto;
     }

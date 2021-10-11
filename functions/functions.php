@@ -14,7 +14,22 @@ function empty_login($userid, $clave)
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
     } else {
-        $result = false;
+        return $result;
+    }
+}
+
+function empty_update_noadmin($cedula, $userid, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto) {
+    
+    $result = false;
+
+    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($snombre) || empty($papellido) || empty($sapellido) || empty($nacionalidad) || empty($fechanac) || empty($cargo) || empty($dpto)) {
+
+        $result = true;
+        $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $result;
+
+    } else {
         return $result;
     }
 }
@@ -45,12 +60,12 @@ function sanitize_clave($clave)
     // Sanitizar y validar clave
     $sanitized = filter_var($clave, FILTER_SANITIZE_STRING);
 
-    if (preg_match('~^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,@$!%*?&])[A-Za-z\d.,@$!%*?&]{8,16}$~', $clave)) {
+    if (preg_match('~^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[.,@$!%*?&ñÑ])[A-Za-z\d.,@$!%*?&ñÑ]{8,16}$~', $clave)) {
         return $sanitized;
     } else {
 
         if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-            $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto.";
+            $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto. Debe cumplir con las siguientes características: <br>Longitud entre 8 y 16 caracteres<br>Tener al menos una letra mayúscula y una minúscula<br>Debe contener al menos un dígito entre el 0 y el 9<br>Debe contener al menos un caracter especial (.,@$!%*?&)";
             $_SESSION['tipo_mensaje'] = 1;
         }
         return $sanitized;
@@ -73,17 +88,16 @@ function sanitize_cedula($cedula)
     }
 }
 
-// Función para sanitizar nombre/apellido
-function sanitize_nombre($nombre)
+// Función para sanitizar string alfabético
+function sanitize_string($string)
 {
-
     // Sanitizar y validar nombre/apellido
-    $sanitized = filter_var($nombre, FILTER_SANITIZE_STRING);
+    $sanitized = filter_var($string, FILTER_SANITIZE_STRING);
 
-    if (ctype_alpha($sanitized)) {
+    if (preg_match("~^[a-zA-ZñÑ\s]+$~",$sanitized)) {
         return $sanitized;
     } else {
-        $_SESSION['mensaje'] .= "<br> Formato de nombre o apellido incorrecto.";
+        $_SESSION['mensaje'] .= "<br> Formato de texto incorrecto." .$string;
         $_SESSION['tipo_mensaje'] = 1;
         return $sanitized;
     }

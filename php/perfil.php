@@ -3,6 +3,7 @@
 <?php
 $title = "Perfil";
 include "../assets/header.php";
+
 ?>
 <div class="container row d-flex justify-content-center">
 
@@ -13,7 +14,7 @@ include "../assets/header.php";
     <br>
     <br>
 
-    <table class="table" style="width: 50%">
+    <table class="table" style="width: 60%">
 
         <tr>
             <th>Nombre</th>
@@ -49,7 +50,7 @@ include "../assets/header.php";
         </tr>
         <tr>
             <th>Departamento</th>
-            <td><?php echo $user['dpto']; ?></td>
+            <td><?php echo $dpto['dpto']; ?></td>
         </tr>
 
     </table>

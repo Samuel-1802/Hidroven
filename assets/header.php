@@ -6,6 +6,7 @@ session_start();
 if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
     include_once "../functions/sql_queries.php";
     $user = fetch_user($conn, $_SESSION['userid']);
+    $dpto = fetch_dpto($conn, $user['dpto']);
 }
 
 ?>
@@ -24,7 +25,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex flex-column">
+    <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column" style="background: rgba(66, 135, 245,0.10)">
         <div class="container-fluid">
             <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;" width="30%">
             <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;" width="15%">
