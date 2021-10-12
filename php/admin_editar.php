@@ -76,13 +76,13 @@ include "../assets/alert.php";
                 <label for="n_admin">Tipo de usuario</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="n_admin" id="admin" value="1">
+                <input class="form-check-input" type="radio" name="n_admin" id="admin" value="1" <?php echo $user['admin'] == 1 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="admin">
                     Administrador
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="n_admin" id="noadmin" value="0">
+                <input class="form-check-input" type="radio" name="n_admin" id="noadmin" value="0" <?php echo $user['admin'] == 0 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="exranjero">
                     No Administrador
                 </label>
@@ -135,7 +135,6 @@ include "../assets/alert.php";
             <button type="submit" class="btn btn btn-primary my-3">Editar</button>
         </div>
     </form>
-</div>
 </div>
 
 <?php
