@@ -23,7 +23,24 @@ function empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionali
     
     $result = false;
 
-    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($snombre) || empty($papellido) || empty($sapellido) || (empty($nacionalidad) && $nacionalidad !="0") || empty($fechanac) || empty($cargo) || empty($dpto)) {
+    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($papellido) || (empty($nacionalidad) && $nacionalidad !="0") || empty($fechanac) || empty($cargo) || empty($dpto)) {
+
+        $result = true;
+        $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos necesarios.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $result;
+
+    } else {
+        return $result;
+    }
+}
+
+// Función para validar que los datos necesarios para agregar y editar usuarios (admin) no esté vacíos
+function empty_admin($cedula, $clave, $userid, $pnombre, $papellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, $new) {
+    
+    $result = false;
+
+    if (empty($cedula) || empty($userid) || (empty($clave) && $new) || empty($pnombre) || empty($papellido) || (empty($nacionalidad) && $nacionalidad !="0") || (empty($admin) && $admin !="0") || empty($fechanac) || empty($fechaing) || empty($cargo) || empty($dpto)) {
 
         $result = true;
         $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos necesarios.";

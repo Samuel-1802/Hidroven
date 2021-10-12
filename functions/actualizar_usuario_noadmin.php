@@ -7,17 +7,18 @@ if (isset($_POST)) {
     session_start();
     include_once "./functions.php";
     include_once "./sql_queries.php";
-    $_SESSION['post'] = $_POST;
 
     //El usuario rellenó el formulario de login, sanitizar los datos ingresados
     $cedula = sanitize_cedula($_POST['n_cedula']);
     $userid = sanitize_userid($_POST['n_userid']);
+
     if (!empty($_POST['n_clave'])) {
         $clave = sanitize_clave($_POST['n_clave']);
-        $clave = password_hash($_POST['n_clave'], PASSWORD_DEFAULT);
+        $clave = password_hash($clave, PASSWORD_DEFAULT);
     } else {
         $clave = "";
     }
+
     $pnombre = sanitize_string($_POST['np_nombre']);
     $snombre = sanitize_string($_POST['ns_nombre']);
     $papellido = sanitize_string($_POST['np_apellido']);
@@ -29,15 +30,13 @@ if (isset($_POST)) {
     $ogcedula = sanitize_cedula($_POST['cedula']);
     $oguserid = sanitize_userid($_POST['userid']);
 
-    $_SESSION['post'] = $nacionalidad;
-
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])){
         // Alguna validación encontró un error
         header("location: ../php/editar.php");
         exit();
     }
 
-    // Revisar que los campos no estén vacíos
+    // Revisar que los campos necesarios no estén vacíos
     if (empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $fechanac, $cargo, $dpto) !== false) {
         // Algún campo está vacío
         header("location: ../php/editar.php");

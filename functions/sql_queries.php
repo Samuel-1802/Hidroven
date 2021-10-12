@@ -93,19 +93,50 @@ function temp_copy($conn, $userid)
     }
 }
 
-// Función para buscar usuario por cedula y nombre de usuario
-function search_user_add($conn, $cedula, $userid)
-{
-}
-
 // Función para buscar usuario por userid
 function search_user($conn, $cedula)
 {
 }
 
 // Función para crear un usuario nuevo
-function create_user($conn)
+function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto)
 {
+
+    $checkCedula = mysqli_real_escape_string($conn, $cedula);
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+    $checkClave = mysqli_real_escape_string($conn, $clave);
+    $checkPnombre = mysqli_real_escape_string($conn, $pnombre);
+    $checkSnombre = mysqli_real_escape_string($conn, $snombre);
+    $checkPapellido = mysqli_real_escape_string($conn, $papellido);
+    $checkSapellido = mysqli_real_escape_string($conn, $sapellido);
+    $checkNacionalidad = mysqli_real_escape_string($conn, $nacionalidad);
+    $checkAdmin = mysqli_real_escape_string($conn, $admin);
+    $checkFechaNac = mysqli_real_escape_string($conn, $fechanac);
+    $checkFechaIng = mysqli_real_escape_string($conn, $fechaing);
+    $checkCargo = mysqli_real_escape_string($conn, $cargo);
+    $checkDpto = mysqli_real_escape_string($conn, $dpto);
+
+    $sql = "INSERT INTO usuarios VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?);";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    // Preparar prepared statement
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/admin.php');
+
+        exit();
+    } else {
+
+        // Ejecutar query
+        mysqli_stmt_bind_param($stmt, "sssssssiissss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkAdmin, $checkFechaNac, $checkFechaIng, $checkCargo, $checkDpto);
+        mysqli_stmt_execute($stmt);
+
+    }
+
 }
 
 // Función que verifica si un usuario determinado está registrado en el sistema
@@ -116,14 +147,14 @@ function user_exists($conn, $userid, $cedula)
     $checkUser = mysqli_real_escape_string($conn, $userid);
     $checkCedula = mysqli_real_escape_string($conn, $cedula);
 
-    $sql = "SELECT * FROM usuarios WHERE cedula=?";
-    $sql2 = "SELECT * FROM usuarios WHERE userid=?";
+    $sql = "SELECT * FROM usuarios WHERE cedula=?;";
+    $sql2 = "SELECT * FROM usuarios WHERE userid=?;";
 
     $stmt = mysqli_stmt_init($conn);
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         // Falla del query
-        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
         $_SESSION['tipo_mensaje'] = 2;
         return $exists;
     } else {
@@ -136,16 +167,16 @@ function user_exists($conn, $userid, $cedula)
         $resultCheck = mysqli_num_rows($result);
 
         // Revisar si se ingresaron datos correctos
-        if (!($resultCheck > 0)) {
+        if ($resultCheck > 0) {
             // Cedula repetida
-            $_SESSION['mensaje'] = "<b.r> La cédula ingresada ya se encuentra registrada.";
+            $_SESSION['mensaje'] = "<br> La cédula ingresada ya se encuentra registrada.";
             $_SESSION['tipo_mensaje'] = 1;
             $exists = true;
         }
 
         if (!mysqli_stmt_prepare($stmt, $sql2)) {
             // Falla del query
-            $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+            $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
             $_SESSION['tipo_mensaje'] = 2;
             return $exists;
         } else {
@@ -158,7 +189,7 @@ function user_exists($conn, $userid, $cedula)
             $resultCheck = mysqli_num_rows($result);
 
             // Revisar si se ingresaron datos correctos
-            if (!($resultCheck > 0)) {
+            if ($resultCheck > 0) {
                 // Cedula repetida
                 $_SESSION['mensaje'] .= "<br> El nombre de usuario ya se encuentra registrado.";
                 $_SESSION['tipo_mensaje'] = 1;
@@ -189,11 +220,8 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 
     if (!empty($clave)) {
         $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
-
-        // $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     } else {
         $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
-        // $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     }
 
     $stmt = mysqli_stmt_init($conn);
@@ -206,7 +234,6 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
         $_SESSION['tipo_mensaje'] = 2;
         header('location: ../php/editar.php');
         exit();
-        
     } else {
 
         // Ejecutar query
@@ -219,12 +246,7 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
             $_SESSION['userid'] = $userid;
             mysqli_stmt_execute($stmt);
         }
-        
     }
-}
-
-function update_clave()
-{
 }
 
 // Función para actualizar datos de usuario (admin)
