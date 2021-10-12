@@ -1,6 +1,6 @@
 <?php
 
-include_once "./connection.php";
+include_once "connection.php";
 
 // Función para buscar usuario por userid
 function user_login($conn, $userid, $clave)

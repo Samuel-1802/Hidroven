@@ -148,7 +148,7 @@ include "../assets/header.php";
 </div>
 
 <div class="container d-flex justify-content-center">
-    <form action="./search.php" method="POST">
+    <form action="../functions/buscar.php" method="POST">
         <div class="row">
             <div class="form-group col container">
                 <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
