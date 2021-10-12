@@ -1,4 +1,4 @@
-<!-- Función para buscar un usuario en la base de datos por ci -->
+<!-- Función para activar/desactivar usuarios -->
 
 <?php
 
@@ -9,7 +9,7 @@ if (isset($_POST)) {
     include_once "./sql_queries.php";
 
     // Sanitizar datos ingresados
-    $cedula = sanitize_cedula($_POST['ci']);
+    $userid = sanitize_userid($_SESSION['search_userid']);
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
         // Alguna validación encontró un error
@@ -17,19 +17,12 @@ if (isset($_POST)) {
         exit();
     }
 
-    if (empty_search($cedula) !== false) {
-        // Algún campo está vacío
-        header("location: ../php/admin.php");
-        exit();
-    } else {
-
-        $searchResult = search_user($conn, $cedula);
-        $_SESSION['search_userid'] = $searchResult['userid'];
+        toggle_user($conn, $userid);
+        $_SESSION['mensaje'] = "Estado del usuario actualizado.";
+        $_SESSION['tipo_mensaje'] = 0;
 
         header("location: ../php/admin.php");
         exit();
-
-    }
 
 } else {
     // Se llegó mediante un método inusual, regresar al index

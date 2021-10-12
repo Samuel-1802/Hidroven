@@ -1,6 +1,6 @@
 <?php
 
-include_once "connection.php";
+include_once "../functions/connection.php";
 
 // Función para buscar usuario por userid
 function user_login($conn, $userid, $clave)
@@ -96,6 +96,41 @@ function temp_copy($conn, $userid)
 // Función para buscar usuario por userid
 function search_user($conn, $cedula)
 {
+
+    $checkCedula = mysqli_real_escape_string($conn, $cedula);
+
+    $sql = "SELECT * FROM usuarios WHERE cedula=?;";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/admin.php');
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "s", $checkCedula);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $resultCheck = mysqli_num_rows($result);
+        $userinfo = mysqli_fetch_assoc($result);
+
+        if ($resultCheck > 0) {
+
+            $_SESSION['mensaje'] = "Usuario encontrado.";
+            $_SESSION['tipo_mensaje'] = 0;
+
+        } else {
+
+            $_SESSION['mensaje'] = "Usuario no encontrado.";
+            $_SESSION['tipo_mensaje'] = 1;
+
+        }
+
+        return $userinfo;
+    }
+
 }
 
 // Función para crear un usuario nuevo
@@ -124,11 +159,11 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
     if (!mysqli_stmt_prepare($stmt, $sql)) {
 
         // Falla del query
-        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
         $_SESSION['tipo_mensaje'] = 2;
         header('location: ../php/admin.php');
-
         exit();
+
     } else {
 
         // Ejecutar query
@@ -255,8 +290,25 @@ function update_user_admin($conn)
 }
 
 // Función para activar/desactivar usuarios
-function toggle_user($conn)
-{
+function toggle_user($conn, $userid) {
+
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+
+    $sql = "UPDATE usuarios SET estado=!estado WHERE userid=?;";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/admin.php');
+        exit();
+    } else {
+        mysqli_stmt_bind_param($stmt, "s", $checkUser);
+        mysqli_stmt_execute($stmt);
+    }
+
 }
 
 // Función para obtener los datos del usuario
@@ -282,7 +334,7 @@ function fetch_user($conn, $userid)
     $checkUser = mysqli_real_escape_string($conn, $userid);
 
     // Plantilla del query
-    $sql = 'SELECT * FROM usuarios WHERE userid=? AND estado=1;';
+    $sql = 'SELECT * FROM usuarios WHERE userid=?;';
 
     // Prepared statement
     $stmt = mysqli_stmt_init($conn);
@@ -304,7 +356,6 @@ function fetch_user($conn, $userid)
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $userinfo = mysqli_fetch_assoc($result);
-        $_SESSION['userid'] = $userinfo['userid'];
 
         return $userinfo;
     }

@@ -176,23 +176,25 @@ include "../assets/header.php";
         <tbody>
 
             <?php
-            if (isset($_SESSION['search'])) {
-                if ($_SESSION['search']) {
+            if (isset($_SESSION['search_userid'])) {
+
+                $userdata = fetch_user($conn, $_SESSION['search_userid']);
+
+                if (!empty($userdata)) {
 
             ?>
                     <tr>
-                        <th scope="row"><?php echo $_SESSION['s_cedula']; ?></th>
-                        <td><?php echo $_SESSION['s_nombre']; ?></td>
-                        <td><?php echo $_SESSION['s_apellido']; ?></td>
-                        <td><?php echo $_SESSION['s_userid']; ?></td>
-                        <td><?php echo $_SESSION['s_estado'] == 1 ? "Activo" : "Inactivo"; ?></td>
-                        <td><a href="./edit_usuario.php">Editar</a></td>
-                        <td><a href="./toggle_usuario.php"><?php echo $_SESSION['s_estado'] == 1 ? "Desactivar" : "Activar"; ?></a></td>
+                        <th scope="row"><?php echo $userdata['cedula']; ?></th>
+                        <td colspan="2"><?php echo $userdata['p_nombre'] ." " .$userdata['s_nombre'] ." " .$userdata['p_apellido'] ." " .$userdata['s_apellido']; ?></td>
+                        <td><?php echo $userdata['userid']; ?></td>
+                        <td><?php echo $userdata['estado'] == 1 ? "Activo" : "Inactivo"; ?></td>
+                        <td><a href="./admin_editar.php" class="text-decoration-none">Editar</a></td>
+                        <td><a href="../functions/toggle_usuario.php" class="text-decoration-none"><?php echo $userdata['estado'] == 1 ? "Desactivar" : "Activar"; ?></a></td>
                     </tr>
 
             <?php
 
-                    unset($_SESSION['search']);
+                    unset($userdata);
                 }
             }
             ?>
