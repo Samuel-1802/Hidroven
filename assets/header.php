@@ -21,14 +21,15 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column" style="background: rgba(66, 135, 245,0.10)">
         <div class="container-fluid">
-            <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;" width="30%">
-            <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;" width="15%">
+            <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;">
+            <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;">
         </div>
         <div class="container-fluid justify-content-between">
             <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
@@ -40,9 +41,6 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                 <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="./la_empresa.php">La Empresa</a>
                     </li>
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -56,8 +54,16 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
                     ?>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./index.php">Solicitudes</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="solicitudes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Solicitudes</a>
+
+                            <ul class="dropdown-menu" aria-labelledby="solicitudes">
+                                <li><a class="dropdown-item" href="./solicitudes.php">Constancia de trabajo</a></li>
+                                <li><a class="dropdown-item" href="./solicitudes.php">Solicitud de vacaciones</a></li>
+                                <li><a class="dropdown-item" href="./solicitudes.php">Reposo médico</a></li>
+                                <li><a class="dropdown-item" href="./solicitudes.php">Recibos de pago</a></li>
+                                <li><a class="dropdown-item" href="./solicitudes.php">ISLR</a></li>
+                            </ul>
                         </li>
                     <?php
                     }
