@@ -1,21 +1,18 @@
 <!-- Función para editar usuarios -->
 
-<!-- Página de no administradores -->
+<!-- Página de Administración -->
+
 <?php
-$title = "Editar usuario";
+$title = "Editar Usuario";
 include "../assets/header.php";
 ?>
 
-<h6><a href="./perfil.php" class="text-decoration-none">← Regresar</a></h6>
+<h6><a href="./admin.php" class="text-decoration-none">← Regresar</a></h6>
 <h3>Editar usuario</h3>
 
-<div class="container d-flex justify-content-center">
-    <?php
-
-    include_once "../assets/alert.php";
-
-    ?>
-</div>
+<?php
+include "../assets/alert.php";
+?>
 
 <div class="container d-flex justify-content-center">
     <form action="../functions/actualizar_usuario_noadmin.php" method="POST">
@@ -70,8 +67,36 @@ include "../assets/header.php";
         </div>
         <br>
         <div class="form-group container">
+            <label for="n_clave">Clave</label>
+            <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave">
+        </div>
+        <br>
+        <div class="form-group container">
+            <div>
+                <label for="n_admin">Tipo de usuario</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="n_admin" id="admin" value="1">
+                <label class="form-check-label" for="admin">
+                    Administrador
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="n_admin" id="noadmin" value="0">
+                <label class="form-check-label" for="exranjero">
+                    No Administrador
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="form-group container">
             <label for="n_fechanac">Fecha de nacimiento</label>
             <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" value="<?php echo $user['fecha_nac'] ?>">
+        </div>
+        <br>
+        <div class="form-group container">
+            <label for="n_fechanac">Fecha de ingreso</label>
+            <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" value="<?php echo $user['fecha_ing'] ?>">
         </div>
         <br>
         <div class="form-group container">
@@ -102,20 +127,17 @@ include "../assets/header.php";
                 <option value="18" <?php echo ($user['dpto'] == "18" ? "selected" : ""); ?>>Gerencia General de Fortalecimiento del Poder Popular</option>
             </select>
         </div>
-        <br>
         <div class="form-group container">
-            <label for="n_clave">Clave</label>
-            <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave">
-        </div>
-        <div class="form-group container">
-            <input type="hidden" id="userid" name="userid" value="<?php echo $user['userid'];?>">
-            <input type="hidden" id="cedula" name="cedula" value="<?php echo $user['cedula'];?>">
+            <input type="hidden" id="userid" name="userid" value="<?php echo $user['userid']; ?>">
+            <input type="hidden" id="cedula" name="cedula" value="<?php echo $user['cedula']; ?>">
         </div>
         <div class="container">
             <button type="submit" class="btn btn btn-primary my-3">Editar</button>
         </div>
     </form>
 </div>
+</div>
+
 <?php
 include "../assets/footer.php";
 ?>

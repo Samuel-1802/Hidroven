@@ -62,10 +62,6 @@ include "../assets/header.php";
         <form action="./editar.php" method="POST">
             <button type="submit" class="btn btn btn-primary">Editar</button>
         </form>
-
-        <form action="./cambio_clave.php" method="POST">
-            <button type="submit" class="btn btn btn-primary mx-3">Cambiar Clave</button>
-        </form>
     </div>
 
 </div>
