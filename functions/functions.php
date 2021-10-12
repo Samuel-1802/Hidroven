@@ -18,14 +18,15 @@ function empty_login($userid, $clave)
     }
 }
 
-function empty_update_noadmin($cedula, $userid, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto) {
+// Función para validar que los datos necesarios en la edición de usuario (no admin) no esté vacíos
+function empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $fechanac, $cargo, $dpto) {
     
     $result = false;
 
     if (empty($cedula) || empty($userid) || empty($pnombre) || empty($snombre) || empty($papellido) || empty($sapellido) || (empty($nacionalidad) && $nacionalidad !="0") || empty($fechanac) || empty($cargo) || empty($dpto)) {
 
         $result = true;
-        $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos.";
+        $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos necesarios.";
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
 

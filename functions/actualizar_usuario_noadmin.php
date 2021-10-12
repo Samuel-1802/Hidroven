@@ -38,7 +38,7 @@ if (isset($_POST)) {
     }
 
     // Revisar que los campos no estén vacíos
-    if (empty_update_noadmin($cedula, $userid, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto) !== false) {
+    if (empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $fechanac, $cargo, $dpto) !== false) {
         // Algún campo está vacío
         header("location: ../php/editar.php");
         exit();
