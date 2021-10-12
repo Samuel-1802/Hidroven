@@ -274,19 +274,62 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
         // Ejecutar query
         if (!empty($clave)) {
             mysqli_stmt_bind_param($stmt, "sssssssissss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            $_SESSION['userid'] = $userid;
+            $_SESSION['userid'] = $checkUser;
             mysqli_stmt_execute($stmt);
         } else {
             mysqli_stmt_bind_param($stmt, "ssssssissss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            $_SESSION['userid'] = $userid;
+            $_SESSION['userid'] = $checkUser;
             mysqli_stmt_execute($stmt);
         }
     }
 }
 
 // Función para actualizar datos de usuario (admin)
-function update_user_admin($conn)
-{
+function update_user_admin($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, $original) {
+    $checkCedula = mysqli_real_escape_string($conn, $cedula);
+    $checkUser = mysqli_real_escape_string($conn, $userid);
+    $checkClave = mysqli_real_escape_string($conn, $clave);
+    $checkPnombre = mysqli_real_escape_string($conn, $pnombre);
+    $checkSnombre = mysqli_real_escape_string($conn, $snombre);
+    $checkPapellido = mysqli_real_escape_string($conn, $papellido);
+    $checkSapellido = mysqli_real_escape_string($conn, $sapellido);
+    $checkNacionalidad = mysqli_real_escape_string($conn, $nacionalidad);
+    $checkAdmin = mysqli_real_escape_string($conn, $admin);
+    $checkFechaNac = mysqli_real_escape_string($conn, $fechanac);
+    $checkFechaIng = mysqli_real_escape_string($conn, $fechaing);
+    $checkCargo = mysqli_real_escape_string($conn, $cargo);
+    $checkDpto = mysqli_real_escape_string($conn, $dpto);
+    $checkOriginal = mysqli_real_escape_string($conn, $original);
+
+    if (!empty($clave)) {
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, admin=?, fecha_nac=?, fecha_ing=?, cargo=?, dpto=? WHERE userid=?;";
+    } else {
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, admin=?, fecha_nac=?, fecha_ing=?, cargo=?, dpto=? WHERE userid=?;";
+    }
+
+    $stmt = mysqli_stmt_init($conn);
+
+    // Preparar prepared statement
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+        header('location: ../php/admin_editar.php');
+        exit();
+    } else {
+
+        // Ejecutar query
+        if (!empty($clave)) {
+            mysqli_stmt_bind_param($stmt, "sssssssiisssss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkAdmin, $checkFechaNac, $checkFechaIng, $checkCargo, $checkDpto, $checkOriginal);
+            $_SESSION['search_userid'] = $checkUser;
+            mysqli_stmt_execute($stmt);
+        } else {
+            mysqli_stmt_bind_param($stmt, "ssssssiisssss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkAdmin, $checkFechaNac, $checkFechaIng, $checkCargo, $checkDpto, $checkOriginal);
+            $_SESSION['search_userid'] = $checkUser;
+            mysqli_stmt_execute($stmt);
+        }
+    }
 }
 
 // Función para activar/desactivar usuarios

@@ -8,7 +8,7 @@ if (isset($_POST)) {
     include_once "./functions.php";
     include_once "./sql_queries.php";
 
-    //El usuario rellenó el formulario de login, sanitizar los datos ingresados
+    //El usuario rellenó el formulario, sanitizar los datos ingresados
     $cedula = sanitize_cedula($_POST['n_cedula']);
     $userid = sanitize_userid($_POST['n_userid']);
 
