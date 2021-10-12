@@ -14,8 +14,6 @@ include "../assets/header.php";
 
     include_once "../assets/alert.php";
 
-    var_dump($_POST);
-    var_dump($_SESSION['post']);
     ?>
 
 </div>
@@ -54,13 +52,13 @@ include "../assets/header.php";
                 <label for="n_nacionalidad">Nacionalidad</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="n_nacionalidad" id="venezolano" value=1 <?php echo $user['nacionalidad'] == 1 ? "checked" : ""; ?>>
+                <input class="form-check-input" type="radio" name="n_nacionalidad" id="venezolano" value="1" <?php echo $user['nacionalidad'] == 1 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="venezolano">
                     Venezolano
                 </label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="n_nacionalidad" id="extranjero" value=0 <?php echo $user['nacionalidad'] == 0 ? "checked" : ""; ?>>
+                <input class="form-check-input" type="radio" name="n_nacionalidad" id="extranjero" value="0" <?php echo $user['nacionalidad'] == 0 ? "checked" : ""; ?>>
                 <label class="form-check-label" for="exranjero">
                     Extranjero
                 </label>

@@ -20,14 +20,16 @@ if (isset($_POST)) {
     }
     $pnombre = sanitize_string($_POST['np_nombre']);
     $snombre = sanitize_string($_POST['ns_nombre']);
-    $papellido = sanitize_string($_POST['np_nombre']);
+    $papellido = sanitize_string($_POST['np_apellido']);
     $sapellido = sanitize_string($_POST['ns_apellido']);
     $nacionalidad = sanitize_numero($_POST['n_nacionalidad']);
     $fechanac = sanitize_fecha($_POST['n_fechanac']);
     $cargo = sanitize_string($_POST['n_cargo']);
-    $dpto = sanitize_numero($_POST['n_departamento']);
+    $dpto = sanitize_dpto($_POST['n_departamento']);
     $ogcedula = sanitize_cedula($_POST['cedula']);
     $oguserid = sanitize_userid($_POST['userid']);
+
+    $_SESSION['post'] = $nacionalidad;
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])){
         // Alguna validación encontró un error
@@ -51,11 +53,13 @@ if (isset($_POST)) {
             header("location: ../php/editar.php");
             exit();
         } else {
-            // Actualizar los datos en la BD
-            update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $ogcedula);
 
-            $_SESSION['mensaje'] .= "Datos actualizados exitosamente.";
+            // Actualizar los datos en la BD
+            update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $oguserid);
+
+            $_SESSION['mensaje'] = "Datos actualizados exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;
+
             header("location: ../php/editar.php");
             exit();
         }

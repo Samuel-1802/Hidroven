@@ -22,7 +22,7 @@ function empty_update_noadmin($cedula, $userid, $pnombre, $snombre, $papellido, 
     
     $result = false;
 
-    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($snombre) || empty($papellido) || empty($sapellido) || empty($nacionalidad) || empty($fechanac) || empty($cargo) || empty($dpto)) {
+    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($snombre) || empty($papellido) || empty($sapellido) || (empty($nacionalidad) && $nacionalidad !="0") || empty($fechanac) || empty($cargo) || empty($dpto)) {
 
         $result = true;
         $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos.";
@@ -94,10 +94,10 @@ function sanitize_string($string)
     // Sanitizar y validar nombre/apellido
     $sanitized = filter_var($string, FILTER_SANITIZE_STRING);
 
-    if (preg_match("~^[a-zA-ZñÑ\s]+$~",$sanitized)) {
+    if (preg_match("~^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$~",$sanitized)) {
         return $sanitized;
     } else {
-        $_SESSION['mensaje'] .= "<br> Formato de texto incorrecto." .$string;
+        $_SESSION['mensaje'] .= "<br> Formato de texto incorrecto: " .$string ."<br> Utilice sólo caracteres alfabéticos.";
         $_SESSION['tipo_mensaje'] = 1;
         return $sanitized;
     }
@@ -106,7 +106,6 @@ function sanitize_string($string)
 // Función para sanitizar email
 function sanitize_correo($correo)
 {
-
     // Sanitizar y validar correo
     $sanitized = filter_var($correo, FILTER_SANITIZE_EMAIL);
 
@@ -173,7 +172,7 @@ function sanitize_numero($numero)
     //Sanitizar y validar números enteros
     $sanitized = filter_var($numero, FILTER_SANITIZE_NUMBER_INT);
 
-    if (filter_var($sanitized, FILTER_VALIDATE_INT)) {
+    if (ctype_digit($sanitized)) {
         return $sanitized;
     } else {
         $_SESSION['mensaje'] .= "<br> Formato de número incorrecto.";

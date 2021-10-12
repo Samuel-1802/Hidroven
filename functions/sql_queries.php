@@ -138,7 +138,7 @@ function user_exists($conn, $userid, $cedula)
         // Revisar si se ingresaron datos correctos
         if (!($resultCheck > 0)) {
             // Cedula repetida
-            $_SESSION['mensaje'] .= "<br> La cédula ingresada ya se encuentra registrada.";
+            $_SESSION['mensaje'] = "<b.r> La cédula ingresada ya se encuentra registrada.";
             $_SESSION['tipo_mensaje'] = 1;
             $exists = true;
         }
@@ -188,12 +188,12 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
     $checkOriginal = mysqli_real_escape_string($conn, $original);
 
     if (!empty($clave)) {
-        $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
 
-        $sql ="SELECT * FROM usuarios WHERE cedula=?;";
+        // $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     } else {
-        $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE cedula=?;";
-        $sql ="SELECT * FROM usuarios WHERE cedula=?;";
+        $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
+        // $sql ="SELECT * FROM usuarios WHERE cedula=?;";
     }
 
     $stmt = mysqli_stmt_init($conn);
@@ -211,13 +211,15 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 
         // Ejecutar query
         if (!empty($clave)) {
-            // mysqli_stmt_bind_param($stmt, "ssssssssssss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            mysqli_stmt_bind_param($stmt, "s", $checkOriginal);
+            mysqli_stmt_bind_param($stmt, "sssssssissss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            $_SESSION['userid'] = $userid;
+            mysqli_stmt_execute($stmt);
         } else {
-            // mysqli_stmt_bind_param($stmt, "sssssssssss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            mysqli_stmt_bind_param($stmt, "s", $checkOriginal);
+            mysqli_stmt_bind_param($stmt, "ssssssissss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
+            $_SESSION['userid'] = $userid;
+            mysqli_stmt_execute($stmt);
         }
-        mysqli_stmt_execute($stmt);
+        
     }
 }
 
