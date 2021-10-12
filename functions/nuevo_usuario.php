@@ -12,6 +12,7 @@ if (isset($_POST)) {
     $userid = sanitize_userid($_POST['n_userid']);
 
     $clave = sanitize_clave($_POST['n_clave']);
+    // pasar la clave a hash
     $clave = password_hash($clave, PASSWORD_DEFAULT);
 
     $pnombre = sanitize_string($_POST['np_nombre']);
@@ -48,7 +49,7 @@ if (isset($_POST)) {
             // Agregar nuevo usuario
             create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto);
 
-            $_SESSION['mensaje'] = "Usuario agregado exitosamente.";
+            $_SESSION['mensaje'] .= "Usuario agregado exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;
 
             header("location: ../php/admin.php");

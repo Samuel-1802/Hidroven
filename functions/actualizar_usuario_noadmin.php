@@ -14,6 +14,7 @@ if (isset($_POST)) {
 
     if (!empty($_POST['n_clave'])) {
         $clave = sanitize_clave($_POST['n_clave']);
+        //pasar la clave a hash
         $clave = password_hash($clave, PASSWORD_DEFAULT);
     } else {
         $clave = "";

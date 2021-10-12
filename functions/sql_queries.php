@@ -140,7 +140,7 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 }
 
 // Función que verifica si un usuario determinado está registrado en el sistema
-function user_exists($conn, $userid, $cedula)
+function user_exists($conn, $cedula, $userid)
 {
 
     $exists = false;
@@ -169,7 +169,7 @@ function user_exists($conn, $userid, $cedula)
         // Revisar si se ingresaron datos correctos
         if ($resultCheck > 0) {
             // Cedula repetida
-            $_SESSION['mensaje'] = "<br> La cédula ingresada ya se encuentra registrada.";
+            $_SESSION['mensaje'] .= "<br> La cédula ingresada ya se encuentra registrada.";
             $_SESSION['tipo_mensaje'] = 1;
             $exists = true;
         }

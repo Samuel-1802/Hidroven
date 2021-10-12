@@ -35,6 +35,20 @@ function empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionali
     }
 }
 
+// Función para validar que el campo de búsqueda no esté vacío
+function empty_search($cedula) {
+    $result = false;
+
+    if (empty($cedula)) {
+        $result = true;
+        $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos necesarios.";
+        $_SESSION['tipo_mensaje'] = 1;
+        return $result;
+    } else {
+        return $result;
+    }
+}
+
 // Función para validar que los datos necesarios para agregar y editar usuarios (admin) no esté vacíos
 function empty_admin($cedula, $clave, $userid, $pnombre, $papellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, $new) {
     
