@@ -9,7 +9,7 @@ include "../assets/header.php";
 $edit = fetch_user($conn, $_SESSION['search_userid']);
 ?>
 
-<h6><a href="./admin.php" class="text-decoration-none">← Regresar</a></h6>
+<h6><a href="./buscar.php" class="text-decoration-none">← Regresar</a></h6>
 <h3>Editar usuario</h3>
 
 <div class="container d-flex justify-content-center">

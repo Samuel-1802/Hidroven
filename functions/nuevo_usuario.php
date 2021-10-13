@@ -15,34 +15,34 @@ if (isset($_POST)) {
     // pasar la clave a hash
     $clave = password_hash($clave, PASSWORD_DEFAULT);
 
-    $pnombre = sanitize_string($_POST['np_nombre']);
-    $snombre = sanitize_string($_POST['ns_nombre']);
-    $papellido = sanitize_string($_POST['np_apellido']);
-    $sapellido = sanitize_string($_POST['ns_apellido']);
+    $pnombre = sanitize_string($_POST['np_nombre'], "primer nombre");
+    $snombre = sanitize_string($_POST['ns_nombre'], "segundo nombre");
+    $papellido = sanitize_string($_POST['np_apellido'], "primer apellido");
+    $sapellido = sanitize_string($_POST['ns_apellido'], "segundo apellido");
     $nacionalidad = sanitize_numero($_POST['n_nacionalidad']);
     $admin = sanitize_numero($_POST['n_admin']);
     $fechanac = sanitize_fecha($_POST['n_fechanac']);
     $fechaing = sanitize_fecha($_POST['n_fechaing']);
-    $cargo = sanitize_string($_POST['n_cargo']);
+    $cargo = sanitize_string($_POST['n_cargo'], "cargo");
     $dpto = sanitize_dpto($_POST['n_departamento']);
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
         // Alguna validación encontró un error
-        header("location: ../php/admin.php");
+        header("location: ../php/registrar.php");
         exit();
     }
 
     // Revisar que los campos necesarios no estén vacíos
     if (empty_admin($cedula, $clave, $userid, $pnombre, $papellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, true) !== false) {
         // Algún campo está vacío
-        header("location: ../php/admin.php");
+        header("location: ../php/registrar.php");
         exit();
     } else {
 
         // Revisar que la cédula o el nombre de usuario no se repitan
-        if (user_exists($conn, $cedula, $userid)) {
+        if (user_exists($conn, $cedula, $userid, $cedula, $userid)) {
             // Redireccionar
-            header("location: ../php/admin.php");
+            header("location: ../php/registrar.php");
             exit();
         } else {
 
@@ -52,7 +52,7 @@ if (isset($_POST)) {
             $_SESSION['mensaje'] .= "Usuario agregado exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;
 
-            header("location: ../php/admin.php");
+            header("location: ../php/registrar.php");
             exit();
         }
     }

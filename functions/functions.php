@@ -95,7 +95,7 @@ function sanitize_userid($userid)
     } else {
 
         if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-            $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto. Sólo puede contener letras mayúsculas y minúsculas.";
+            $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto.<br>Sólo puede contener letras mayúsculas y minúsculas.";
             $_SESSION['tipo_mensaje'] = 1;
         }
         return $sanitized;
@@ -131,7 +131,7 @@ function sanitize_cedula($cedula)
     if (ctype_digit($sanitized) && preg_match('~^(?=.*[0-9])[0-9]{1,8}$~', $cedula)) {
         return $sanitized;
     } else {
-        $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto. Ingrese sólo dígitos entre el 0 y el 9, sin puntos y una longitud máxima de 8 dígitos.";
+        $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto.<br>Ingrese sólo dígitos entre el 0 y el 9, sin puntos<br>Longitud máxima de 8 dígitos.";
         $_SESSION['tipo_mensaje'] = 1;
         return $sanitized;
     }
