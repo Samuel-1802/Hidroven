@@ -13,20 +13,20 @@ if (isset($_POST)) {
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
         // Alguna validación encontró un error
-        header("location: ../php/admin.php");
+        header("location: ../php/buscar.php");
         exit();
     }
 
     if (empty_search($cedula) !== false) {
         // Algún campo está vacío
-        header("location: ../php/admin.php");
+        header("location: ../php/buscar.php");
         exit();
     } else {
 
         $searchResult = search_user($conn, $cedula);
         $_SESSION['search_userid'] = $searchResult['userid'];
 
-        header("location: ../php/admin.php");
+        header("location: ../php/buscar.php");
         exit();
 
     }

@@ -228,7 +228,7 @@ function user_exists($conn, $cedula, $userid, $oguserid, $ogcedula)
             // Revisar si se ingresaron datos correctos
             if ($resultCheck > 0) {
                 // Cedula repetida
-                $_SESSION['mensaje'] .= "<br> El nombre de usuario ya se encuentra registrado.";
+                $_SESSION['mensaje'] .= "<br> El nombre de usuario ingresado ya se encuentra registrado.";
                 $_SESSION['tipo_mensaje'] = 1;
                 $exists = true;
             }

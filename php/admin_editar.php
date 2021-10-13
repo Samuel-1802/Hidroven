@@ -32,7 +32,7 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
             </div>
             <div class="container">
                 <label for="ns_nombre">Segundo nombre</label>
-                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $edit['s_nombre']; ?>" required>
+                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $edit['s_nombre']; ?>">
             </div>
         </div>
         <br>
@@ -43,7 +43,7 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
             </div>
             <div class="container">
                 <label for="ns_apellido">Segundo apellido</label>
-                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $edit['s_apellido']; ?>" required>
+                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $edit['s_apellido']; ?>">
             </div>
         </div>
         <br>

@@ -19,11 +19,11 @@ function empty_login($userid, $clave)
 }
 
 // Función para validar que los datos necesarios en la edición de usuario (no admin) no esté vacíos
-function empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $fechanac, $cargo, $dpto) {
+function empty_update_noadmin($pnombre, $papellido) {
     
     $result = false;
 
-    if (empty($cedula) || empty($userid) || empty($pnombre) || empty($papellido) || (empty($nacionalidad) && $nacionalidad !="0") || empty($fechanac) || empty($cargo) || empty($dpto)) {
+    if (empty($pnombre) || empty($papellido)) {
 
         $result = true;
         $_SESSION['mensaje'] .= "<br> Por favor ingrese todos los datos necesarios.";
@@ -90,12 +90,12 @@ function sanitize_userid($userid)
     //Sanitizar y validar userid
     $sanitized = filter_var($userid, FILTER_SANITIZE_STRING);
 
-    if (ctype_alpha($sanitized)) {
+    if (preg_match("~^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$~",$sanitized)) {
         return $sanitized;
     } else {
 
         if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-            $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto.";
+            $_SESSION['mensaje'] .= "<br> Formato de usuario incorrecto. Sólo puede contener letras mayúsculas y minúsculas.";
             $_SESSION['tipo_mensaje'] = 1;
         }
         return $sanitized;
@@ -114,7 +114,7 @@ function sanitize_clave($clave)
     } else {
 
         if ($_SERVER['PHP_SELF'] !== '/hidroven/functions/auth.php') {
-            $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto. Debe cumplir con las siguientes características: <br>Longitud entre 8 y 16 caracteres<br>Tener al menos una letra mayúscula y una minúscula<br>Debe contener al menos un dígito entre el 0 y el 9<br>Debe contener al menos un caracter especial (.,@$!%*?&)";
+            $_SESSION['mensaje'] .= "<br> Formato de clave incorrecto. Debe cumplir con las siguientes características: <br>Longitud entre 8 y 16 caracteres<br>Tener al menos una letra mayúscula y una minúscula<br>Debe contener al menos un dígito entre el 0 y el 9<br>Debe contener al menos un caracter especial <b>.,@$!%*?&</b>";
             $_SESSION['tipo_mensaje'] = 1;
         }
         return $sanitized;
@@ -131,22 +131,24 @@ function sanitize_cedula($cedula)
     if (ctype_digit($sanitized) && preg_match('~^(?=.*[0-9])[0-9]{1,8}$~', $cedula)) {
         return $sanitized;
     } else {
-        $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto.";
+        $_SESSION['mensaje'] .= "<br> Formato de cédula incorrecto. Ingrese sólo dígitos entre el 0 y el 9, sin puntos y una longitud máxima de 8 dígitos.";
         $_SESSION['tipo_mensaje'] = 1;
         return $sanitized;
     }
 }
 
 // Función para sanitizar string alfabético
-function sanitize_string($string)
+function sanitize_string($string, $field)
 {
     // Sanitizar y validar nombre/apellido
     $sanitized = filter_var($string, FILTER_SANITIZE_STRING);
 
-    if (preg_match("~^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$~",$sanitized)) {
+    if (preg_match("~^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s*]+$~",$sanitized)) {
+        return $sanitized;
+    } else if ($sanitized === '' && ($field === 'segundo nombre' || $field === 'segundo apellido')) {
         return $sanitized;
     } else {
-        $_SESSION['mensaje'] .= "<br> Formato de texto incorrecto: " .$string ."<br> Utilice sólo caracteres alfabéticos.";
+        $_SESSION['mensaje'] .= "<br> Formato de " .$field ." incorrecto: " .$string ."<br> Utilice sólo caracteres alfabéticos.";
         $_SESSION['tipo_mensaje'] = 1;
         return $sanitized;
     }

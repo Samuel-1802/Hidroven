@@ -71,7 +71,20 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
                     ?>
-                        <li class="nav-item"><a class="nav-link" href="./admin.php">Admin</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="usuarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
+                            <ul class="dropdown-menu" aria-labelledby="usuarios">
+                                <li><a class="dropdown-item" href="./registrar.php">Registrar usuarios</a></li>
+                                <li><a class="dropdown-item" href="./buscar.php">Editar usuarios</a></li>
+                            </ul>
+                        </li>
+                    <?php
+                    }
+                    ?>
+                    <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
+                    <?php
+                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
+                    ?>
                     <?php
                     }
                     ?>

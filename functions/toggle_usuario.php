@@ -13,7 +13,7 @@ if (isset($_POST)) {
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
         // Alguna validación encontró un error
-        header("location: ../php/admin.php");
+        header("location: ../php/buscar.php");
         exit();
     }
 
@@ -21,7 +21,7 @@ if (isset($_POST)) {
         $_SESSION['mensaje'] = "Estado del usuario actualizado.";
         $_SESSION['tipo_mensaje'] = 0;
 
-        header("location: ../php/admin.php");
+        header("location: ../php/buscar.php");
         exit();
 
 } else {

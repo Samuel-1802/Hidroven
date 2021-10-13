@@ -21,6 +21,8 @@ if (isset($_POST)) {
     $snombre = sanitize_string($_POST['ns_nombre'], "segundo nombre");
     $papellido = sanitize_string($_POST['np_apellido'], "primer apellido");
     $sapellido = sanitize_string($_POST['ns_apellido'], "segundo apellido");
+    $cedula = sanitize_cedula($_POST['cedula']);
+    $userid = sanitize_userid($_POST['userid']);
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])){
         // Alguna validación encontró un error
@@ -39,14 +41,14 @@ if (isset($_POST)) {
         temp_copy($conn, $oguserid);
 
         // Revisar que la cédula o el nombre de usuario no se repitan
-        if (user_exists($conn, $cedula, $userid) !== false) {
+        if (user_exists($conn, $cedula, $userid, $userid, $cedula) !== false) {
             // Redireccionar
             header("location: ../php/editar.php");
             exit();
         } else {
 
             // Actualizar los datos en la BD
-            update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $oguserid);
+            update_user($conn, $cedula, $clave, $pnombre, $snombre, $papellido, $sapellido);
 
             $_SESSION['mensaje'] = "Datos actualizados exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;

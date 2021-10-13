@@ -20,7 +20,7 @@ if (isset($_POST)) {
     }
 
     $pnombre = sanitize_string($_POST['np_nombre'], "primer nombre");
-    $snombre = sanitize_string($_POST['ns_nombre'], "segundo nomrbe");
+    $snombre = sanitize_string($_POST['ns_nombre'], "segundo nombre");
     $papellido = sanitize_string($_POST['np_apellido'], "primer apellido");
     $sapellido = sanitize_string($_POST['ns_apellido'], "segundo apellido");
     $nacionalidad = sanitize_numero($_POST['n_nacionalidad']);
