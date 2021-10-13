@@ -81,10 +81,10 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     <?php
                     }
                     ?>
-                    <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
                     <?php
                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
                     ?>
+                        <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
                     <?php
                     }
                     ?>
