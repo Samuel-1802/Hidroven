@@ -9,9 +9,6 @@ if (isset($_POST)) {
     include_once "./sql_queries.php";
 
     //El usuario rellenó el formulario, sanitizar los datos ingresados
-    $cedula = sanitize_cedula($_POST['n_cedula']);
-    $userid = sanitize_userid($_POST['n_userid']);
-
     if (!empty($_POST['n_clave'])) {
         $clave = sanitize_clave($_POST['n_clave']);
         //pasar la clave a hash
@@ -20,16 +17,10 @@ if (isset($_POST)) {
         $clave = "";
     }
 
-    $pnombre = sanitize_string($_POST['np_nombre']);
-    $snombre = sanitize_string($_POST['ns_nombre']);
-    $papellido = sanitize_string($_POST['np_apellido']);
-    $sapellido = sanitize_string($_POST['ns_apellido']);
-    $nacionalidad = sanitize_numero($_POST['n_nacionalidad']);
-    $fechanac = sanitize_fecha($_POST['n_fechanac']);
-    $cargo = sanitize_string($_POST['n_cargo']);
-    $dpto = sanitize_dpto($_POST['n_departamento']);
-    $ogcedula = sanitize_cedula($_POST['cedula']);
-    $oguserid = sanitize_userid($_POST['userid']);
+    $pnombre = sanitize_string($_POST['np_nombre'], "primer nombre");
+    $snombre = sanitize_string($_POST['ns_nombre'], "segundo nombre");
+    $papellido = sanitize_string($_POST['np_apellido'], "primer apellido");
+    $sapellido = sanitize_string($_POST['ns_apellido'], "segundo apellido");
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])){
         // Alguna validación encontró un error
@@ -38,7 +29,7 @@ if (isset($_POST)) {
     }
 
     // Revisar que los campos necesarios no estén vacíos
-    if (empty_update_noadmin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $fechanac, $cargo, $dpto) !== false) {
+    if (empty_update_noadmin($pnombre, $papellido) !== false) {
         // Algún campo está vacío
         header("location: ../php/editar.php");
         exit();
@@ -48,7 +39,7 @@ if (isset($_POST)) {
         temp_copy($conn, $oguserid);
 
         // Revisar que la cédula o el nombre de usuario no se repitan
-        if (user_exists($conn, $cedula, $userid) !== false && $cedula != $ogcedula && $userid != $oguserid) {
+        if (user_exists($conn, $cedula, $userid) !== false) {
             // Redireccionar
             header("location: ../php/editar.php");
             exit();

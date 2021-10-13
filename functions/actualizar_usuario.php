@@ -19,15 +19,15 @@ if (isset($_POST)) {
         $clave = "";
     }
 
-    $pnombre = sanitize_string($_POST['np_nombre']);
-    $snombre = sanitize_string($_POST['ns_nombre']);
-    $papellido = sanitize_string($_POST['np_apellido']);
-    $sapellido = sanitize_string($_POST['ns_apellido']);
+    $pnombre = sanitize_string($_POST['np_nombre'], "primer nombre");
+    $snombre = sanitize_string($_POST['ns_nombre'], "segundo nomrbe");
+    $papellido = sanitize_string($_POST['np_apellido'], "primer apellido");
+    $sapellido = sanitize_string($_POST['ns_apellido'], "segundo apellido");
     $nacionalidad = sanitize_numero($_POST['n_nacionalidad']);
     $admin = sanitize_numero($_POST['n_admin']);
     $fechanac = sanitize_fecha($_POST['n_fechanac']);
     $fechaing = sanitize_fecha($_POST['n_fechaing']);
-    $cargo = sanitize_string($_POST['n_cargo']);
+    $cargo = sanitize_string($_POST['n_cargo'], "cargo");
     $dpto = sanitize_dpto($_POST['n_departamento']);
     $ogcedula = sanitize_cedula($_POST['cedula']);
     $oguserid = sanitize_userid($_POST['userid']);
@@ -49,7 +49,7 @@ if (isset($_POST)) {
         temp_copy($conn, $oguserid);
 
         // Revisar que la cédula o el nombre de usuario no se repitan
-        if (user_exists($conn, $cedula, $userid) !== false && $cedula != $ogcedula && $userid != $oguserid) {
+        if (user_exists($conn, $cedula, $userid, $oguserid, $ogcedula) !== false) {
             // Redireccionar
             header("location: ../php/admin_editar.php");
             exit();

@@ -175,15 +175,17 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
 }
 
 // Función que verifica si un usuario determinado está registrado en el sistema
-function user_exists($conn, $cedula, $userid)
+function user_exists($conn, $cedula, $userid, $oguserid, $ogcedula)
 {
 
     $exists = false;
     $checkUser = mysqli_real_escape_string($conn, $userid);
     $checkCedula = mysqli_real_escape_string($conn, $cedula);
+    $checkOguser = mysqli_real_escape_string($conn, $oguserid);
+    $checkOgcedula = mysqli_real_escape_string($conn, $ogcedula);
 
-    $sql = "SELECT * FROM usuarios WHERE cedula=?;";
-    $sql2 = "SELECT * FROM usuarios WHERE userid=?;";
+    $sql = "SELECT * FROM usuarios WHERE cedula=? AND userid!=?;";
+    $sql2 = "SELECT * FROM usuarios WHERE userid=? AND cedula!=?;";
 
     $stmt = mysqli_stmt_init($conn);
 
@@ -194,7 +196,7 @@ function user_exists($conn, $cedula, $userid)
         return $exists;
     } else {
         // Asociar parámetros a la plantilla
-        mysqli_stmt_bind_param($stmt, "s", $checkCedula);
+        mysqli_stmt_bind_param($stmt, "ss", $checkCedula, $checkOguser);
 
         // Correr statement con datos
         mysqli_stmt_execute($stmt);
@@ -211,12 +213,12 @@ function user_exists($conn, $cedula, $userid)
 
         if (!mysqli_stmt_prepare($stmt, $sql2)) {
             // Falla del query
-            $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+            $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
             $_SESSION['tipo_mensaje'] = 2;
             return $exists;
         } else {
             // Asociar parámetros a la plantilla
-            mysqli_stmt_bind_param($stmt, "s", $checkUser);
+            mysqli_stmt_bind_param($stmt, "ss", $checkUser, $checkOgcedula);
 
             // Correr statement con datos
             mysqli_stmt_execute($stmt);
@@ -237,26 +239,20 @@ function user_exists($conn, $cedula, $userid)
 }
 
 // Función para actualizar datos de usuario
-function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $fechanac, $cargo, $dpto, $original)
+function update_user($conn, $cedula, $clave, $pnombre, $snombre, $papellido, $sapellido)
 {
 
     $checkCedula = mysqli_real_escape_string($conn, $cedula);
-    $checkUser = mysqli_real_escape_string($conn, $userid);
     $checkClave = mysqli_real_escape_string($conn, $clave);
     $checkPnombre = mysqli_real_escape_string($conn, $pnombre);
     $checkSnombre = mysqli_real_escape_string($conn, $snombre);
     $checkPapellido = mysqli_real_escape_string($conn, $papellido);
     $checkSapellido = mysqli_real_escape_string($conn, $sapellido);
-    $checkNacionalidad = mysqli_real_escape_string($conn, $nacionalidad);
-    $checkFechaNac = mysqli_real_escape_string($conn, $fechanac);
-    $checkCargo = mysqli_real_escape_string($conn, $cargo);
-    $checkDpto = mysqli_real_escape_string($conn, $dpto);
-    $checkOriginal = mysqli_real_escape_string($conn, $original);
 
     if (!empty($clave)) {
-        $sql = "UPDATE usuarios SET cedula=?, userid=?, clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
+        $sql = "UPDATE usuarios SET clave=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=? WHERE cedula=?;";
     } else {
-        $sql = "UPDATE usuarios SET cedula=?, userid=?, p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=?, nacionalidad=?, fecha_nac=?, cargo=?, dpto=? WHERE userid=?;";
+        $sql = "UPDATE usuarios SET p_nombre=?, s_nombre=?, p_apellido=?, s_apellido=? WHERE cedula=?;";
     }
 
     $stmt = mysqli_stmt_init($conn);
@@ -269,16 +265,15 @@ function update_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
         $_SESSION['tipo_mensaje'] = 2;
         header('location: ../php/editar.php');
         exit();
+
     } else {
 
         // Ejecutar query
         if (!empty($clave)) {
-            mysqli_stmt_bind_param($stmt, "sssssssissss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            $_SESSION['userid'] = $checkUser;
+            mysqli_stmt_bind_param($stmt, "ssssss", $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkCedula);
             mysqli_stmt_execute($stmt);
         } else {
-            mysqli_stmt_bind_param($stmt, "ssssssissss", $checkCedula, $checkUser, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkFechaNac, $checkCargo, $checkDpto, $checkOriginal);
-            $_SESSION['userid'] = $checkUser;
+            mysqli_stmt_bind_param($stmt, "sssss", $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkCedula);
             mysqli_stmt_execute($stmt);
         }
     }
