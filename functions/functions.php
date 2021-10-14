@@ -10,7 +10,7 @@ function empty_login($userid, $clave)
     if (empty($userid) || empty($clave)) {
 
         $result = true;
-        $_SESSION['mensaje'] .= "Por favor ingrese usuario y clave.";
+        $_SESSION['mensaje'] = "<br>Por favor ingrese usuario y clave.";
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
     } else {

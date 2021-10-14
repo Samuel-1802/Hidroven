@@ -20,11 +20,7 @@ include "../assets/header.php";
 
 </div>
 
-<div id="result" class="container d-flex justify-content-center">
-    <?php
-    include_once '../assets/alert.php';
-    ?>
-</div>
+<div class="container d-flex justify-content-center" id="result"></div>
 
 <div class="container d-flex justify-content-center p-3">
 
@@ -32,15 +28,19 @@ include "../assets/header.php";
     <form action="../functions/auth.php" id="login" method="POST">
         <div class="form-group">
             <label for="Username">Usuario</label>
-            <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su nombre de usuario">
+                <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
+            </span>
         </div>
         <br>
         <div class="form-group">
             <label for="Password">Contraseña</label>
-            <input type="password" class="form-control" id="Password" name="Password" placeholder="Contraseña">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su contraseña">
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Contraseña" title="Ingrese su contraseña">
+            </span>
         </div>
         <br>
-        <button id="submit" name="submit" type="submit" class="btn btn btn-primary">Entrar</button>
+        <button id="submit_login" name="submit" type="submit" class="btn btn btn-primary">Entrar</button>
         <!-- <a href="./recuperar.php">Olvidé mi contraseña</a> -->
     </form>
 </div>

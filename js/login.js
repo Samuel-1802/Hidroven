@@ -1,15 +1,21 @@
-$(document).ready(function() {
-    $("login").submit(function(event) {
+$(document).ready(function () {
+
+    var tooltips = document.querySelectorAll('.tt')
+    tooltips.forEach(t => {
+        new bootstrap.Tooltip(t)
+    })
+
+    $("#login").submit(function (event) {
         event.preventDefault();
 
         var Username = $("#Username").val();
         var Password = $("#Password").val();
-        var submit = $("#submit").val();
+        var submit_login = $("#submit_login").val();
 
-        $("result").load("../functions/auth.php", {
+        $("#result").load("../functions/auth.php", {
             Username: Username,
             Password: Password,
-            submit: submit
+            submit_login: submit_login
         });
     });
 });
