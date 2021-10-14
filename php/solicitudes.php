@@ -1,5 +1,6 @@
 <?php
     $title = "Solicitudes";
+    $JS = "solicitudes.js";
     include "../assets/header.php";
 ?>
 

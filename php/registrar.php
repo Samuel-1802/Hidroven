@@ -1,5 +1,6 @@
 <?php
     $title = "Registrar Usuarios";
+    $JS = "registrar.js";
     include "../assets/header.php";
 ?>
 

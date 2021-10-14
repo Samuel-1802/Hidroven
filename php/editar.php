@@ -3,6 +3,7 @@
 <!-- Página de no administradores -->
 <?php
 $title = "Editar usuario";
+$JS = "editar.js";
 include "../assets/header.php";
 ?>
 

@@ -1,6 +1,7 @@
 <!-- Página home -->
 <?php
 $title = "Inicio";
+$JS = "index.js";
 include "../assets/header.php";
 ?>
 
@@ -13,7 +14,7 @@ include "../assets/header.php";
 </div>
 
 <div>
-    <h3 class="float-right">Home</h3>
+    <h3>Home</h3>
 </div>
 
 <br>

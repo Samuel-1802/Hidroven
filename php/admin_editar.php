@@ -4,6 +4,7 @@
 
 <?php
 $title = "Editar Usuario";
+$JS = "admin_editar.js";
 include "../assets/header.php";
 
 $edit = fetch_user($conn, $_SESSION['search_userid']);

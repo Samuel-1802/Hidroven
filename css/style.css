@@ -1,0 +1,7 @@
+.input-error {
+    box-shadow: 0 0 5px red;
+}
+
+.input-success {
+    box-shadow: 0 0 5px rgb(58, 183, 255);
+}

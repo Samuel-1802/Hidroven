@@ -7,26 +7,29 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 }
 
 $title = "Ingreso";
+$JS = "login.js";
 include "../assets/header.php";
 ?>
 
-<h3 class="d-flex justify-content-center">BIENVENIDO A LA INTRANET C.A. HIDROVEN</h3>
-<br />
-<h3 class="d-flex justify-content-center">INICIO DE SESIÓN</h3>
-<br />
+<div>
 
-<div class="container d-flex justify-content-center">
+    <h3 class="d-flex justify-content-center">BIENVENIDO A LA INTRANET C.A. HIDROVEN</h3>
+    <br>
+    <h3 class="d-flex justify-content-center">INICIO DE SESIÓN</h3>
+    <br>
+
+</div>
+
+<div id="result" class="container d-flex justify-content-center">
     <?php
-
     include_once '../assets/alert.php';
-
     ?>
 </div>
 
 <div class="container d-flex justify-content-center p-3">
 
     <!-- Form para el login, dummy solo activa sesión sin revisar base de datos -->
-    <form action="../functions/auth.php" method="POST">
+    <form action="../functions/auth.php" id="login" method="POST">
         <div class="form-group">
             <label for="Username">Usuario</label>
             <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
@@ -37,11 +40,12 @@ include "../assets/header.php";
             <input type="password" class="form-control" id="Password" name="Password" placeholder="Contraseña">
         </div>
         <br>
-        <button type="submit" class="btn btn btn-primary">Entrar</button>
+        <button id="submit" name="submit" type="submit" class="btn btn btn-primary">Entrar</button>
         <!-- <a href="./recuperar.php">Olvidé mi contraseña</a> -->
     </form>
 </div>
-<br />
+
+<br>
 
 <?php
 include "../assets/footer.php";

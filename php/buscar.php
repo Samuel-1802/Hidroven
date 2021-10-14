@@ -1,5 +1,6 @@
 <?php
 $title = "Buscar Usuarios";
+$JS = "buscar.js";
 include "../assets/header.php";
 ?>
 

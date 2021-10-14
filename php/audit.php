@@ -2,6 +2,7 @@
 
 <?php
 $title = "Administración";
+$JS = "audit.js";
 include "../assets/header.php";
 ?>
 

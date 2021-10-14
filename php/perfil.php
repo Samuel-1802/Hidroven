@@ -2,6 +2,7 @@
 
 <?php
 $title = "Perfil";
+$JS = "perfil.js";
 include "../assets/header.php";
 
 ?>
