@@ -99,6 +99,5 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
         </div>
     </nav>
     <br>
-
-
+    
     <div class="container-fluid mx-auto " style="width: 80%">

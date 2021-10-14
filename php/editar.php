@@ -24,7 +24,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="ns_nombre">Segundo nombre</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su segundo nombre">
-                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $user['s_nombre']; ?>" required>
+                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $user['s_nombre']; ?>">
                 </span>
             </div>
         </div>
@@ -39,7 +39,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="ns_apellido">Segundo apellido</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su segundo apellido">
-                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $user['s_apellido']; ?>" required>
+                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $user['s_apellido']; ?>">
                 </span>
             </div>
         </div>
@@ -54,7 +54,7 @@ include "../assets/header.php";
             <input type="hidden" id="cedula" name="cedula" value="<?php echo $user['cedula']; ?>">
         </div>
         <div class="container">
-            <button type="submit" class="btn btn btn-primary my-3">Editar</button>
+            <button id="submit_edit" type="submit" class="btn btn btn-primary my-3">Editar</button>
         </div>
     </form>
 </div>
