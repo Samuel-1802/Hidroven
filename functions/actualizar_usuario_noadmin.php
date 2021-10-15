@@ -60,8 +60,10 @@ if (isset($_POST['submit_edit'])) {
 }
 ?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-error, input-success");
+    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-error");
+    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-success");
 
     var nombreEmpty = "<?php echo empty($pnombre); ?>";
     var apellidoEmpty = "<?php echo empty($papellido); ?>";
@@ -74,49 +76,54 @@ if (isset($_POST['submit_edit'])) {
     var regEx1 = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/);
     var regEx2 = new RegExp(/^(?=.*[0-9])(?=.*[.,@$!%*?&])[a-zA-Z0-9.,@$!%*?&]{8,16}$/);
 
-    if (nombreEmpty == true) {
-        $("#np_nombre").addClass("input-error");
+    if (success == true) {
+        $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-error");
+        $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-success");
     } else {
-        $("#np_nombre").addClass("input-success");
-    }
+        if (nombreEmpty == true) {
+            $("#np_nombre").addClass("input-error");
+        } else {
+            $("#np_nombre").addClass("input-success");
+        }
 
-    if (apellidoEmpty == true) {
-        $("#np_apellido").addClass("input-error");
-    } else {
-        $("#np_apellido").addClass("input-success");
-    }
+        if (apellidoEmpty == true) {
+            $("#np_apellido").addClass("input-error");
+        } else {
+            $("#np_apellido").addClass("input-success");
+        }
 
-    if (regEx1.test(pnombre)) {
-        $("#np_nombre").removeClass("input-error, input-success");
-        $("#np_nombre").addClass("input-success");
-    } else {
-        $("#np_nombre").removeClass("input-error, input-success");
-        $("#np_nombre").addClass("input-error");
-    }
+        if (regEx1.test(pnombre)) {
+            $("#np_nombre").removeClass("input-error, input-success");
+            $("#np_nombre").addClass("input-success");
+        } else {
+            $("#np_nombre").removeClass("input-error, input-success");
+            $("#np_nombre").addClass("input-error");
+        }
 
-    if (regEx1.test(snombre)) {
-        $("#ns_nombre").addClass("input-success");
-    } else {
-        $("#ns_nombre").addClass("input-error");
-    }
+        if (regEx1.test(snombre)) {
+            $("#ns_nombre").addClass("input-success");
+        } else {
+            $("#ns_nombre").addClass("input-error");
+        }
 
-    if (regEx1.test(papellido)) {
-        $("#np_apellido").removeClass("input-error, input-success");
-        $("#np_apellido").addClass("input-success");
-    } else {
-        $("#np_apellido").removeClass("input-error, input-success");
-        $("#np_apellido").addClass("input-error");
-    }
+        if (regEx1.test(papellido)) {
+            $("#np_apellido").removeClass("input-error, input-success");
+            $("#np_apellido").addClass("input-success");
+        } else {
+            $("#np_apellido").removeClass("input-error, input-success");
+            $("#np_apellido").addClass("input-error");
+        }
 
-    if (regEx1.test(sapellido)) {
-        $("#ns_apellido").addClass("input-success");
-    } else {
-        $("#ns_apellido").addClass("input-error");
-    }
+        if (regEx1.test(sapellido)) {
+            $("#ns_apellido").addClass("input-success");
+        } else {
+            $("#ns_apellido").addClass("input-error");
+        }
 
-    if (regEx2.test(clave) || clave == "") {
-        $("#n_clave").addClass("input-success");
-    } else {
-        $("#n_clave").addClass("input-error");
+        if (regEx2.test(clave) || clave == "") {
+            $("#n_clave").addClass("input-success");
+        } else {
+            $("#n_clave").addClass("input-error");
+        }
     }
 </script>

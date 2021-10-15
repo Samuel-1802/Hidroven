@@ -6,22 +6,18 @@ include "../assets/header.php";
 
 <h3>Buscar y modificar usuarios</h3>
 
-<div class="container d-flex justify-content-center">
-    <?php
-
-    include_once "../assets/alert.php";
-
-    ?>
-</div>
+<div class="container d-flex justify-content-center" id="result"></div>
 
 <div class="container d-flex justify-content-center">
-    <form action="../functions/buscar.php" method="POST">
+    <form id="buscar" action="../functions/buscar.php" method="POST">
         <div class="row">
             <div class="form-group col container">
-                <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
+                </span>
             </div>
             <div class="col container">
-                <button type="submit" class="btn btn btn-primary mb-2">Buscar</button>
+                <button id="submit_buscar" name="submit_buscar" type="submit" class="btn btn btn-primary mb-2">Buscar</button>
             </div>
         </div>
     </form>

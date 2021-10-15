@@ -13,11 +13,7 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
 <h6><a href="./buscar.php" class="text-decoration-none">← Regresar</a></h6>
 <h3>Editar usuario</h3>
 
-<div class="container d-flex justify-content-center">
-    <?php
-    include "../assets/alert.php";
-    ?>
-</div>
+<div class="container d-flex justify-content-center" id="result"></div>
 
 <div class="container d-flex justify-content-center">
     <form action="../functions/actualizar_usuario.php" method="POST">
@@ -137,7 +133,7 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
             <input type="hidden" id="cedula" name="cedula" value="<?php echo $edit['cedula']; ?>">
         </div>
         <div class="container">
-            <button type="submit" class="btn btn btn-primary my-3">Editar</button>
+            <button id="" name="" type="submit" class="btn btn btn-primary my-3">Editar</button>
         </div>
     </form>
 </div>

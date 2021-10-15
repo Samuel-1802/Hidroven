@@ -120,11 +120,13 @@ function search_user($conn, $cedula)
 
             $_SESSION['mensaje'] = "Usuario encontrado.";
             $_SESSION['tipo_mensaje'] = 0;
+            $_SESSION['s_success'] = true;
 
         } else {
 
             $_SESSION['mensaje'] = "Usuario no encontrado.";
             $_SESSION['tipo_mensaje'] = 1;
+            $_SESSION['s_success'] = false;
 
         }
 
@@ -161,7 +163,6 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
         // Falla del query
         $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
         $_SESSION['tipo_mensaje'] = 2;
-        header('location: ../php/admin.php');
         exit();
 
     } else {

@@ -24,23 +24,22 @@ include "../assets/header.php";
 
 <div class="container d-flex justify-content-center p-3">
 
-    <!-- Form para el login, dummy solo activa sesión sin revisar base de datos -->
     <form action="../functions/auth.php" id="login" method="POST">
         <div class="form-group">
             <label for="Username">Usuario</label>
-            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su nombre de usuario">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su nombre de usuario">
                 <input type="text" class="form-control" id="Username" name="Username" aria-describedby="emailHelp" placeholder="Nombre de usuario">
             </span>
         </div>
         <br>
         <div class="form-group">
             <label for="Password">Contraseña</label>
-            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="Ingrese su contraseña">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su contraseña">
                 <input type="password" class="form-control" id="Password" name="Password" placeholder="Contraseña" title="Ingrese su contraseña">
             </span>
         </div>
         <br>
-        <button id="submit_login" name="submit" type="submit" class="btn btn btn-primary">Entrar</button>
+        <button id="submit_login" name="submit_login" type="submit" class="btn btn btn-primary">Entrar</button>
         <!-- <a href="./recuperar.php">Olvidé mi contraseña</a> -->
     </form>
 </div>

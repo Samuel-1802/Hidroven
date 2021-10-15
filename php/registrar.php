@@ -1,45 +1,49 @@
 <?php
-    $title = "Registrar Usuarios";
-    $JS = "registrar.js";
-    include "../assets/header.php";
+$title = "Registrar Usuarios";
+$JS = "registrar.js";
+include "../assets/header.php";
 ?>
 
 <h3>Registrar usuarios</h3>
 
-<div class="container d-flex justify-content-center">
-    <?php
-
-    include_once "../assets/alert.php";
-
-    ?>
-</div>
+<div class="container d-flex justify-content-center" id="result"></div>
 
 <div class="container d-flex justify-content-center">
-    <form action="../functions/nuevo_usuario.php" method="POST">
+    <form id="registrar" action="../functions/nuevo_usuario.php" method="POST">
         <div class="form-group container">
             <label for="n_cedula">Cédula</label>
-            <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
+                <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" required>
+            </span>
         </div>
         <br>
         <div class="form-group d-flex justify-content-around">
             <div class="container">
                 <label for="np_nombre">Primer nombre</label>
-                <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" required>
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese el primer nombre del usuario">
+                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" required>
+                </span>
             </div>
             <div class="container">
                 <label for="ns_nombre">Segundo nombre</label>
-                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre">
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese el segundo nombre del usuario">
+                    <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre">
+                </span>
             </div>
         </div>
         <br>
         <div class="form-group d-flex justify-content-around">
             <div class="container">
                 <label for="np_apellido">Primer apellido</label>
-                <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" required>
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese el primer apellido del usuario">
+                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" required>
+                </span>
             </div>
             <div class="container">
                 <label for="ns_apellido">Segundo apellido</label>
-                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido">
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese el segundo apellido del usuario">
+                    <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido">
+                </span>
             </div>
         </div>
         <br>
@@ -63,12 +67,16 @@
         <br>
         <div class="form-group container">
             <label for="n_userid">Nombre de Usuario</label>
-            <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese el nombre de usuario.<br>Debe cumplir con las siguientes características:<br>• Solo puede tener caracteres alfabéticos<br>• Debe tener una longitud entre 3 y 12 caracteres">
+                <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_clave">Clave</label>
-            <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Ingrese la clave.<br>Debe cumplir con las siguientes características:<br>• Longitud entre 8 y 16 caracteres<br>• Tener al menos una letra mayúscula y una minúscula<br>• Debe contener al menos un dígito entre el 0 y el 9<br>• Debe contener al menos un caracter especial: <b>.,@$!%*?&</b>">
+                <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
@@ -91,17 +99,22 @@
         <br>
         <div class="form-group container">
             <label for="n_fechanac">Fecha de nacimiento</label>
-            <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Fecha de nacimiento del usuario">
+                <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" required>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_fechanac">Fecha de ingreso</label>
-            <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Fecha de ingreso del usuario a la institución">
+                <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_cargo">Cargo</label>
-            <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="focus" title="Cargo del usuario">
+                <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
@@ -128,11 +141,11 @@
             </select>
         </div>
         <div class="container">
-            <button type="submit" class="btn btn btn-primary my-3">Agregar</button>
+            <button id="submit_registro" name="submit_registro" type="submit" class="btn btn btn-primary my-3">Agregar</button>
         </div>
     </form>
 </div>
 
 <?php
-    include "../assets/footer.php";
+include "../assets/footer.php";
 ?>

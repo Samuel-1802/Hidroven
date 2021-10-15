@@ -31,7 +31,7 @@ function empty_update_noadmin($pnombre, $papellido)
     if (empty($pnombre) || empty($papellido)) {
 
         $result = true;
-        $_SESSION['mensaje'] .= "Por favor ingrese todos los datos necesarios.";
+        $_SESSION['mensaje'] .= "<br>Por favor ingrese todos los datos necesarios.";
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
     } else {
@@ -52,7 +52,7 @@ function empty_update_admin($cedula, $userid, $pnombre, $papellido, $nacionalida
     if (empty($cedula) || empty($userid) || empty($pnombre) || empty($papellido) || (empty($nacionalidad) && $nacionalidad != "0") || (empty($admin) && $admin != "0") || empty($fechanac) || empty($fechaing) || empty($cargo) || empty($dpto)) {
 
         $result = true;
-        $_SESSION['mensaje'] .= "Por favor ingrese todos los datos necesarios.";
+        $_SESSION['mensaje'] .= "<br>Por favor ingrese todos los datos necesarios.";
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
     } else {
@@ -72,7 +72,7 @@ function empty_search($cedula)
 
     if (empty($cedula)) {
         $result = true;
-        $_SESSION['mensaje'] .= "Por favor ingrese un número de cédula.";
+        $_SESSION['mensaje'] = "Por favor ingrese un número de cédula.";
         $_SESSION['tipo_mensaje'] = 1;
         return $result;
     } else {

@@ -34,15 +34,13 @@ if (isset($_POST)) {
 
     if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
         // Alguna validación encontró un error
-        header("location: ../php/admin_editar.php");
-        exit();
+        include "../assets/alert.php";
     }
 
     // Revisar que los campos necesarios no estén vacíos
     if (empty_update_admin($cedula, $userid, $pnombre, $papellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto) !== false) {
         // Algún campo está vacío
-        header("location: ../php/admin_editar.php");
-        exit();
+        include "../assets/alert.php";
     } else {
 
         // Hacer una copia del usuario en la BD
@@ -51,8 +49,7 @@ if (isset($_POST)) {
         // Revisar que la cédula o el nombre de usuario no se repitan
         if (user_exists($conn, $cedula, $userid, $oguserid, $ogcedula) !== false) {
             // Redireccionar
-            header("location: ../php/admin_editar.php");
-            exit();
+            include "../assets/alert.php";
         } else {
 
             // Actualizar los datos en la BD
@@ -61,8 +58,7 @@ if (isset($_POST)) {
             $_SESSION['mensaje'] = "Datos actualizados exitosamente.";
             $_SESSION['tipo_mensaje'] = 0;
 
-            header("location: ../php/admin_editar.php");
-            exit();
+            include "../assets/alert.php";
         }
     }
 } else {
@@ -71,3 +67,5 @@ if (isset($_POST)) {
     exit();
 }
 ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
