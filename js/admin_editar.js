@@ -5,6 +5,24 @@ $(document).ready(function() {
         new bootstrap.Tooltip(t)
     })
 
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear() - 18;
+    var year2 = dtToday.getFullYear();
+
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+    $('#n_fechanac').attr('max', maxDate);
+
+    var maxDate2 = year2 + '-' + month + '-' + day;
+    $('#n_fechaing').attr('max', maxDate2);
+
     $("#editar").submit(function(event) {
         
         event.preventDefault();

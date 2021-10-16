@@ -21,7 +21,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <link rel="icon" type="image/png" href="../img/favicon.png" />
     <link rel="stylesheet" href="../css/bootstrap.min.css?">
     <link rel="stylesheet" href="../css/style.css?">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.bundle.min.js" async></script>
     <script type="text/javascript" src="../js/<?php echo $JS; ?>" async></script>
 </head>
@@ -67,10 +67,10 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
 
                                     <ul class="dropdown-menu" aria-labelledby="solicitudes">
                                         <li><a class="dropdown-item" href="./constancia.php">Constancia de trabajo</a></li>
-                                        <li><a class="dropdown-item" href="./solicitudes.php">Solicitud de vacaciones</a></li>
-                                        <li><a class="dropdown-item" href="./solicitudes.php">Reposo médico</a></li>
-                                        <li><a class="dropdown-item" href="./solicitudes.php">Recibos de pago</a></li>
-                                        <li><a class="dropdown-item" href="./solicitudes.php">ISLR</a></li>
+                                        <li><a class="dropdown-item" href="./vacaciones.php">Solicitud de vacaciones</a></li>
+                                        <li><a class="dropdown-item" href="./reposo.php">Reposo médico</a></li>
+                                        <li><a class="dropdown-item" href="./recibos.php">Recibos de pago</a></li>
+                                        <li><a class="dropdown-item" href="./islr.php">ISLR</a></li>
                                     </ul>
                                 </li>
                             <?php

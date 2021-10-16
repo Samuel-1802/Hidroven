@@ -4,7 +4,7 @@
     include "../assets/header.php";
 ?>
 
-<h3>Solicitud de constancia de trabajo</h3>
+<h3> Solicitudes</h3>
 
 <p>Módulo de solicitudes</p>
 
