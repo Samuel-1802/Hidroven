@@ -35,14 +35,14 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
             <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;">
             <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;">
         </div>
-        <div class="container-fluid justify-content-between">
+        <div class="container-fluid d-flex flex-row justify-content-between">
             <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="nav">
+            <div class="collapse navbar-collapse justify-content-end" id="nav">
 
-                <ul class="nav navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./index.php">Inicio</a>
                     </li>
