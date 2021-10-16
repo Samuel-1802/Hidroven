@@ -27,77 +27,81 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
 </head>
 
 <body>
-<div id="screen">
+    <div id="screen">
         <div id="content">
 
-    <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column">
-        <div class="container-fluid">
-            <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;">
-            <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;">
-        </div>
-        <div class="container-fluid d-flex flex-row justify-content-between">
-            <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
-            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="nav">
+            <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column">
+                <div class="container-fluid d-flex flex-row">
+                    <div class="container-fluid d-flex flex-col justify-content-start">
+                        <img class="img-fluid" src="../img/minaguas.png">
+                    </div>
+                    <div class="container-fluid d-flex flex-col justify-content-end">
+                        <img class="img-fluid" src="../img/200rif.png">
+                    </div>
+                </div>
+                <div class="container-fluid d-flex flex-row">
+                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse mx-auto" id="nav">
 
-                <ul class="nav navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Inicio</a>
-                    </li>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                    ?>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./perfil.php">Perfíl</a>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-                    ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="solicitudes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Solicitudes</a>
+                        <ul class="nav navbar-nav nav-fill ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="./index.php">Inicio</a>
+                            </li>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="./perfil.php">Perfíl</a>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+                            ?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="solicitudes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Solicitudes</a>
 
-                            <ul class="dropdown-menu" aria-labelledby="solicitudes">
-                                <li><a class="dropdown-item" href="./solicitudes.php">Constancia de trabajo</a></li>
-                                <li><a class="dropdown-item" href="./solicitudes.php">Solicitud de vacaciones</a></li>
-                                <li><a class="dropdown-item" href="./solicitudes.php">Reposo médico</a></li>
-                                <li><a class="dropdown-item" href="./solicitudes.php">Recibos de pago</a></li>
-                                <li><a class="dropdown-item" href="./solicitudes.php">ISLR</a></li>
-                            </ul>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
-                    ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="usuarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
-                            <ul class="dropdown-menu" aria-labelledby="usuarios">
-                                <li><a class="dropdown-item" href="./registrar.php">Registrar usuarios</a></li>
-                                <li><a class="dropdown-item" href="./buscar.php">Editar usuarios</a></li>
-                            </ul>
-                        </li>
-                    <?php
-                    }
-                    ?>
-                    <?php
-                    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
-                    ?>
-                        <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
-                    <?php
-                    }
-                    ?>
-                    <li class="nav-item "><a href="
+                                    <ul class="dropdown-menu" aria-labelledby="solicitudes">
+                                        <li><a class="dropdown-item" href="./solicitudes.php">Constancia de trabajo</a></li>
+                                        <li><a class="dropdown-item" href="./solicitudes.php">Solicitud de vacaciones</a></li>
+                                        <li><a class="dropdown-item" href="./solicitudes.php">Reposo médico</a></li>
+                                        <li><a class="dropdown-item" href="./solicitudes.php">Recibos de pago</a></li>
+                                        <li><a class="dropdown-item" href="./solicitudes.php">ISLR</a></li>
+                                    </ul>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
+                            ?>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="usuarios" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuarios</a>
+                                    <ul class="dropdown-menu" aria-labelledby="usuarios">
+                                        <li><a class="dropdown-item" href="./registrar.php">Registrar usuarios</a></li>
+                                        <li><a class="dropdown-item" href="./buscar.php">Editar usuarios</a></li>
+                                    </ul>
+                                </li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
+                            ?>
+                                <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
+                            <?php
+                            }
+                            ?>
+                            <li class="nav-item "><a href="
                             <?php echo ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) ? "../functions/logout.php" : "./login.php"); ?>" class="nav-link">
-                            <?php echo ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) ? "Salir" : "Ingresar"); ?></a></li>
-                </ul>
+                                    <?php echo ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) ? "Salir" : "Ingresar"); ?></a></li>
+                        </ul>
 
-            </div>
-        </div>
-    </nav>
+                    </div>
+                </div>
+            </nav>
             <div class="container-fluid mx-auto py-5" style="width: 80%">
