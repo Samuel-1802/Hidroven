@@ -3,6 +3,9 @@
 $title = "Inicio";
 $JS = "index.js";
 include "../assets/header.php";
+
+$cumpleaños = birthdays($conn);
+
 ?>
 
 <div class="container d-flex justify-content-end">
@@ -14,8 +17,8 @@ include "../assets/header.php";
 </div>
 <br>
 
-<div class="container d-flex row">
-    <div class="container col col-9">
+<div class="container-fluid row">
+    <div class="container col-sm-9">
         <div>
             <h3>Home</h3>
         </div>
@@ -47,10 +50,34 @@ include "../assets/header.php";
     </div>
 
 
-<div class="container col col-3">
-    <a class="twitter-timeline" data-lang="es" data-width="300" data-height="600" href="https://twitter.com/HidrovenOficial?ref_src=twsrc%5Etfw">Tweets by HidrovenOficial</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
+    <div class="container col-sm-3">
+        <div class="row">
+            <a class="twitter-timeline" data-lang="es" data-width="300" data-height="600" href="https://twitter.com/HidrovenOficial?ref_src=twsrc%5Etfw">Tweets by HidrovenOficial</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="container">
+                <h5>Cumpleaños</h5>
+
+                <?php
+
+                if (is_string($cumpleaños)) {
+                    echo $cumpleaños;
+                } else {
+                    foreach ($cumpleaños as $cumpleañero) {
+                        echo $cumpleañero[0] . " " . $cumpleañero[1] . " " . $cumpleañero[2] . " " . $cumpleañero[3] . "<br>";
+                    }
+                }
+
+                ?>
+            </div>
+        </div>
+
+
+    </div>
 
 </div>
 <?php

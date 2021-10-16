@@ -123,12 +123,10 @@ function search_user($conn, $cedula)
             $_SESSION['mensaje'] = "Usuario no encontrado.";
             $_SESSION['tipo_mensaje'] = 1;
             $_SESSION['s_success'] = false;
-
         }
 
         return $userinfo;
     }
-
 }
 
 // Función para crear un usuario nuevo
@@ -160,15 +158,12 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
         $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
         $_SESSION['tipo_mensaje'] = 2;
         exit();
-
     } else {
 
         // Ejecutar query
         mysqli_stmt_bind_param($stmt, "sssssssiissss", $checkCedula, $checkUser, $checkClave, $checkPnombre, $checkSnombre, $checkPapellido, $checkSapellido, $checkNacionalidad, $checkAdmin, $checkFechaNac, $checkFechaIng, $checkCargo, $checkDpto);
         mysqli_stmt_execute($stmt);
-
     }
-
 }
 
 // Función que verifica si un usuario determinado está registrado en el sistema
@@ -188,7 +183,7 @@ function user_exists($conn, $cedula, $userid, $oguserid, $ogcedula)
 
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         // Falla del query
-        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." . mysqli_error($conn);
         $_SESSION['tipo_mensaje'] = 2;
         return $exists;
     } else {
@@ -262,7 +257,6 @@ function update_user($conn, $cedula, $clave, $pnombre, $snombre, $papellido, $sa
         $_SESSION['tipo_mensaje'] = 2;
         header('location: ../php/editar.php');
         exit();
-
     } else {
 
         // Ejecutar query
@@ -277,7 +271,8 @@ function update_user($conn, $cedula, $clave, $pnombre, $snombre, $papellido, $sa
 }
 
 // Función para actualizar datos de usuario (admin)
-function update_user_admin($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, $original) {
+function update_user_admin($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papellido, $sapellido, $nacionalidad, $admin, $fechanac, $fechaing, $cargo, $dpto, $original)
+{
     $checkCedula = mysqli_real_escape_string($conn, $cedula);
     $checkUser = mysqli_real_escape_string($conn, $userid);
     $checkClave = mysqli_real_escape_string($conn, $clave);
@@ -325,7 +320,8 @@ function update_user_admin($conn, $cedula, $userid, $clave, $pnombre, $snombre, 
 }
 
 // Función para activar/desactivar usuarios
-function toggle_user($conn, $userid) {
+function toggle_user($conn, $userid)
+{
 
     $checkUser = mysqli_real_escape_string($conn, $userid);
 
@@ -343,7 +339,6 @@ function toggle_user($conn, $userid) {
         mysqli_stmt_bind_param($stmt, "s", $checkUser);
         mysqli_stmt_execute($stmt);
     }
-
 }
 
 // Función para obtener los datos del usuario
@@ -429,5 +424,32 @@ function fetch_dpto($conn, $id)
         $dpto = mysqli_fetch_assoc($result);
 
         return $dpto;
+    }
+}
+
+
+// Función que busca cumpleaños
+function birthdays($conn)
+{
+
+    $sql = "SELECT p_nombre, s_nombre, p_apellido, s_apellido FROM usuarios WHERE MONTH(fecha_nac) = MONTH(NOW()) AND DAY(fecha_nac) = DAY(NOW());";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        // Falla del query
+        $_SESSION['mensaje'] .= "<br> Falla en la obtención de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+    } else {
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $resultCheck = mysqli_num_rows($result);
+
+        if ($resultCheck > 0) {
+            $cumpleaños = mysqli_fetch_all($result);
+            return $cumpleaños;
+        } else {
+            $cumpleaños = "No hay cumpleaños el día de hoy.";
+            return $cumpleaños;
+        }
     }
 }
