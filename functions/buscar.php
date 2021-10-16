@@ -57,6 +57,9 @@ if (isset($_POST["submit_buscar"])) {
     if (success == true) {
         $("#ci").removeClass("input-error");
         $("#ci").removeClass("input-success");
+
+        location.reload();
+
     } else {
         if (ciEmpty == true) {
             $("#ci").addClass("input-error");

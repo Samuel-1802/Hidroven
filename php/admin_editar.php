@@ -13,34 +13,46 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
 <h6><a href="./buscar.php" class="text-decoration-none">← Regresar</a></h6>
 <h3>Editar usuario</h3>
 
+<br>
+
 <div class="container d-flex justify-content-center" id="result"></div>
 
 <div class="container d-flex justify-content-center">
-    <form action="../functions/actualizar_usuario.php" method="POST">
+    <form id="editar" action="../functions/actualizar_usuario.php" method="POST">
         <div class="form-group container">
             <label for="n_cedula">Cédula</label>
-            <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" value="<?php echo $edit['cedula']; ?>" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
+                <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" value="<?php echo $edit['cedula']; ?>" required>
+            </span>
         </div>
         <br>
         <div class="form-group d-flex justify-content-around">
             <div class="container">
                 <label for="np_nombre">Primer nombre</label>
-                <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" value="<?php echo $edit['p_nombre']; ?>" required>
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el primer nombre del usuario">
+                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" value="<?php echo $edit['p_nombre']; ?>" required>
+                </span>
             </div>
             <div class="container">
                 <label for="ns_nombre">Segundo nombre</label>
-                <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $edit['s_nombre']; ?>">
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el segundo nombre del usuario">
+                    <input type="text" class="form-control" id="ns_nombre" name="ns_nombre" placeholder="Segundo nombre" value="<?php echo $edit['s_nombre']; ?>">
+                </span>
             </div>
         </div>
         <br>
         <div class="form-group d-flex justify-content-around">
             <div class="container">
                 <label for="np_apellido">Primer apellido</label>
-                <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" value="<?php echo $edit['p_apellido']; ?>" required>
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el primer apellido del usuario">
+                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" value="<?php echo $edit['p_apellido']; ?>" required>
+                </span>
             </div>
             <div class="container">
                 <label for="ns_apellido">Segundo apellido</label>
-                <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $edit['s_apellido']; ?>">
+                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el segundo apellido del usuario">
+                    <input type="text" class="form-control" id="ns_apellido" name="ns_apellido" placeholder="Segundo apellido" value="<?php echo $edit['s_apellido']; ?>">
+                </span>
             </div>
         </div>
         <br>
@@ -64,12 +76,16 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
         <br>
         <div class="form-group container">
             <label for="n_userid">Nombre de Usuario</label>
-            <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" value="<?php echo $edit['userid']; ?>" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el nombre de usuario.<br>Debe cumplir con las siguientes características:<br>• Solo puede tener caracteres alfabéticos<br>• Debe tener una longitud entre 3 y 12 caracteres">
+                <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" value="<?php echo $edit['userid']; ?>" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_clave">Clave</label>
-            <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la clave.<br>Debe cumplir con las siguientes características:<br>• Longitud entre 8 y 16 caracteres<br>• Tener al menos una letra mayúscula y una minúscula<br>• Debe contener al menos un dígito entre el 0 y el 9<br>• Debe contener al menos un caracter especial: <b>.,@$!%*?&</b>">
+                <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave">
+            </span>
         </div>
         <br>
         <div class="form-group container">
@@ -92,17 +108,23 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
         <br>
         <div class="form-group container">
             <label for="n_fechanac">Fecha de nacimiento</label>
-            <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" value="<?php echo $edit['fecha_nac'] ?>">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Fecha de nacimiento del usuario">
+                <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" value="<?php echo $edit['fecha_nac'] ?>">
+            </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_fechanac">Fecha de ingreso</label>
-            <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" value="<?php echo $edit['fecha_ing'] ?>">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Fecha de ingreso del usuario a la institución">
+                <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" value="<?php echo $edit['fecha_ing'] ?>">
+            </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_cargo">Cargo</label>
-            <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" value="<?php echo $edit['cargo']; ?>" required>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Cargo del usuario">
+                <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" value="<?php echo $edit['cargo']; ?>" required>
+            </span>
         </div>
         <br>
         <div class="form-group container">
@@ -133,7 +155,7 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
             <input type="hidden" id="cedula" name="cedula" value="<?php echo $edit['cedula']; ?>">
         </div>
         <div class="container">
-            <button id="" name="" type="submit" class="btn btn btn-primary my-3">Editar</button>
+            <button id="submit_edit" name="submit_edit" type="submit" class="btn btn btn-primary my-3">Editar</button>
         </div>
     </form>
 </div>

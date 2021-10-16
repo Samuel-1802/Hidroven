@@ -117,11 +117,7 @@ function search_user($conn, $cedula)
         $userinfo = mysqli_fetch_assoc($result);
 
         if ($resultCheck > 0) {
-
-            $_SESSION['mensaje'] = "Usuario encontrado.";
-            $_SESSION['tipo_mensaje'] = 0;
             $_SESSION['s_success'] = true;
-
         } else {
 
             $_SESSION['mensaje'] = "Usuario no encontrado.";

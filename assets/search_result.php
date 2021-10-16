@@ -1,33 +1,4 @@
-<?php
-$title = "Buscar Usuarios";
-$JS = "buscar.js";
-include "../assets/header.php";
-?>
-
-<h3>Buscar y modificar usuarios</h3>
-<br>
-
-<div class="container d-flex justify-content-center" id="result"></div>
-
-<div class="container d-flex justify-content-center">
-    <form id="buscar" action="../functions/buscar.php" method="POST">
-        <div class="row">
-            <div class="form-group col container">
-                <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
-                </span>
-            </div>
-            <div class="col container">
-                <button id="submit_buscar" name="submit_buscar" type="submit" class="btn btn btn-primary mb-2">Buscar</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<br>
-
-<div id="user_result" class="container d-flex justify-content-center">
-    <table class="table" style="width: 70%">
+<table class="table" style="width: 70%">
         <thead>
             <tr>
                 <th scope="col">Cédula</th>
@@ -64,8 +35,3 @@ include "../assets/header.php";
             ?>
         </tbody>
     </table>
-</div>
-
-<?php
-include "../assets/footer.php";
-?>

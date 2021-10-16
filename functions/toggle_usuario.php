@@ -18,8 +18,6 @@ if (isset($_POST)) {
     }
 
         toggle_user($conn, $userid);
-        $_SESSION['mensaje'] = "Estado del usuario actualizado.";
-        $_SESSION['tipo_mensaje'] = 0;
 
         header("location: ../php/buscar.php");
         exit();
