@@ -9,3 +9,27 @@
 .tooltip-inner {
     text-align: left;
 }
+
+html, body {
+    height: 100%;
+}
+
+#screen {
+    min-height: 100%;
+}
+
+#content {
+    overflow: auto;
+    padding-bottom: 80px;
+}
+
+footer {
+    position: relative;
+    background: rgba(66, 135, 245,0.10);
+    height: 80px;
+    margin-top: -80px;
+}
+
+nav {
+    background: rgba(66, 135, 245,0.10);
+}

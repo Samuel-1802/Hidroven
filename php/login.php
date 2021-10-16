@@ -44,8 +44,6 @@ include "../assets/header.php";
     </form>
 </div>
 
-<br>
-
 <?php
 include "../assets/footer.php";
 ?>

@@ -55,6 +55,6 @@ if (isset($_POST["submit_login"])) {
     }
 
     if (userEmpty == false && passEmpty == false && exist == true) {
-        location.replace("index.php")
+        location.replace("../php/index.php")
     }
 </script>

@@ -18,18 +18,19 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title><?php echo $title; ?></title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../img/favicon.png" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.min.css?">
+    <link rel="stylesheet" href="../css/style.css?">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
     <script type="text/javascript" src="../js/bootstrap.bundle.min.js" async></script>
     <script type="text/javascript" src="../js/<?php echo $JS; ?>" async></script>
-    
 </head>
 
 <body>
+<div id="screen">
+        <div id="content">
 
-    <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column" style="background: rgba(66, 135, 245,0.10)">
+    <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column">
         <div class="container-fluid">
             <img class="img-fluid float-left" src="../img/minaguas.png" style="background: transparent;">
             <img class="img-fluid float-right" src="../img/200rif.png" style="background: transparent;">
@@ -99,6 +100,4 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
             </div>
         </div>
     </nav>
-    <br>
-
-    <div class="container-fluid mx-auto " style="width: 80%">
+            <div class="container-fluid mx-auto py-5" style="width: 80%">
