@@ -32,15 +32,15 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
 
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column">
                 <div class="container-fluid d-flex flex-row">
-                    <div class="container-fluid d-flex flex-col justify-content-start">
-                        <img class="img-fluid" src="../img/minaguas.png">
+                    <div class="container-fluid d-flex col justify-content-start">
+                        <img class="img-fluid" style="width: 420px;" src="../img/minaguas.png">
                     </div>
-                    <div class="container-fluid d-flex flex-col justify-content-end">
-                        <img class="img-fluid" src="../img/200rif.png">
+                    <div class="container-fluid d-flex col-3 justify-content-end">
+                        <img class="img-fluid" style="width: 180px;" src="../img/200rif.png">
                     </div>
                 </div>
                 <div class="container-fluid d-flex flex-row">
-                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="background: transparent;"></a>
+                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 80px;"></a>
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -66,7 +66,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                                     <a class="nav-link dropdown-toggle" href="#" id="solicitudes" role="button" data-bs-toggle="dropdown" aria-expanded="false">Solicitudes</a>
 
                                     <ul class="dropdown-menu" aria-labelledby="solicitudes">
-                                        <li><a class="dropdown-item" href="./solicitudes.php">Constancia de trabajo</a></li>
+                                        <li><a class="dropdown-item" href="./constancia.php">Constancia de trabajo</a></li>
                                         <li><a class="dropdown-item" href="./solicitudes.php">Solicitud de vacaciones</a></li>
                                         <li><a class="dropdown-item" href="./solicitudes.php">Reposo médico</a></li>
                                         <li><a class="dropdown-item" href="./solicitudes.php">Recibos de pago</a></li>

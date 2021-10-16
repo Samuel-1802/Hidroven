@@ -13,6 +13,8 @@ include "../assets/header.php";
     ?>
 </div>
 
+<br>
+
 <div>
     <h3>Home</h3>
 </div>
