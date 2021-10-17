@@ -40,7 +40,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     </div>
                 </div>
                 <div class="container-fluid d-flex flex-row">
-                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 80px;"></a>
+                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 100px;"></a>
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

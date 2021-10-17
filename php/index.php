@@ -4,8 +4,9 @@ $title = "Inicio";
 $JS = "index.js";
 include "../assets/header.php";
 
-$cumpleaños = birthdays($conn);
-
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    $cumpleaños = birthdays($conn);
+}
 ?>
 
 <div class="container d-flex justify-content-end">
@@ -58,6 +59,7 @@ $cumpleaños = birthdays($conn);
 
         <br>
 
+        <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) { ?>
         <div class="row">
             <div class="container">
                 <h5>Cumpleaños</h5>
@@ -75,7 +77,7 @@ $cumpleaños = birthdays($conn);
                 ?>
             </div>
         </div>
-
+        <?php }?>
 
     </div>
 
