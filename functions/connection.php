@@ -1,14 +1,20 @@
 <!-- Conexión con la base de datos -->
 
 <?php
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "hidroven";
 
-$conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbname);
+// Objeto de conexion a DB
+$conn = new mysqli("localhost", "root", "", "hidroven");
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+// Prueba de fallos
+if ($conn -> connect_errno) {
+    echo "Se ha producido un error en la conexión"; 
+    exit();
+} else {
+    // echo "Conexión exitosa";
 }
-?>
+
+if (!mysqli_set_charset($conn, "utf8")) {
+    // printf("Error loading character set utf8: %s\n", mysqli_error($conn));
+} else {
+    // printf("Current character set: %s\n", mysqli_character_set_name($conn));
+}

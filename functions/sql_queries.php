@@ -93,7 +93,7 @@ function temp_copy($conn, $userid)
     }
 }
 
-// Función para buscar usuario por userid
+// Función para buscar usuario por cedula
 function search_user($conn, $cedula)
 {
 
@@ -147,7 +147,7 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
     $checkCargo = mysqli_real_escape_string($conn, $cargo);
     $checkDpto = mysqli_real_escape_string($conn, $dpto);
 
-    $sql = "INSERT INTO usuarios VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?);";
+    $sql = "INSERT INTO usuarios VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?, ?, 0);";
 
     $stmt = mysqli_stmt_init($conn);
 
@@ -155,7 +155,7 @@ function create_user($conn, $cedula, $userid, $clave, $pnombre, $snombre, $papel
     if (!mysqli_stmt_prepare($stmt, $sql)) {
 
         // Falla del query
-        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos.";
+        $_SESSION['mensaje'] .= "<br> Falla en la conexión a base de datos." .mysqli_error($conn);
         $_SESSION['tipo_mensaje'] = 2;
         exit();
     } else {

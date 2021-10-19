@@ -2,7 +2,6 @@
 
 <?php
 session_start();
-
 if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
     include_once "../functions/sql_queries.php";
     $user = fetch_user($conn, $_SESSION['userid']);
@@ -40,7 +39,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     </div>
                 </div>
                 <div class="container-fluid d-flex flex-row">
-                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 100px;"></a>
+                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 80%"></a>
                     <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -93,6 +92,13 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
                             ?>
                                 <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
+                            <?php
+                            }
+                            ?>
+                            <?php
+                            if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
+                            ?>
+                                <li class="nav-item"><a class="nav-link" href="./audit.php">Administración</a></li>
                             <?php
                             }
                             ?>

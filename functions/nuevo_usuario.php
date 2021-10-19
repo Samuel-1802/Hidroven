@@ -23,7 +23,7 @@ if (isset($_POST['submit_registro'])) {
     $admin = sanitize_numero($_POST['n_admin']);
     $fechanac = sanitize_fecha($_POST['n_fechanac']);
     $fechaing = sanitize_fecha($_POST['n_fechaing']);
-    $cargo = sanitize_string($_POST['n_cargo'], "cargo");
+    $cargo = ucwords(sanitize_string($_POST['n_cargo'], "cargo"));
     $dpto = sanitize_dpto($_POST['n_departamento']);
     $success = false;
     $exists = user_exists($conn, $cedula, $userid, $cedula, $userid);
@@ -91,18 +91,20 @@ if (isset($_POST['submit_registro'])) {
     var success = "<?php echo $success; ?>";
     var exists = "<?php echo $exists; ?>";
 
-    var regExNombre = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,25}$/);
+    var regExNombre = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,25}$/);
+    var regExSNombre = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{0,25}$/);
     var regExCargo = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,60}$/);
     var regExClave = new RegExp(/^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[.,@$!%*?&])[a-zA-Z0-9.,@$!%*?&]{8,16}$/);
     var regExUserid = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]{3,12}$/);
     var regExFecha = new RegExp(/^\d{4}[-]\d{2}[-]\d{2}$/);
     var regExBool = new RegExp(/^[0-1]{1}$/);
     var regExDpto = new RegExp(/^[0-9]{2}$/);
-    var regExCedula = new RegExp(/^[0-9]{1,8}$/);
+    var regExCedula = new RegExp(/^[1-9]{1}[0-9]{5,7}$/);
 
     if (success == true) {
         $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #n_userid, #n_cedula, #n_nacionalidad, #n_admin, #n_fechanac, #n_fechaing, #n_cargo, #n_departamento").removeClass("input-error");
         $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #n_userid, #n_cedula, #n_nacionalidad, #n_admin, #n_fechanac, #n_fechaing, #n_cargo, #n_departamento").removeClass("input-success");
+        $('input').val('');
     } else if (exists == false) {
         if (nombreEmpty == true) {
             $("#np_nombre").addClass("input-error");
@@ -214,13 +216,13 @@ if (isset($_POST['submit_registro'])) {
             }
         }
 
-        if (regExNombre.test(snombre)) {
+        if (regExSNombre.test(snombre)) {
             $("#ns_nombre").addClass("input-success");
         } else {
             $("#ns_nombre").addClass("input-error");
         }
 
-        if (regExNombre.test(sapellido)) {
+        if (regExSNombre.test(sapellido)) {
             $("#ns_apellido").addClass("input-success");
         } else {
             $("#ns_apellido").addClass("input-error");
@@ -320,13 +322,13 @@ if (isset($_POST['submit_registro'])) {
             }
         }
 
-        if (regExNombre.test(snombre)) {
+        if (regExSNombre.test(snombre)) {
             $("#ns_nombre").addClass("input-success");
         } else {
             $("#ns_nombre").addClass("input-error");
         }
 
-        if (regExNombre.test(sapellido)) {
+        if (regExSNombre.test(sapellido)) {
             $("#ns_apellido").addClass("input-success");
         } else {
             $("#ns_apellido").addClass("input-error");
