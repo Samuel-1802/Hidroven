@@ -10,13 +10,12 @@ include "../assets/header.php";
 <p>Bienvenido al módulo de solicitud de constancias de trabajo. A continuación encontrará la información que se imprimirá en la constancia que solocita. Verifique que los datos estén correctos antes de solicitar su documento.</p>
 <br>
 
-<div class="container d-flex justify-content-center">
-
-    <form id="constancia" action="../functions/generar_constancia.php" method="POST" style="width: 30%;">
+<div id="constancia" class="container d-flex justify-content-center">
+    <form id="form_constancia" action="../functions/generar_constancia.php" method="POST" style="width: 30%;">
         <div class="form-group">
             <label for="nombre"><b>Nombre</b></label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su nombre completo">
-                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" value="<?php echo $user['p_nombre'] . " " . $user['s_nombre'] . " " . $user['p_apellido'] . " " . $user['s_apellido']; ?>" required>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" value="<?php echo $user['p_nombre'] . " " . $user['s_nombre'] . " " . $user['p_apellido'] . " " . $user['s_apellido']; ?>" required disabled>
             </span>
         </div>
         <br>
@@ -59,10 +58,11 @@ include "../assets/header.php";
             <button id="submit_const" name="submit_const" type="submit" class="btn btn btn-primary my-3">Generar</button>
         </div>
     </form>
-
 </div>
 
-<div id="result" class="container row d-flex justify-content-center"></div>
+<div class="container row d-flex justify-content-center">
+<div id="result" class="container" style="width: 60%"></div>
+</div>
 
 <?php
 include "../assets/footer.php";

@@ -5,7 +5,7 @@ $(document).ready(function () {
         new bootstrap.Tooltip(t)
     })
 
-    $("#constancia").submit(function (event) {
+    $("#form_constancia").submit(function (event) {
         event.preventDefault();
 
         var nombre = $("#nombre").val();
@@ -15,6 +15,8 @@ $(document).ready(function () {
         var fechaing = $("#fechaing").val();
         var salario = $("#salario").val();
         var submit_const = $("#submit_const").val();
+
+        $("#constancia").remove();
 
         $("#result").load("../functions/generar_constancia.php", {
             nombre: nombre,

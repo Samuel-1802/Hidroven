@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST['submit_const'])) {
 
@@ -7,27 +7,76 @@ if (isset($_POST['submit_const'])) {
 
     $nombre = sanitize_string($_POST['nombre'], "nombre");
     $cedula = sanitize_cedula($_POST['cedula']);
-    $fecha = sanitize_fecha($_POST['fechaing']);
+    $fecha = date_format(date_create(sanitize_fecha($_POST['fechaing'])), "d/m/Y");
     $dpto = sanitize_string($_POST['dpto'], "departamento");
     $cargo = sanitize_string($_POST['cargo'], "cargo");
     $salario = $_POST['salario'];
     setlocale(LC_TIME, "es_VE");
     $dia = strftime("%d");
-    $mes = strftime("%B");
+    $mes = strftime("%m");
+
+    switch ($mes) {
+        case "01":
+            $mes = "enero";
+            break;
+        case "02":
+            $mes = "febrero";
+            break;
+        case "03":
+            $mes = "marzo";
+            break;
+        case "04":
+            $mes = "abril";
+            break;
+        case "05":
+            $mes = "mayo";
+            break;
+        case "06":
+            $mes = "junio";
+            break;
+        case "07":
+            $mes = "julio";
+            break;
+        case "08":
+            $mes = "agosto";
+            break;
+        case "09":
+            $mes = "septiembre";
+            break;
+        case "10":
+            $mes = "octubre";
+            break;
+        case "11":
+            $mes = "noviembre";
+            break;
+        case "12":
+            $mes = "diciembre";
+            break;
+        default:
+            $mes = "error al cargar el mes";
+    }
+
     $año = strftime("%Y");
 
-    echo "<b>CONSTANCIA DE TRABAJO</b> <br><br>
-    <p>Quien suscribe, por medio de la presente hace constar que el ciudadano <b>${nombre}</b>, titular de la cédula de identidad <b>Nº V-.${cedula}</b>, presta sus servicios en esta Empresa desde <b>${fecha}</b>, adscrito a la <b>${dpto}</b>, desempeñando el cargo de <b>${cargo}</b>, devengado a una remuneración mensual de <b>Bs. ${salario}</b>.</p> <br>
-    <p>Constancia que se expide a petición de la parte interesada en la ciudad de Caracas a los ${dia} días del mes de ${mes} de ${año}.</p>";
-
+    echo "<div class='row'>
+    <p class='text-center'><b>CONSTANCIA DE TRABAJO</b></p> <br><br>
+    <p class='text-center'>Quien suscribe, por medio de la presente hace constar que el ciudadano <b>${nombre}</b>, titular de la cédula de identidad <b>Nº V-.${cedula}</b>, presta sus servicios en esta Empresa desde <b>${fecha}</b>, adscrito a la <b>${dpto}</b>, desempeñando el cargo de <b>${cargo}</b>, devengado a una remuneración mensual de <b>Bs. ${salario}</b>.</p> <br>
+    </div>
+    <p class='text-center'>Constancia que se expide a petición de la parte interesada en la ciudad de Caracas a los ${dia} días del mes de ${mes} de ${año}.</p><br><br>
+    <p class='text-center'>Atentamente,</P><br><br>
+    <p class='text-center'><b>MÓNICA GABRIELA UTRERA LUJAN</b></p>
+    <p class='text-center'>Gerente General de Talento</p>
+    <p class='text-center'>Designada mediante punto de cuenta nº 074 de fecha 20/09/2021</p><br><br><br>
+    <p>YA.-</p><br>
+    
+    <p class='text-center'>Urb. Chacao, calle Pantin, Edificio HIDROVEN, C.A. Municipio Chacao, Parroquia Chacao, estado Miranda, Caracas - República Bolivariana de Venezuela</div>
+    <br>
+    <div class='d-flex justify-content-center'>
+        <button id='imprimir' name='imprimir' type='submit' class='btn btn-primary my-3'>Imprimir</button>
+    </div>";
 } else {
     // Se llegó mediante un método inusual
     header("location: index.php");
     exit();
 }
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-
-</script>
