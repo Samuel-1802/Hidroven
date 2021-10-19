@@ -89,6 +89,13 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
         </div>
         <br>
         <div class="form-group container">
+            <label for="confirm_clave">Confirmar clave</label>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Repita su nueva clave para confirmar que se introdujo correctamente">
+                <input type="password" class="form-control" id="confirm_clave" name="confirm_clave" placeholder="Clave">
+            </span>
+        </div>
+        <br>
+        <div class="form-group container">
             <div>
                 <label for="n_admin">Tipo de usuario</label>
             </div>
