@@ -62,8 +62,8 @@ if (isset($_POST['submit_edit'])) {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-error");
-    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-success");
+    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #confirm_clave").removeClass("input-error");
+    $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #confirm_clave").removeClass("input-success");
 
     var nombreEmpty = "<?php echo empty($pnombre); ?>";
     var apellidoEmpty = "<?php echo empty($papellido); ?>";
