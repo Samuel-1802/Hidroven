@@ -427,6 +427,25 @@ function fetch_dpto($conn, $id)
     }
 }
 
+function fetch_dptos ($conn) {
+
+    $dptos = [];
+
+    $sql = "SELECT * FROM departamentos;";
+
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        $_SESSION['mensaje'] .= "<br> Falla en la obtención de datos.";
+        $_SESSION['tipo_mensaje'] = 2;
+        return $dptos;
+    } else {
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $dptos = mysqli_fetch_all($result);
+        return $dptos;
+    }
+}
 
 // Función que busca cumpleaños
 function birthdays($conn)

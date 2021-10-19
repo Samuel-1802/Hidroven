@@ -130,24 +130,13 @@ $edit = fetch_user($conn, $_SESSION['search_userid']);
         <div class="form-group container">
             <label for="n_departamento">Departamento</label>
             <select class="form-select" id="n_departamento" name="n_departamento" ria-label="Default select example" required>
-                <option value="01" <?php echo ($edit['dpto'] == "01" ? "selected" : ""); ?>>Junta Directiva</option>
-                <option value="02" <?php echo ($edit['dpto'] == "02" ? "selected" : ""); ?>>Auditoría Interna</option>
-                <option value="03" <?php echo ($edit['dpto'] == "03" ? "selected" : ""); ?>>Presidencia</option>
-                <option value="04" <?php echo ($edit['dpto'] == "04" ? "selected" : ""); ?>>Gerencia General de Seguridad Integral</option>
-                <option value="05" <?php echo ($edit['dpto'] == "05" ? "selected" : ""); ?>>Viceprecidencia de Gestión Administrativa</option>
-                <option value="06" <?php echo ($edit['dpto'] == "06" ? "selected" : ""); ?>>Viceprecidencia de Servicios Hidrológicos</option>
-                <option value="07" <?php echo ($edit['dpto'] == "07" ? "selected" : ""); ?>>Gerencia General de Administración</option>
-                <option value="08" <?php echo ($edit['dpto'] == "08" ? "selected" : ""); ?>>Gerencia General de Comercialización</option>
-                <option value="09" <?php echo ($edit['dpto'] == "09" ? "selected" : ""); ?>>Gerencia General de Talento Humano</option>
-                <option value="10" <?php echo ($edit['dpto'] == "10" ? "selected" : ""); ?>>Consultoría Jurídica</option>
-                <option value="11" <?php echo ($edit['dpto'] == "11" ? "selected" : ""); ?>>Gerencia General de Seguimiento</option>
-                <option value="12" <?php echo ($edit['dpto'] == "12" ? "selected" : ""); ?>>Gerencia General de Imagen y Comunicaciones</option>
-                <option value="13" <?php echo ($edit['dpto'] == "13" ? "selected" : ""); ?>>Gerencia General de Protección al Patrimonio</option>
-                <option value="14" <?php echo ($edit['dpto'] == "14" ? "selected" : ""); ?>>Gerencia General de Tecnología de la Información</option>
-                <option value="15" <?php echo ($edit['dpto'] == "15" ? "selected" : ""); ?>>Gerencia General de Planificación y Presupuesto</option>
-                <option value="16" <?php echo ($edit['dpto'] == "16" ? "selected" : ""); ?>>Gerencia General de Planificación de Proyecto</option>
-                <option value="17" <?php echo ($edit['dpto'] == "17" ? "selected" : ""); ?>>Gerencia General de Tratamiento, Operaciones y Mantenimiento</option>
-                <option value="18" <?php echo ($edit['dpto'] == "18" ? "selected" : ""); ?>>Gerencia General de Fortalecimiento del Poder Popular</option>
+                <?php
+                foreach ($dptos as $dep) {
+                ?><option value="<?php echo $dep[0]; ?>"><?php echo $dep[1]; ?></option>
+
+                <?php
+                }
+                ?>
             </select>
         </div>
         <div class="form-group container">

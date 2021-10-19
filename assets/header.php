@@ -6,6 +6,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     include_once "../functions/sql_queries.php";
     $user = fetch_user($conn, $_SESSION['userid']);
     $dpto = fetch_dpto($conn, $user['dpto']);
+    $dptos = fetch_dptos($conn);
 }
 
 ?>

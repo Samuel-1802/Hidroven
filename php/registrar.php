@@ -120,24 +120,13 @@ include "../assets/header.php";
         <div class="form-group container">
             <label for="n_departamento">Departamento</label>
             <select class="form-select" id="n_departamento" name="n_departamento" ria-label="Default select example" required>
-                <option value="01">Junta Directiva</option>
-                <option value="02">Auditoría Interna</option>
-                <option value="03">Presidencia</option>
-                <option value="04">Gerencia General de Seguridad Integral</option>
-                <option value="05">Viceprecidencia de Gestión Administrativa</option>
-                <option value="06">Viceprecidencia de Servicios Hidrológicos</option>
-                <option value="07">Gerencia General de Administración</option>
-                <option value="08">Gerencia General de Comercialización</option>
-                <option value="09">Gerencia General de Talento Humano</option>
-                <option value="10">Consultoría Jurídica</option>
-                <option value="11">Gerencia General de Seguimiento</option>
-                <option value="12">Gerencia General de Imagen y Comunicaciones</option>
-                <option value="13">Gerencia General de Protección al Patrimonio</option>
-                <option value="14">Gerencia General de Tecnología de la Información</option>
-                <option value="15">Gerencia General de Planificación y Presupuesto</option>
-                <option value="16">Gerencia General de Planificación de Proyecto</option>
-                <option value="17">Gerencia General de Tratamiento, Operaciones y Mantenimiento</option>
-                <option value="18">Gerencia General de Fortalecimiento del Poder Popular</option>
+            <?php
+                foreach ($dptos as $dep) {
+                    ?><option value="<?php echo $dep[0];?>"><?php echo $dep[1];?></option>
+                    
+                    <?php
+                }
+            ?>
             </select>
         </div>
         <div class="container">
