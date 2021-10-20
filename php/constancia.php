@@ -14,7 +14,7 @@ include "../assets/header.php";
     <form id="form_constancia" action="../functions/generar_constancia.php" method="POST" style="width: 30%;">
         <div class="form-group">
             <label for="nombre"><b>Nombre</b></label>
-            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su nombre completo">
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Su nombre completo">
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" value="<?php echo $user['p_nombre'] . " " . $user['s_nombre'] . " " . $user['p_apellido'] . " " . $user['s_apellido']; ?>" required disabled>
             </span>
         </div>
