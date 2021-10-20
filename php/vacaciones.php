@@ -64,7 +64,7 @@ include "../assets/header.php";
         <div class="form-group">
             <label for="fechavac2"><b>Fecha de fin de vacaciones</b></label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Fecha en la cual terminan sus vacaciones">
-                <input type="date" class="form-control" id="fechavac2" name="fechavac2" placeholder="dd/mm/aaaa" required>
+                <input type="date" class="form-control" id="fechavac2" name="fechavac2" placeholder="dd/mm/aaaa" disabled required>
             </span>
         </div>
         <div>

@@ -9,21 +9,21 @@ $(document).ready(function () {
 
     var month = dtToday.getMonth() + 1;
     var day = dtToday.getDate() + 1;
-    var day2 = dtToday.getDate() + 2;
     var year = dtToday.getFullYear();
 
     if(month < 10)
         month = '0' + month.toString();
     if(day < 10)
         day = '0' + day.toString();
-    if(day2 < 10)
-        day = '0' + day.toString();
 
     var minDate = year + '-' + month + '-' + day;
     $('#fechavac1').attr('min', minDate);
 
-    var maxDate2 = year + '-' + month + '-' + day2;
-    $('#fechavac2').attr('min', maxDate2);
+    $("#fechavac1").on('change', function () {
+        var minRegreso = $("#fechavac1").val();
+        $("#fechavac2").attr('min', minRegreso);
+        $("#fechavac2").prop("disabled", false);
+    });
 
     $("#form_vac").submit(function (event) {
         event.preventDefault();
