@@ -34,7 +34,7 @@ include "../assets/header.php";
 </div>
 
 <div class="container row d-flex justify-content-center">
-    <div id="result" class="container" style="width: 60%"></div>
+    <div id="result" class="container d-flex justify-content-center" style="width: 60%"></div>
 </div>
 
 <?php

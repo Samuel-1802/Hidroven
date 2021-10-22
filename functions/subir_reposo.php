@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (isset($_POST['submit_reposo'])) {
 
     // Almacenar los documentos pertinentes al reposo medico
@@ -69,14 +71,12 @@ if (isset($_POST['submit_reposo'])) {
 
                 $_SESSION['mensaje'] = "Los documentos fueron subidos exitosamente.";
                 $_SESSION['tipo_mensaje'] = 0;
-                include "../assets/alert.php";
 
             } else {
             
                 // El tamaño de algún documento es muy grande
                 $_SESSION['mensaje'] = "El tamaño del documento es muy grande, se permite un tamaño máximo de 5MB.";
                 $_SESSION['tipo_mensaje'] = 1;
-                include "../assets/alert.php";
 
             }
         } else {
@@ -84,7 +84,6 @@ if (isset($_POST['submit_reposo'])) {
             // Hubo un error de subida
             $_SESSION['mensaje'] = "Hubo un error al intentar subir los documentos, intente más tarde.";
             $_SESSION['tipo_mensaje'] = 2;
-            include "../assets/alert.php";
 
         }
     } else {
@@ -92,7 +91,6 @@ if (isset($_POST['submit_reposo'])) {
         // El formato de algun documento no cumple con lo permitido
         $_SESSION['mensaje'] = "Este tipo de documento no está permitido. Solo puede ser en formato JPG, JPEG, PNG ó PDF.";
         $_SESSION['tipo_mensaje'] = 1;
-        include "../assets/alert.php";
 
     }
 } else {

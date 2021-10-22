@@ -10,6 +10,8 @@ include "../assets/header.php";
 <p>Bienvenido al módulo de solicitud de constancias de trabajo. A continuación encontrará la información que se imprimirá en la constancia que solocita. Verifique que los datos estén correctos antes de solicitar su documento.</p>
 <br>
 
+<hr>
+
 <div id="constancia" class="container d-flex justify-content-center">
     <form id="form_constancia" action="../functions/generar_constancia.php" method="POST" style="width: 30%;">
         <div class="form-group">

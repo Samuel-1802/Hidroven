@@ -6,22 +6,35 @@ $(document).ready(function() {
     });
     
     // Verificar los documentos a subir
-    // $("#reposo").submit(function (event) {
-    //     event.preventDefault();
+    $("#reposo").submit(function (event) {
+        event.preventDefault();
 
-    //     var cedula = $("#cedula").val();
-    //     var informe = $("#informe").val();
-    //     var prescripcion = $("#prescripcion").val();
-    //     var id = $("#id").val();
-    //     var submit_reposo = $("#submit_reposo").val();
+        var cedula = $("#cedula").prop('files')[0];
+        var informe = $("#informe").prop('files')[0];
+        var prescripcion = $("#prescripcion").prop('files')[0];
+        var id = $("#id").val();
+        var submit_reposo = $("#submit_reposo").val();
+        var formData = new FormData();
 
-    //     $("#result").load("../functions/subir_reposo.php", {
-    //         cedula: cedula,
-    //         informe: informe,
-    //         prescripcion: prescripcion,
-    //         id: id,
-    //         submit_reposo: submit_reposo
-    //     });
-    // });
+        formData.append("cedula", cedula);
+        formData.append("informe", informe);
+        formData.append("prescripcion", prescripcion);
+        formData.append("id", id);
+        formData.append("submit_reposo", submit_reposo);
 
+        $.ajax({
+            url: "../functions/subir_reposo.php",
+            type: "POST",
+            dataType: "script",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+
+            success: function() {
+                $("#result").load("../assets/alert.php", {});
+                $("#reposo").remove();
+            }
+        });
+    });
 });
