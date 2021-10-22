@@ -70,27 +70,29 @@ if (isset($_POST['submit_reposo'])) {
                 move_uploaded_file($tmpnamePres, $destino);
 
                 $_SESSION['mensaje'] = "Los documentos fueron subidos exitosamente.";
-                $_SESSION['tipo_mensaje'] = 0;
+                $_SESSION['tipo_mensaje'] = 1;
+                echo 1;
 
             } else {
             
                 // El tamaño de algún documento es muy grande
                 $_SESSION['mensaje'] = "El tamaño del documento es muy grande, se permite un tamaño máximo de 5MB.";
-                $_SESSION['tipo_mensaje'] = 1;
-
+                $_SESSION['tipo_mensaje'] = 0;
+                echo 0;
             }
         } else {
 
             // Hubo un error de subida
             $_SESSION['mensaje'] = "Hubo un error al intentar subir los documentos, intente más tarde.";
             $_SESSION['tipo_mensaje'] = 2;
-
+            echo 2;
         }
     } else {
 
         // El formato de algun documento no cumple con lo permitido
         $_SESSION['mensaje'] = "Este tipo de documento no está permitido. Solo puede ser en formato JPG, JPEG, PNG ó PDF.";
         $_SESSION['tipo_mensaje'] = 1;
+        echo 0;
 
     }
 } else {

@@ -31,9 +31,13 @@ $(document).ready(function() {
             processData: false,
             data: formData,
 
-            success: function() {
-                $("#result").load("../assets/alert.php", {});
-                $("#reposo").remove();
+            success: function(data) {
+                if (data == 0 || data == 2) {
+                    $("#result").load("../assets/alert.php"); 
+                } else {
+                    $("#result").load("../assets/alert.php");
+                    $("#reposo").remove();
+                }
             }
         });
     });
