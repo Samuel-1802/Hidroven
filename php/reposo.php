@@ -9,7 +9,7 @@ include "../assets/header.php";
 <p></p>
 
 <div class="container d-flex justify-content-center">
-    <form action="../functions/subir_reposo.php" method="POST">
+    <form id="reposo" action="../functions/subir_reposo.php" method="POST" enctype="multipart/form-data">
         <div class="form-group container">
             <label for="cedula">Cédula</label>
             <input class="form-control" type='file' id="cedula" name="cedula">
@@ -24,6 +24,7 @@ include "../assets/header.php";
             <label for="prescripcion">Prescripción</label>
             <input class="form-control" type='file' id="prescripcion" name="prescripcion">
         </div>
+        <input type='hidden' name='id' id="id" value="<?php echo $user['cedula']; ?>">
         <div class="container">
             <button id="submit_reposo" name="submit_reposo" type="submit" class="btn btn btn-primary my-3">Enviar</button>
         </div>
