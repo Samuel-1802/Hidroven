@@ -6,7 +6,9 @@ include "../assets/header.php";
 
 <h3>Reposo médico</h3>
 
-<p></p>
+<br>
+<p>Bienvenido al módulo de reporte de reposos médicos. Aquí podrá subir los documentos necesarios, tome en cuenta que sólo pueden ser en formato JPG, JPEG, PNG o PDF y un tamaño no mayor a 5MB.</p>
+<br>
 
 <div class="container d-flex justify-content-center">
     <form id="reposo" action="../functions/subir_reposo.php" method="POST" enctype="multipart/form-data">
