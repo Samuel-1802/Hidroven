@@ -1,6 +1,6 @@
 <?php
 $title = "Solicitudes";
-$JS = "solicitudes.js";
+$JS = "reposo.js";
 include "../assets/header.php";
 ?>
 
