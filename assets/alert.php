@@ -25,3 +25,5 @@ if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
     unset($_SESSION['mensaje']);
     unset($_SESSION['tipo_mensaje']);
 }
+
+?>

@@ -40,11 +40,17 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                     </div>
                 </div>
                 <div class="container-fluid d-flex flex-row">
-                    <a class="navbar-brand" href="./index.php"><img src="../img/hidroven.png" class="img-fluid" style="width: 80%"></a>
-                    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse mx-auto" id="nav">
+                    <div class='col-md-6 container d-flex flex-col justify-content-between'>
+                        <div class='col-md-9'>
+                            <a class="navbar-brand" href="./index.php"><img src="../img/logo-hidroven.png" class="img-fluid" style="width: 50%"></a>
+                        </div>
+                        <div class='col-md-3'>
+                            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse col mx-auto justify-content-end" id="nav">
 
                         <ul class="nav navbar-nav nav-fill ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">

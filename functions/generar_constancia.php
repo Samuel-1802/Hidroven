@@ -10,7 +10,7 @@ if (isset($_POST['submit_const'])) {
     $fecha = date_format(date_create(sanitize_fecha($_POST['fechaing'])), "d/m/Y");
     $dpto = sanitize_string($_POST['dpto'], "departamento");
     $cargo = sanitize_string($_POST['cargo'], "cargo");
-    $salario = $_POST['salario'];
+    $salario = number_format($_POST['salario'], 2, ",", ".");
     setlocale(LC_TIME, "es_VE");
     $dia = strftime("%d");
     $mes = strftime("%m");
@@ -71,9 +71,21 @@ if (isset($_POST['submit_const'])) {
     
     <p class='text-center'>Urb. Chacao, calle Pantin, Edificio HIDROVEN, C.A. Municipio Chacao, Parroquia Chacao, estado Miranda, Caracas - República Bolivariana de Venezuela</div>
     <br>
-    <div class='d-flex justify-content-center'>
-        <button id='imprimir' name='imprimir' type='submit' class='btn btn-primary my-3'>Imprimir</button>
-    </div>";
+    <form id='pdf' action='../functions/generar_pdf.php' method='POST'>
+        <input type='hidden' name='pdf_nombre' id='pdf_nombre' value='" .$nombre ."'>
+        <input type='hidden' name='pdf_cedula' id='pdf_cedula' value='" .$cedula ."'>
+        <input type='hidden' name='pdf_fecha' id='pdf_fecha' value='" .$fecha ."'>
+        <input type='hidden' name='pdf_dpto' id='pdf_dpto' value='" .$dpto ."'>
+        <input type='hidden' name='pdf_cargo' id='pdf_cargo' value='" .$cargo ."'>
+        <input type='hidden' name='pdf_salario' id='pdf_salario' value='" .$salario ."'>
+        <input type='hidden' name='pdf_dia' id='pdf_dia' value='" .$dia ."'>
+        <input type='hidden' name='pdf_mes' id='pdf_mes' value='" .$mes ."'>
+        <input type='hidden' name='pdf_año' id='pdf_año' value='" .$año ."'>
+
+        <div class='d-flex justify-content-center'>
+            <button id='imprimir' name='imprimir' type='submit' class='btn btn-primary my-3'>Imprimir</button>
+        </div>
+    </form>";
 } else {
     // Se llegó mediante un método inusual
     header("location: index.php");

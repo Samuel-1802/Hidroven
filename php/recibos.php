@@ -1,12 +1,14 @@
 <?php
     $title = "Solicitudes";
-    $JS = "solicitudes.js";
+    $JS = "recibos.js";
     include "../assets/header.php";
 ?>
 
-<h3> Solicitudes</h3>
+<h3>Recibos de pago</h3>
 
 <p>Módulo de solicitudes</p>
+
+
 
 <?php
     include "../assets/footer.php";

@@ -28,4 +28,9 @@ $(document).ready(function () {
             submit_const: submit_const
         });
     });
+
+    $("#pdf").submit(function (event) {
+        event.preventDefault();
+        
+    });
 });
