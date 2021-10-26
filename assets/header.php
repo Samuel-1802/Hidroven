@@ -1,7 +1,8 @@
-<!-- Header -->
-
 <?php
+// Header
+
 session_start();
+
 if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
     include_once "../functions/sql_queries.php";
     $user = fetch_user($conn, $_SESSION['userid']);

@@ -3,7 +3,7 @@ $(document).ready(function () {
     var tooltips = document.querySelectorAll('.tt')
     tooltips.forEach(t => {
         new bootstrap.Tooltip(t)
-    })
+    });
 
     $("#form_constancia").submit(function (event) {
         event.preventDefault();
@@ -16,6 +16,7 @@ $(document).ready(function () {
         var salario = $("#salario").val();
         var submit_const = $("#submit_const").val();
 
+        $("#const_text").remove();
         $("#constancia").remove();
 
         $("#result").load("../functions/generar_constancia.php", {
@@ -27,10 +28,5 @@ $(document).ready(function () {
             salario: salario,
             submit_const: submit_const
         });
-    });
-
-    $("#pdf").submit(function (event) {
-        event.preventDefault();
-        
     });
 });

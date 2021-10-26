@@ -7,8 +7,9 @@ include "../assets/header.php";
 <h3>Solicitud de constancia de trabajo</h3>
 
 <br>
-<p>Bienvenido al módulo de solicitud de constancias de trabajo. A continuación encontrará la información que se imprimirá en la constancia que solocita. Verifique que los datos estén correctos antes de solicitar su documento.</p>
-<br>
+<div id="const_text" class="container row">
+    Bienvenido al módulo de solicitud de constancias de trabajo. A continuación encontrará la información que se imprimirá en la constancia que solocita. Verifique que los datos estén correctos antes de solicitar su documento.
+</div>
 <hr>
 <br>
 <div id="constancia" class="container d-flex justify-content-center">
@@ -62,8 +63,28 @@ include "../assets/header.php";
 </div>
 
 <div class="container row d-flex justify-content-center">
-<div id="result" class="container" style="width: 60%"></div>
+    <div id="result" class="container" style="width: 60%"></div>
 </div>
+
+<script type="text/javascript">
+    function printDiv() {
+
+        var divToPrint = document.getElementById('const');
+
+        var newWin = window.open('Constancia', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><head><link rel="stylesheet" href="../css/bootstrap.min.css?"><link rel="stylesheet" href="../css/style.css?"></head><body onload="window.print()"><div id="print" class="container">' + divToPrint.innerHTML + '</div></body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function() {
+            newWin.close();
+        }, 10);
+
+    }
+</script>
 
 <?php
 include "../assets/footer.php";

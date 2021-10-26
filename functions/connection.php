@@ -1,6 +1,5 @@
-<!-- Conexión con la base de datos -->
-
 <?php
+// Conexión a la base de datos
 
 // Objeto de conexion a DB
 $conn = new mysqli("localhost", "root", "", "hidroven");

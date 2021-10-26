@@ -33,3 +33,19 @@ footer {
 nav {
     background: rgba(66, 135, 245,0.10);
 }
+
+#print {
+    min-height: 100%;
+    width: 90%;
+    background-image: url('../img/fondo2.png');
+    -webkit-print-color-adjust: exact;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+#const {
+    background-image: url('../img/fondo2.png');
+    -webkit-print-color-adjust: exact;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+}
