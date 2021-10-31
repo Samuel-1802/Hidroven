@@ -2,6 +2,7 @@
 // Header
 
 session_start();
+include("../functions/bitacora.php");
 
 if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
     include_once "../functions/sql_queries.php";
@@ -99,7 +100,13 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                             <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true && $user['admin'] == 1) {
                             ?>
-                                <li class="nav-item"><a class="nav-link" href="./audit.php">Auditoría</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="auditoria" role="button" data-bs-toggle="dropdown" aria-expanded="false">Auditoría</a>
+                                    <ul class="dropdown-menu" aria-labelledby="auditoria">
+                                        <li><a class="dropdown-item" href="./bitacora.php">Bitácora</a></li>
+                                        <li><a class="dropdown-item" href="#">Base de datos</a></li>
+                                    </ul>
+                                </li>
                             <?php
                             }
                             ?>

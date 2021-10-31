@@ -472,3 +472,16 @@ function birthdays($conn)
         }
     }
 }
+
+// Función para almacenar la bitácora del usuario
+function LogUserNavigation($usuario, $ref, $paso) {
+    global $conn;
+    $sql = "INSERT INTO rutas VALUES (NULL, '{$usuario}', NOW(), '{$ref}', '{$paso}');";
+    $conn->query($sql);
+}
+
+function ListUsers() {
+    global $conn, $result;
+    $sql = "SELECT * FROM usuarios ORDER BY p_apellido;";
+    return $conn->query($sql);
+}

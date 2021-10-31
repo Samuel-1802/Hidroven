@@ -62,8 +62,13 @@ include "../assets/header.php";
     </form>
 </div>
 
-<div class="container row d-flex justify-content-center">
-    <div id="result" class="container" style="width: 60%"></div>
+<!-- terminar de arreglar -->
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8 justify-content-center" id="result"></div>
+        <div class="col-2"></div>
+    </div>
 </div>
 
 <script type="text/javascript">

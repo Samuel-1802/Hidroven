@@ -1,7 +1,3 @@
-<!-- Función para editar usuarios -->
-
-<!-- Página de Administración -->
-
 <?php
 $title = "Editar Usuario";
 $JS = "admin_editar.js";

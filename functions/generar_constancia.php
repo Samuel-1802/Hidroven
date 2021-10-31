@@ -3,7 +3,7 @@
 if (isset($_POST['submit_const'])) {
 
     session_start();
-    date_default_timezone_set("Etc/GMT-5");
+    date_default_timezone_set("America/Caracas");
     include_once "./functions.php";
 
     $nombre = sanitize_string($_POST['nombre'], "nombre");
@@ -59,7 +59,8 @@ if (isset($_POST['submit_const'])) {
 
     $año = strftime("%Y");
 
-    $plantilla = "<div id='const' class='container constancia'>
+    $plantilla = "
+    <div id='const' class='container constancia'>
         <div class='row d-flex flex-row justify-content-around'>
             <div class='container-fluid d-flex col justify-content-start'><image src='../img/hidroven.png'></div>
             <div class='container-fluid d-flex col justify-content-end'><image src='../img/200años.png'></div>
@@ -67,53 +68,53 @@ if (isset($_POST['submit_const'])) {
         <br>
         <br>
         <div class='row'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 <b>CONSTANCIA DE TRABAJO</b>
             </div>
         </div>
         <br><br>
         <div class='row'>
-            <div class='col'>
+            <div class='col-sm-12'>
                 Quien suscribe, por medio de la presente hace constar que el ciudadano <b>${nombre}</b>, titular de la cédula de identidad <b>Nº V-.${cedula}</b>, presta sus servicios en esta Empresa desde <b>${fecha}</b>, adscrito a la <b>${dpto}</b>, desempeñando el cargo de <b>${cargo}</b>, devengado a una remuneración mensual de <b>Bs. ${salario}</b>.
             </div>
         </div>
         <br>
         <div class='row'>
-            <div class='col'>
+            <div class='col-sm-12'>
                 Constancia que se expide a petición de la parte interesada en la ciudad de Caracas a los ${dia} días del mes de ${mes} de ${año}.
             </div>
         </div>
         <br><br>
         <div class class='row'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 Atentamente,
             </div>
         </div>
         <br><br>
         <div class='row'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 <b>MÓNICA GABRIELA UTRERA LUJAN</b>
             </div>
         </div>
         <div class='row'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 Gerente General de Talento
             </div>
         </div>
         <div class='row'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 Designada mediante punto de cuenta nº 074 de fecha 20/09/2021
             </div>
         </div>
         <br><br><br>
         <div class='row'>
-            <div class='col'>    
+            <div class='col-sm-12'>    
                 YA.-
             </div>
         </div>
         <br>
         <div class='row mt-auto'>
-            <div class='col text-center'>
+            <div class='col-sm-12 text-center'>
                 Urb. Chacao, calle Pantin, Edificio HIDROVEN, C.A. Municipio Chacao, Parroquia Chacao, estado Miranda, Caracas - República Bolivariana de Venezuela
             </div>
         </div>
