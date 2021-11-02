@@ -36,13 +36,13 @@ include "../assets/header.php";
         <tr>
             <th>Fecha de nacimiento</th>
             <td><?php
-                $fechanac = date_create($user['fecha_nac']);
+                $fechanac = date_create($user['fecha_nac'],new DateTimeZone ("America/Caracas"));
                 echo date_format($fechanac, "d/m/Y"); ?></td>
         </tr>
         <tr>
             <th>Fecha de ingreso</th>
             <td><?php
-                $fechaing = date_create($user['fecha_ing']);
+                $fechaing = date_create($user['fecha_ing'], new DateTimeZone ("America/Caracas"));
                 echo date_format($fechaing, "d/m/Y"); ?></td>
         </tr>
         <tr>

@@ -34,6 +34,10 @@ nav {
     background: rgba(66, 135, 245,0.10);
 }
 
+#table-nav {
+    background: white;
+}
+
 #print {
     min-height: 100%;
     width: 90%;

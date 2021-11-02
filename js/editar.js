@@ -5,6 +5,15 @@ $(document).ready(function () {
         new bootstrap.Tooltip(t)
     })
 
+    $("#n_clave").on('keyup', function () {
+        if ($("#n_clave").val() == "") {
+            $("#confirm_clave").prop("disabled", true)
+        } 
+        else {
+            $("#confirm_clave").prop("disabled", false)
+        }
+    });
+
     $("#editar").submit(function (event) {
         event.preventDefault();
 
@@ -18,15 +27,26 @@ $(document).ready(function () {
         var userid = $("#userid").val();
         var cedula = $("#cedula").val();
 
-        if (confirm_clave == "") {
+        var inputs = $("#input:text").not($("#np_nombre, #np_apellido"));
+
+        for (const input of inputs) {
+            if (input == "") {
+                input.removeClass("input-error, input-success");
+                input.addClass("input-error");
+            }
+        }
+
+        if ((n_clave !== "" && confirm_clave == "") || (n_clave !== confirm_clave)) {
             $("#result").load("../functions/confirm_pass.php", {
+                n_clave: n_clave,
                 confirm_clave: confirm_clave,
-                n_clave: n_clave
+                submit_edit: submit_edit
             });
 
+            $("#n_clave").addClass("input-error");
             $("#confirm_clave").addClass("input-error");
-        } else if (confirm_clave == n_clave) {
 
+        } else if ((n_clave == "" && confirm_clave == "") || (n_clave == confirm_clave)) {
             $("#result").load("../functions/actualizar_usuario_noadmin.php", {
                 np_nombre: np_nombre,
                 ns_nombre: ns_nombre,
@@ -37,14 +57,6 @@ $(document).ready(function () {
                 userid: userid,
                 cedula: cedula
             });
-        } else {
-            $("#result").load("../functions/confirm_pass.php", {
-                confirm_clave: confirm_clave,
-                n_clave: n_clave
-            });
-
-            $("#n_clave").addClass("input-error");
-            $("#confirm_clave").addClass("input-error");
         }
     });
 });

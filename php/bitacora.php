@@ -20,7 +20,9 @@ ob_start();
             <form name="reporte" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
                 <div class="row justify-content-around">
                     <?php
-                    echo '<input type="hidden" value="' . $_SESSION['userid'] . '">';
+                    echo '
+                        <input type="hidden" value="' . $_SESSION['userid'] . '">
+                        <input type="hidden" name="page" id="page" value="1">';
 
                     if ($user['admin'] == 1) {
                         $result = ListUsers();
@@ -98,7 +100,7 @@ ob_start();
                         $dia = isset($_GET['dia']) ? $_GET['dia'] : '';
 
                         $fecha = $año . '-' . $mes . '-' . $dia;
-                        $fechaPantalla = $dia . '-' . $mes . '-' . $año;
+                        // $fechaPantalla = $dia . '-' . $mes . '-' . $año;
 
                         $results_per_page = 10;
 
@@ -157,7 +159,7 @@ ob_start();
                             <li class="page-item">
                                 <a href="bitacora.php?page=<?php echo ($page - 1) . '&usuarioId=' . $IdUsuario . '&año=' . $año . '&mes=' . $mes . '&dia=' . $dia; ?>" class="page-link">&laquo;</a>
                             </li>
-                        <?php
+                            <?php
                         }
 
                         for ($page = 1; $page <= $num_pag; $page++) {
@@ -168,11 +170,13 @@ ob_start();
                             ";
                         }
 
-                        if ($_GET['page'] < $num_pag) { ?>
-                            <li class="page-item">
-                                <a href="bitacora.php?page=<?php echo ($_GET['page']+1) . '&usuarioId=' . $IdUsuario . '&año=' . $año . '&mes=' . $mes . '&dia=' . $dia; ?>" class="page-link">&raquo;</a>
-                            </li>
+                        if (isset($_GET['page'])) {
+                            if ($_GET['page'] < $num_pag) { ?>
+                                <li class="page-item">
+                                    <a href="bitacora.php?page=<?php echo ($_GET['page'] + 1) . '&usuarioId=' . $IdUsuario . '&año=' . $año . '&mes=' . $mes . '&dia=' . $dia; ?>" class="page-link">&raquo;</a>
+                                </li>
                         <?php
+                            }
                         }
                         ?>
                     </ul>

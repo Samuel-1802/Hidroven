@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 if (isset($_SESSION['mensaje']) && isset($_SESSION['tipo_mensaje'])) {
     if ($_SESSION['tipo_mensaje'] == 0) {
 ?>

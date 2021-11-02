@@ -20,7 +20,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="np_nombre">Primer nombre</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su primer nombre">
-                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" value="<?php echo $user['p_nombre']; ?>" required>
+                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" value="<?php echo $user['p_nombre']; ?>">
                 </span>
             </div>
             <div class="container">
@@ -35,7 +35,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="np_apellido">Primer apellido</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese su primer apellido">
-                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" value="<?php echo $user['p_apellido']; ?>" required>
+                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" value="<?php echo $user['p_apellido']; ?>">
                 </span>
             </div>
             <div class="container">
@@ -56,7 +56,7 @@ include "../assets/header.php";
         <div class="form-group container">
             <label for="confirm_clave">Confirmar clave</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Repita su nueva clave para confirmar que se introdujo correctamente">
-                <input type="password" class="form-control" id="confirm_clave" name="confirm_clave" placeholder="Clave">
+                <input type="password" class="form-control" id="confirm_clave" name="confirm_clave" placeholder="Clave" disabled>
             </span>
         </div>
         <div class="form-group container">

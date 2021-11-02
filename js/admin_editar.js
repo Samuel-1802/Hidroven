@@ -23,6 +23,15 @@ $(document).ready(function () {
     var maxDate2 = year2 + '-' + month + '-' + day;
     $('#n_fechaing').attr('max', maxDate2);
 
+    $("#n_clave").on('keyup', function () {
+        if ($("#n_clave").val() == "") {
+            $("#confirm_clave").prop("disabled", true)
+        }
+        else {
+            $("#confirm_clave").prop("disabled", false)
+        }
+    });
+
     $("#editar").submit(function (event) {
 
         event.preventDefault();
@@ -47,14 +56,26 @@ $(document).ready(function () {
         var cedula = $("#cedula").val();
         var submit_edit = $("#submit_edit").val();
 
-        if (confirm_clave == "") {
+        var inputs = $("#input", "#select").not($("#np_nombre, #np_apellido"));
+
+        for (const input of inputs) {
+            if (input == "") {
+                input.removeClass("input-error, input-success");
+                input.addClass("input-error");
+            }
+        }
+
+        if ((n_clave !== "" && confirm_clave == "") || (n_clave !== confirm_clave)) {
             $("#result").load("../functions/confirm_pass.php", {
+                n_clave: n_clave,
                 confirm_clave: confirm_clave,
-                n_clave: n_clave
+                submit_registro: submit_registro
             });
 
+            $("#n_clave").addClass("input-error");
             $("#confirm_clave").addClass("input-error");
-        } else if (confirm_clave == n_clave) {
+
+        } else if ((n_clave == "" && confirm_clave == "") || (n_clave == confirm_clave)) {
 
             $("#result").load("../functions/actualizar_usuario.php", {
                 n_cedula: n_cedula,
@@ -74,14 +95,6 @@ $(document).ready(function () {
                 cedula: cedula,
                 submit_edit: submit_edit
             });
-        } else {
-            $("#result").load("../functions/confirm_pass.php", {
-                confirm_clave: confirm_clave,
-                n_clave: n_clave
-            });
-
-            $("#n_clave").addClass("input-error");
-            $("#confirm_clave").addClass("input-error");
         }
     });
 });

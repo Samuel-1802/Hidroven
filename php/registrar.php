@@ -13,7 +13,7 @@ include "../assets/header.php";
         <div class="form-group container">
             <label for="n_cedula">Cédula</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
-                <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" required>
+                <input type="text" class="form-control" id="n_cedula" name="n_cedula" placeholder="Cédula" >
             </span>
         </div>
         <br>
@@ -21,7 +21,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="np_nombre">Primer nombre</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el primer nombre del usuario">
-                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" required>
+                    <input type="text" class="form-control" id="np_nombre" name="np_nombre" placeholder="Primer nombre" >
                 </span>
             </div>
             <div class="container">
@@ -36,7 +36,7 @@ include "../assets/header.php";
             <div class="container">
                 <label for="np_apellido">Primer apellido</label>
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el primer apellido del usuario">
-                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" required>
+                    <input type="text" class="form-control" id="np_apellido" name="np_apellido" placeholder="Primer apellido" >
                 </span>
             </div>
             <div class="container">
@@ -68,14 +68,21 @@ include "../assets/header.php";
         <div class="form-group container">
             <label for="n_userid">Nombre de Usuario</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese el nombre de usuario.<br>Debe cumplir con las siguientes características:<br>• Solo puede tener caracteres alfabéticos<br>• Debe tener una longitud entre 3 y 12 caracteres">
-                <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" required>
+                <input type="text" class="form-control" id="n_userid" name="n_userid" placeholder="Nombre de usuario" >
             </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_clave">Clave</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la clave.<br>Debe cumplir con las siguientes características:<br>• Longitud entre 8 y 16 caracteres<br>• Tener al menos una letra mayúscula y una minúscula<br>• Debe contener al menos un dígito entre el 0 y el 9<br>• Debe contener al menos un caracter especial: <b>.,@$!%*?&</b>">
-                <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave" required>
+                <input type="password" class="form-control" id="n_clave" name="n_clave" placeholder="Clave" >
+            </span>
+        </div>
+        <br>
+        <div class="form-group container">
+            <label for="confirm_clave">Confirmar clave</label>
+            <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Repita su nueva clave para confirmar que se introdujo correctamente">
+                <input type="password" class="form-control" id="confirm_clave" name="confirm_clave" placeholder="Clave" disabled>
             </span>
         </div>
         <br>
@@ -100,26 +107,27 @@ include "../assets/header.php";
         <div class="form-group container">
             <label for="n_fechanac">Fecha de nacimiento</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Fecha de nacimiento del usuario">
-                <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" required>
+                <input type="date" class="form-control" id="n_fechanac" name="n_fechanac" placeholder="dd-mm-aaaa" >
         </div>
         <br>
         <div class="form-group container">
             <label for="n_fechanac">Fecha de ingreso</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Fecha de ingreso del usuario a la institución">
-                <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" required>
+                <input type="date" class="form-control" id="n_fechaing" name="n_fechaing" placeholder="dd-mm-aaaa" >
             </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_cargo">Cargo</label>
             <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Cargo del usuario">
-                <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" required>
+                <input type="text" class="form-control" id="n_cargo" name="n_cargo" placeholder="Cargo" >
             </span>
         </div>
         <br>
         <div class="form-group container">
             <label for="n_departamento">Departamento</label>
-            <select class="form-select" id="n_departamento" name="n_departamento" ria-label="Default select example" required>
+            <select class="form-select" id="n_departamento" name="n_departamento" ria-label="Default select example" >
+                <option value="">Seleccione...</option>
             <?php
                 foreach ($dptos as $dep) {
                     ?><option value="<?php echo $dep[0];?>"><?php echo $dep[1];?></option>

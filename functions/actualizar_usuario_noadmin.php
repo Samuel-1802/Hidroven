@@ -75,6 +75,7 @@ if (isset($_POST['submit_edit'])) {
     var success = "<?php echo $success; ?>";
     var regEx1 = new RegExp(/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/);
     var regEx2 = new RegExp(/^(?=.*[0-9])(?=.*[.,@$!%*?&])[a-zA-Z0-9.,@$!%*?&]{8,16}$/);
+    var regEx3 = new RegExp(/^$|^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/);
 
     if (success == true) {
         $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave").removeClass("input-error");
@@ -100,7 +101,7 @@ if (isset($_POST['submit_edit'])) {
             $("#np_nombre").addClass("input-error");
         }
 
-        if (regEx1.test(snombre)) {
+        if (regEx3.test(snombre)) {
             $("#ns_nombre").addClass("input-success");
         } else {
             $("#ns_nombre").addClass("input-error");
@@ -114,7 +115,7 @@ if (isset($_POST['submit_edit'])) {
             $("#np_apellido").addClass("input-error");
         }
 
-        if (regEx1.test(sapellido)) {
+        if (regEx3.test(sapellido)) {
             $("#ns_apellido").addClass("input-success");
         } else {
             $("#ns_apellido").addClass("input-error");

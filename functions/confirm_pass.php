@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST['confirm_clave'] == "") {
+if ($_POST['confirm_clave'] == "" && $_POST['n_clave'] !== "") {
 
     $_SESSION['mensaje'] = "Por favor repita su  nueva clave para confirmar el cambio";
     $_SESSION['tipo_mensaje'] = 1;

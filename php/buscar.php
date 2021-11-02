@@ -14,11 +14,11 @@ include "../assets/header.php";
         <div class="row">
             <div class="form-group col container">
                 <span class="tt" data-toggle="tooltip" data-bs-placement="right" data-bs-html="true" data-bs-trigger="hover" title="Ingrese la cédula del usuario<br>• Debe contener solo dígitos, sin puntos<br>• Debe tener una longitud máxima de 8 caracteres">
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1 required>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="ci" name="ci" placeholder="Cédula" step=1>
                 </span>
             </div>
             <div class="col container">
-                <button id="submit_buscar" name="submit_buscar" type="submit" class="btn btn btn-primary mb-2">Buscar</button>
+                <button id="submit_buscar" name="submit_buscar" type="submit" class="btn btn btn-primary mb-2" disabled>Buscar</button>
             </div>
         </div>
     </form>
