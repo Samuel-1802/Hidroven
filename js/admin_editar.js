@@ -84,6 +84,7 @@ $(document).ready(function () {
             }
 
             $("#submit_edit").prop("disabled",true);
+            $("#n_departamento").prop("disabled",true);
             $(':radio:not(:checked)').attr('disabled', true);
 
             $("#result").load("../functions/actualizar_usuario.php", {

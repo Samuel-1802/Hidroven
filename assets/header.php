@@ -23,7 +23,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <link rel="icon" type="image/png" href="../img/favicon.png" />
     <link rel="stylesheet" href="../css/bootstrap.min.css?">
     <link rel="stylesheet" href="../css/style.css?">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
     <script type="text/javascript" src="../js/bootstrap.bundle.min.js" async></script>
     <script type="text/javascript" src="../js/<?php echo $JS; ?>" async></script>
 </head>
@@ -104,7 +104,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
                                     <a class="nav-link dropdown-toggle" href="#" id="auditoria" role="button" data-bs-toggle="dropdown" aria-expanded="false">Auditoría</a>
                                     <ul class="dropdown-menu" aria-labelledby="auditoria">
                                         <li><a class="dropdown-item" href="./bitacora.php">Bitácora</a></li>
-                                        <li><a class="dropdown-item" href="#">Base de datos</a></li>
+                                        <li><a class="dropdown-item" href="./db_select.php">Base de datos</a></li>
                                     </ul>
                                 </li>
                             <?php
