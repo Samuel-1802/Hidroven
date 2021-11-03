@@ -8,7 +8,7 @@ $(document).ready(function () {
     $("#n_clave").on('keyup', function () {
         if ($("#n_clave").val() == "") {
             $("#confirm_clave").prop("disabled", true)
-        } 
+        }
         else {
             $("#confirm_clave").prop("disabled", false)
         }
@@ -47,6 +47,15 @@ $(document).ready(function () {
             $("#confirm_clave").addClass("input-error");
 
         } else if ((n_clave == "" && confirm_clave == "") || (n_clave == confirm_clave)) {
+
+            var form = document.getElementById("editar");
+            var elements = form.elements;
+            for (var i = 0, len = elements.length; i < len; ++i) {
+                elements[i].readOnly = true;
+            }
+
+            $("#submit_edit").prop("disabled",true);
+
             $("#result").load("../functions/actualizar_usuario_noadmin.php", {
                 np_nombre: np_nombre,
                 ns_nombre: ns_nombre,

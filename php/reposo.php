@@ -18,17 +18,17 @@ include "../assets/header.php";
     <form id="reposo" action="../functions/subir_reposo.php" method="POST" enctype="multipart/form-data">
         <div class="form-group container">
             <label for="cedula">Cédula</label>
-            <input class="form-control" type='file' id="cedula" name="cedula" required>
+            <input class="form-control" type='file' id="cedula" name="cedula" >
         </div>
         <br>
         <div class="form-group container">
             <label for="informe">Informe médico</label>
-            <input class="form-control" type='file' id="informe" name="informe" required>
+            <input class="form-control" type='file' id="informe" name="informe" >
         </div>
         <br>
         <div class="form-group container">
             <label for="prescripcion">Prescripción</label>
-            <input class="form-control" type='file' id="prescripcion" name="prescripcion" required>
+            <input class="form-control" type='file' id="prescripcion" name="prescripcion" >
         </div>
         <input type='hidden' name='id' id="id" value="<?php echo $user['cedula']; ?>">
         <div class="container">

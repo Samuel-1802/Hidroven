@@ -77,6 +77,15 @@ $(document).ready(function () {
 
         } else if ((n_clave == "" && confirm_clave == "") || (n_clave == confirm_clave)) {
 
+            var form = document.getElementById("editar");
+            var elements = form.elements;
+            for (var i = 0, len = elements.length; i < len; ++i) {
+                elements[i].readOnly = true;
+            }
+
+            $("#submit_edit").prop("disabled",true);
+            $(':radio:not(:checked)').attr('disabled', true);
+
             $("#result").load("../functions/actualizar_usuario.php", {
                 n_cedula: n_cedula,
                 np_nombre: np_nombre,
