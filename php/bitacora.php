@@ -17,6 +17,7 @@ ob_start();
         <br>
         <br>
         <div class="col-md-10">
+            <div id="result" class="container row"></div>
             <form name="reporte" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
                 <div class="row justify-content-around">
                     <?php
@@ -42,7 +43,7 @@ ob_start();
 
                     <div class="form-group col-sm-2">
                         <select name="dia" id="dia" class="form-select">
-                            <option value="00">Día</option>
+                            <option value="">Día</option>
                             <?php
                             for ($i = 1; $i <= 31; $i++) {
                                 echo '<option value="' . ($i < 10 ? '0' . $i : $i) . '">' . $i . '</option>';
@@ -53,7 +54,7 @@ ob_start();
 
                     <div class="form-group col-sm-2">
                         <select name="mes" id="mes" class="form-select">
-                            <option value="00">Mes</option>
+                            <option value="">Mes</option>
                             <option value="01">Enero</option>
                             <option value="02">Febrero</option>
                             <option value="03">Marzo</option>
@@ -71,7 +72,7 @@ ob_start();
 
                     <div class="form-group col-sm-2">
                         <select name="año" id="año" class="form-select">
-                            <option value="0000">Año</option>
+                            <option value="">Año</option>
                             <?php
                             for ($i = 2021; $i <= 2030; $i++) {
                                 echo '<option value="' . $i . '">' . $i . '</option>';

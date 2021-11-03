@@ -14,6 +14,7 @@ $(document).ready(function() {
         var prescripcion = $("#prescripcion").prop('files')[0];
         var id = $("#id").val();
         var submit_reposo = $("#submit_reposo").val();
+
         var formData = new FormData();
 
         formData.append("cedula", cedula);

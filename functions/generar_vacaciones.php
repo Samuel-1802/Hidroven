@@ -13,7 +13,7 @@ if (isset($_POST['submit_vac'])) {
     $salario = $_POST['salario'];
     $fechavac1 = date_format(date_create(sanitize_fecha($_POST['fechavac1'])), "d/m/Y");
     $fechavac2 = date_format(date_create(sanitize_fecha($_POST['fechavac2'])), "d/m/Y");
-    $fecha = date("d-m-Y");
+    $fecha = date("d/m/Y");
     $mod = strtotime("+1 year");
     $año = strftime("%Y");
     $año2 = strftime("%Y", $mod);
@@ -27,8 +27,8 @@ if (isset($_POST['submit_vac'])) {
     $meses = floor(($timedif*12/365) - ($años*12));
     $dias = floor($timedif - ($meses * 30) - ($años * 365));
 
-    echo "<div class='table-responsive'>
-    <table class='table table-bordered'>
+    echo "<div class='table-responsive text-center' name='vacaciones' id='vacaciones'>
+    <table class='table table-bordered text-center'>
     <col width='12.5%'>
     <col width='12.5%'>
     <col width='12.5%'>
@@ -40,7 +40,7 @@ if (isset($_POST['submit_vac'])) {
     <tbody>
         <tr scope='row'>
             <th colspan='6'>GERENCIA GENERAL DE TALENTO HUMANO<br>VACACIONES PERSONAL EMPLEADO</th>
-            <th colspan='2'></th>
+            <th colspan='2'><img src='../img/logo-hidroven.png' class='img-fluid'></th>
         </tr>
 
         <tr scope='row'>
@@ -130,7 +130,7 @@ if (isset($_POST['submit_vac'])) {
             <td colspan='8'><b>SUSPENSIÓN O POSTERGACIÓN DE VACACIONES</b></td>
         </tr>
         <tr>
-            <td colspan='8'><b>OBSERVACIONES:</b><br><br><br></td>
+            <td colspan='8' class='text-start'><b>OBSERVACIONES:</b><br><br><br></td>
         </tr>
         <tr>
             <td colspan='3'><b>APROBADO POR</b></td>
@@ -146,7 +146,7 @@ if (isset($_POST['submit_vac'])) {
 </table></div>
     
     <div class='d-flex justify-content-center'>
-        <button id='imprimir' name='imprimir' type='submit' class='btn btn-primary my-3'>Imprimir</button>
+        <input id='imprimir' name='imprimir' class='btn btn-primary my-3' type='button' value='Imprimir' onclick='printDiv();'>
     </div>";
 } else {
     // Se llegó mediante un método inusual

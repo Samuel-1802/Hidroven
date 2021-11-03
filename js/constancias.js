@@ -7,7 +7,8 @@ $(document).ready(function () {
 
     $("#form_constancia").submit(function (event) {
         event.preventDefault();
-
+        window.scrollTo(0, 0);
+        
         var nombre = $("#nombre").val();
         var cedula = $("#cedula").val();
         var dpto = $("#dpto").val();
