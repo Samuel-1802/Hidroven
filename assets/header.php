@@ -23,7 +23,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <link rel="icon" type="image/png" href="../img/favicon.png" />
     <link rel="stylesheet" href="../css/bootstrap.min.css?">
     <link rel="stylesheet" href="../css/style.css?">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" async></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.bundle.min.js" async></script>
     <script type="text/javascript" src="../js/<?php echo $JS; ?>" async></script>
 </head>
@@ -33,7 +33,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
         <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light d-flex flex-column">
-                <div class="container-fluid d-flex flex-row">
+                <div class="container-fluid d-flex flex-row mb-1">
                     <div class="container-fluid d-flex col justify-content-start">
                         <img class="img-fluid" style="width: 420px;" src="../img/minaguas.png">
                     </div>

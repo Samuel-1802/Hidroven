@@ -84,16 +84,16 @@ if (isset($_POST['submit_reposo'])) {
 
             // Hubo un error de subida
             $_SESSION['mensaje'] = "Hubo un error al intentar subir los documentos, intente más tarde.";
-            $_SESSION['tipo_mensaje'] = 5;
+            $_SESSION['tipo_mensaje'] = 2;
             echo 2;
         }
     } else {
 
         // El formato de algun documento no cumple con lo permitido
         $_SESSION['mensaje'] = "Este tipo de documento no está permitido. Solo puede ser en formato JPG, JPEG, PNG ó PDF.";
-        $_SESSION['tipo_mensaje'] = 5;
+        $_SESSION['tipo_mensaje'] = 1;
         echo 0;
-
+        
     }
 } else {
 

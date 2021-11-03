@@ -38,6 +38,7 @@ $(document).ready(function() {
                 } else {
                     $("#result").load("../assets/alert.php");
                     $("#reposo").remove();
+                    $("#text").remove();
                 }
             }
         });

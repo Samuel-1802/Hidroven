@@ -27,7 +27,10 @@ if (isset($_POST['submit_vac'])) {
     $meses = floor(($timedif*12/365) - ($años*12));
     $dias = floor($timedif - ($meses * 30) - ($años * 365));
 
-    echo "<div class='table-responsive text-center' name='vacaciones' id='vacaciones'>
+    echo "
+    <hr>
+    <br>
+    <div class='table-responsive text-center' name='vacaciones' id='vacaciones'>
     <table class='table table-bordered text-center'>
     <col width='12.5%'>
     <col width='12.5%'>

@@ -8,10 +8,12 @@ include "../assets/header.php";
 
 <br>
 <div id="vac" class="col">
-    <div class="row">
-        <p>Bienvenido al módulo de solicitud de vacaciones. A continuación encontrará la información que se imprimirá en la solicitud. Por favor, rellene los campos necesarios y revise que sus datos estén correctos.</p>
+    <div class="row container">
+        Bienvenido al módulo de solicitud de vacaciones. A continuación encontrará la información que se imprimirá en la solicitud. Por favor, rellene los campos necesarios y revise que sus datos estén correctos.
         <br>
     </div>
+    <hr>
+    <br>
     <div class="row justify-content-center">
         <form id="form_vac" action="../functions/generar_vacaciones.php" method="POST" style="width: 30%;">
             <div class="form-group">

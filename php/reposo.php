@@ -5,9 +5,12 @@ include "../assets/header.php";
 ?>
 
 <h3>Reposo médico</h3>
-
 <br>
-<p>Bienvenido al módulo de reporte de reposos médicos. Aquí podrá subir los documentos necesarios, tome en cuenta que sólo pueden ser en formato JPG, JPEG, PNG o PDF y un tamaño no mayor a 5MB.</p>
+
+<div class="row container" name="text" id="text">
+    Bienvenido al módulo de reporte de reposos médicos. Aquí podrá subir los documentos necesarios, tome en cuenta que sólo pueden ser en formato JPG, JPEG, PNG o PDF y un tamaño máximo de 5MB.
+</div>
+<hr>
 <br>
 
 <div class="container row d-flex justify-content-center">
@@ -18,17 +21,17 @@ include "../assets/header.php";
     <form id="reposo" action="../functions/subir_reposo.php" method="POST" enctype="multipart/form-data">
         <div class="form-group container">
             <label for="cedula">Cédula</label>
-            <input class="form-control" type='file' id="cedula" name="cedula" >
+            <input class="form-control" type='file' id="cedula" name="cedula" required>
         </div>
         <br>
         <div class="form-group container">
             <label for="informe">Informe médico</label>
-            <input class="form-control" type='file' id="informe" name="informe" >
+            <input class="form-control" type='file' id="informe" name="informe" required>
         </div>
         <br>
         <div class="form-group container">
             <label for="prescripcion">Prescripción</label>
-            <input class="form-control" type='file' id="prescripcion" name="prescripcion" >
+            <input class="form-control" type='file' id="prescripcion" name="prescripcion" required>
         </div>
         <input type='hidden' name='id' id="id" value="<?php echo $user['cedula']; ?>">
         <div class="container">
