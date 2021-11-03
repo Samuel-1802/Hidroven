@@ -24,6 +24,7 @@ if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['log
     <link rel="stylesheet" href="../css/bootstrap.min.css?">
     <link rel="stylesheet" href="../css/style.css?">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/db300e337c.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../js/bootstrap.bundle.min.js" async></script>
     <script type="text/javascript" src="../js/<?php echo $JS; ?>" async></script>
 </head>
