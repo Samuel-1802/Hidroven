@@ -9,6 +9,14 @@ $(document).ready(function () {
     var vacdate = new Date();
     vacdate.setDate(vacdate.getDate() + 7);
 
+    
+
+    while (vacdate.getDay() == 0 || vacdate.getDay() == 6) {
+        vacdate.setDate(vacdate.getDate() + 1);
+    }
+
+    
+
     var entry = new Date($("#fechaing").val());
 
     var timediff = Math.floor((today.getTime() - entry.getTime()) / (1000 * 3600 * 24 * 365));
@@ -22,62 +30,68 @@ $(document).ready(function () {
         var day = vacdate.getDate();
         var year = vacdate.getFullYear();
 
-        vacdate.setDate(vacdate.getDate() + 1);
-
-        var month2 = vacdate.getMonth() + 1;
-        var day2 = vacdate.getDate();
-        var year2 = vacdate.getFullYear();
-
-        var addDays = 15;
-        var count = 0;
-
-        while (count < addDays) {
-
-            if (vacdate.getDay() != 0 && vacdate.getDay() != 6) {
-                
-                count++;
-            }
-            vacdate.setDate(vacdate.getDate() + 1);
-        }
-
-        var month3 = vacdate.getMonth() + 1;
-        var day3 = vacdate.getDate();
-        var year3 = vacdate.getFullYear();
-
-        count = 0;
-        addDays = timediff - 1;
-
-        while (count < addDays) {
-
-            if (vacdate.getDay() != 0 && vacdate.getDay() != 6) {
-                count++;
-            }
-            vacdate.setDate(vacdate.getDate() + 1);
-        }
-
         if (month < 10)
             month = '0' + month.toString();
         if (day < 10)
             day = '0' + day.toString();
-        if (month2 < 10)
-            month2 = '0' + month.toString();
-        if (day2 < 10)
-            day2 = '0' + day.toString();
-        if (month3 < 10)
-            month3 = '0' + month.toString();
-        if (day3 < 10)
-            day3 = '0' + day.toString();
 
         var minDate = year + '-' + month + '-' + day;
-        var minDate2 = year2 + '-' + month2 + '-' + day2;
-        var maxDate = year3 + '-' + month3 + '-' + day3;
-        
+
         $('#fechavac1').attr('min', minDate);
 
         $("#fechavac1").on('change', function () {
+
+            vacdate.setTime((Date.parse($("#fechavac1").val())));
+            vacdate.setDate(vacdate.getDate()+2);
+
+            var month2 = vacdate.getMonth() + 1;
+            var day2 = vacdate.getDate();
+            var year2 = vacdate.getFullYear();
+
+            var addDays = 14;
+            var count = 0;
+
+            while (count < addDays) {
+
+                if (vacdate.getDay() != 0 && vacdate.getDay() != 6) {
+                    count++;
+                }
+                vacdate.setDate(vacdate.getDate() + 1);
+            }
+
+            if (timediff < 1)
+                timediff = 1;
+
+            addDays = (timediff - 1);
+            count = 0;
+
+            while (count < addDays) {
+                if (vacdate.getDay() != 0 && vacdate.getDay() != 6) {
+                    count++;
+                }
+                vacdate.setDate(vacdate.getDate() + 1);
+            }
+
+            var month3 = vacdate.getMonth() + 1;
+            var day3 = vacdate.getDate();
+            var year3 = vacdate.getFullYear();
+
+            if (month2 < 10)
+                month2 = '0' + month2.toString();
+            if (day2 < 10)
+                day2 = '0' + day2.toString();
+            if (month3 < 10)
+                month3 = '0' + month3.toString();
+            if (day3 < 10)
+                day3 = '0' + day3.toString();
+
+            var minDate2 = year2 + '-' + month2 + '-' + day2;
+            var maxDate = year3 + '-' + month3 + '-' + day3;
+
             $("#fechavac2").attr('min', minDate2);
             $('#fechavac2').attr('max', maxDate);
             $("#fechavac2").prop("disabled", false);
+            
         });
 
         $("#form_vac").submit(function (event) {
