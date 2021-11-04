@@ -68,7 +68,6 @@ tablas a respaldar
 
                 public function backupTables($tables, $outputDir)
                 {
-                    var_dump($outputDir);
                     $conn = mysqli_connect($this->host, $this->username, $this->password, $this->db);
 
                     try {
@@ -89,7 +88,7 @@ tablas a respaldar
                         $sql .= "USE " . $this->db . ";\r\n";
 
                         foreach ($tables as $table) {
-                            echo "Respaldando tabla " . $table . "...";
+                            echo "Respaldando tabla \"" . $table . "\"...";
 
                             $tabla = mysqli_query($conn, "SELECT *  FROM " . $table . ";");
                             $fields = mysqli_num_fields($tabla);

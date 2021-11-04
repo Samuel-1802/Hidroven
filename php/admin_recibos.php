@@ -1,12 +1,10 @@
-<!-- Página de Administración -->
-
 <?php
-$title = "Administración";
+$title = "Administración - Recibos";
 $JS = "audit.js";
 include "../assets/header.php";
 ?>
 
-<h3>Auditoría del sistema</h3>
+<h3>Cargar recibos de pago</h3>
 
 <?php
 include "../assets/footer.php";
