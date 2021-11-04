@@ -481,7 +481,13 @@ function LogUserNavigation($usuario, $ref, $paso) {
 }
 
 function ListUsers() {
-    global $conn, $result;
+    global $conn;
     $sql = "SELECT * FROM usuarios ORDER BY p_apellido;";
+    return $conn->query($sql);
+}
+
+function ListAFiscal() {
+    global $conn;
+    $sql = "SELECT * FROM fiscal WHERE estado = 1;";
     return $conn->query($sql);
 }
