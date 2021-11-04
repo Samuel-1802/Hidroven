@@ -1,7 +1,10 @@
 <?php
 // Header
 
+session_name();
 session_start();
+ob_start();
+
 include("../functions/bitacora.php");
 
 if (isset($_SESSION['userid']) && isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
