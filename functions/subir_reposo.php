@@ -1,9 +1,7 @@
 <?php
-
-session_start();
-
 if (isset($_POST['submit_reposo'])) {
 
+    session_start();
     // Almacenar los documentos pertinentes al reposo medico
 
     $user = $_POST['id'];

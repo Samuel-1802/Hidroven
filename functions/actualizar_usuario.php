@@ -116,6 +116,17 @@ if (isset($_POST["submit_edit"])) {
         $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #n_userid, #n_cedula, #n_nacionalidad, #n_admin, #n_fechanac, #n_fechaing, #n_cargo, #n_departamento").removeClass("input-error");
         $("#np_nombre, #ns_nombre, #np_apellido, #ns_apellido, #n_clave, #n_userid, #n_cedula, #n_nacionalidad, #n_admin, #n_fechanac, #n_fechaing, #n_cargo, #n_departamento").removeClass("input-success");
     } else if (exists == false) {
+
+        var form = document.getElementById("editar");
+        var elements = form.elements;
+        for (var i = 0, len = elements.length; i < len; ++i) {
+            elements[i].readOnly = false;
+        }
+
+        $("#submit_edit").prop("disabled", false);
+        $("#n_departamento").prop("disabled", false);
+        $(':radio:not(:checked)').attr('disabled', false);
+
         if (nombreEmpty == true) {
             $("#np_nombre").addClass("input-error");
         } else {
@@ -235,6 +246,16 @@ if (isset($_POST["submit_edit"])) {
             $("#ns_apellido").addClass("input-error");
         }
     } else {
+        var form = document.getElementById("editar");
+        var elements = form.elements;
+        for (var i = 0, len = elements.length; i < len; ++i) {
+            elements[i].readOnly = false;
+        }
+
+        $("#submit_edit").prop("disabled", false);
+        $("#n_departamento").prop("disabled", false);
+        $(':radio:not(:checked)').attr('disabled', false);
+
         if (nombreEmpty == true) {
             $("#np_nombre").addClass("input-error");
         } else {

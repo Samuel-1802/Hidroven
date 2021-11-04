@@ -2,6 +2,8 @@
 $title = "Solicitudes";
 $JS = "vacaciones.js";
 include "../assets/header.php";
+
+session_start();
 ?>
 
 <h3>Solicitud de vacaciones</h3>

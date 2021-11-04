@@ -126,5 +126,13 @@ if (isset($_POST['submit_edit'])) {
         } else {
             $("#n_clave").addClass("input-error");
         }
+
+        var form = document.getElementById("editar");
+        var elements = form.elements;
+        for (var i = 0, len = elements.length; i < len; ++i) {
+            elements[i].readOnly = false;
+        }
+
+        $("#submit_edit").prop("disabled", false);
     }
 </script>
