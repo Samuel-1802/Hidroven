@@ -1,6 +1,6 @@
 <?php
-$title = "Administración - Recibos";
-$JS = "audit.js";
+$title = "Administración";
+$JS = "admin.js";
 include "../assets/header.php";
 ?>
 
@@ -26,7 +26,7 @@ include "../assets/header.php";
         <br>
         <div class="container justify-content-center">
             <h5>Añadir Año Fiscal</h5>
-            <form action="../functions/nuevo_fiscal.php" method="POST">
+            <form id="form_fiscal" action="../functions/nuevo_fiscal.php" method="POST">
                 <div class="form-group">
                     <label for="n_fiscal" class="my-1">Nuevo Año Fiscal</label>
                     <input type="text" id="n_fiscal" name="n_fiscal" class="form-control" placeholder="Año Fiscal...">

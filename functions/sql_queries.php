@@ -491,3 +491,11 @@ function ListAFiscal() {
     $sql = "SELECT * FROM fiscal WHERE estado = 1;";
     return $conn->query($sql);
 }
+
+function new_fiscal($fiscal){
+    global $conn;
+    $sql="UPDATE fiscal SET estado = 0 WHERE estado = 1;";
+    $conn->query($sql);
+    $sql="INSERT INTO fiscal VALUES (NULL, '{$fiscal}', 1);";
+    $conn->query($sql);
+}
