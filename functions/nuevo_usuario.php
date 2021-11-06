@@ -1,5 +1,3 @@
-<!-- Función para agregar un nuevo usuario -->
-
 <?php
 if (isset($_POST['submit_registro'])) {
 

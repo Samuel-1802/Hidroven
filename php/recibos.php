@@ -23,9 +23,13 @@ include "../assets/header.php";
                         <select class="form-select" id="fiscal" name="fiscal" ria-label="Default select example">
                             <option value="">Seleccione...</option>
                             <?php
-                            // Crear función para obtener los años fiscales de db
+
+                            $result = ListAllFiscal();
+
+                            while ($año = $result->fetch_assoc()) {
+                                echo '<option value = "' . $año['id'] . '">' . $año['a_fiscal'] . '</option>';
+                            }
                             ?>
-                            <option value="2021">2021</option>
                         </select>
                     </div>
                     <div>

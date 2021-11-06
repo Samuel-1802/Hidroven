@@ -36,12 +36,13 @@ include "../assets/header.php";
         </div>
     </div>
 </div>
-<hr>
+<br>
+<br>
 <div class="row">
     <h3>Cargar Documentos</h3>
     <br>
     <br>
-    <br>
+    <hr>
     <p>Seleccione la acción que desee realizar:</p>
 </div>
 

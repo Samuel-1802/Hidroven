@@ -492,10 +492,32 @@ function ListAFiscal() {
     return $conn->query($sql);
 }
 
+function ListAllFiscal() {
+    global $conn;
+    $sql = "SELECT * FROM fiscal;";
+    return $conn->query($sql);
+}
+
 function new_fiscal($fiscal){
     global $conn;
     $sql="UPDATE fiscal SET estado = 0 WHERE estado = 1;";
     $conn->query($sql);
     $sql="INSERT INTO fiscal VALUES (NULL, '{$fiscal}', 1);";
+    $conn->query($sql);
+}
+
+function new_recibo($cedula, $ingreso, $sso, $lrpe, $faov, $mes) {
+    global $conn;
+    $fiscal = mysqli_fetch_assoc($conn->query("SELECT * FROM fiscal WHERE estado = 1;"));
+    $fiscal = $fiscal['id'];
+    $sql = "INSERT INTO recibos VALUES (NULL, '{$cedula}', '{$mes}', '{$fiscal}', '{$ingreso}', '{$sso}', '{$lrpe}', '{$faov}');";
+    $conn->query($sql);
+}
+
+function new_islr($cedula, $ingreso, $deduc) {
+    global $conn;
+    $fiscal = mysqli_fetch_assoc($conn->query("SELECT * FROM fiscal WHERE estado = 1;"));
+    $fiscal = $fiscal['id'];
+    $sql = "INSERT INTO recibos VALUES (NULL, '{$cedula}', '{$fiscal}', '{$ingreso}', '{$deduc}');";
     $conn->query($sql);
 }

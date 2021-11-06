@@ -9,8 +9,6 @@ if (isset($_POST['submit_fiscal'])){
     $fiscal = $_POST['n_fiscal'];
     new_fiscal($fiscal);
 
-    header('location: ../php/admin.php');
-
 } else {
     header('location: ../php/index.php');
 }
