@@ -6,13 +6,12 @@ $(document).ready(function () {
         var n_fiscal = $("#n_fiscal").val();
         var submit_fiscal = $("#submit_fiscal").val();
 
-        $("#form_fiscal").load("../functions/nuevo_fiscal.php", {
+        $("#result").load("../functions/nuevo_fiscal.php", {
             n_fiscal: n_fiscal,
             submit_fiscal: submit_fiscal
         });
 
         location.reload();
-    
-    });
+    })
 
 });

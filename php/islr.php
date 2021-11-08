@@ -1,6 +1,6 @@
 <?php
-    $title = "Solicitudes";
-    $JS = "solicitudes.js";
+    $title = "ISLR";
+    $JS = "islr.js";
     include "../assets/header.php";
 ?>
 
@@ -17,7 +17,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="container d-flex justify-content-center" id="form-container">
-                <form id="solicitud" action="#" method="POST">
+                <form id="solicitud" action="../functions/buscar_islr.php" method="POST">
                     <div class="form-group">
                         <label for="fiscal" class="my-2"><b>Año Fiscal</b></label>
                         <select class="form-select" id="fiscal" name="fiscal" ria-label="Default select example">
@@ -32,6 +32,7 @@
                             ?>
                         </select>
                     </div>
+                    <input type="hidden" id="cedula" name="cedula" value="<?php echo $user['cedula'];?>">
                     <div>
                         <button id="submit_search" name="submit_search" type="submit" class="btn btn-primary my-3">Buscar</button>
                     </div>
@@ -46,11 +47,9 @@
         <table class="table table-responsive">
             <tr>
                 <th>Año fiscal</th>
-                <th>ISLR</th>
+                <th colspan="2">ISLR</th>
             </tr>
-            <?php
-            // Colocar función para mostrar los resultados de la búsqueda
-            ?>
+            <tbody id="result"></tbody>
         </table>
     </div>
 </div>

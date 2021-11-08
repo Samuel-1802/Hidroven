@@ -34,6 +34,7 @@ include "../assets/header.php";
                 <input type="submit" name="submit_fiscal" id="submit_fiscal" class="btn btn-primary text-center my-3" value="Confirmar">
             </form>
         </div>
+        <div id="result"></div>
     </div>
 </div>
 <br>

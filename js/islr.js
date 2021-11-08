@@ -7,7 +7,7 @@ $(document).ready(function () {
         var cedula = $("#cedula").val();
         var submit_search = $("#submit_search").val();
 
-        $("#result").load("../functions/buscar_recibos.php", {
+        $("#result").load("../functions/buscar_islr.php", {
             fiscal: fiscal,
             cedula: cedula,
             submit_search: submit_search

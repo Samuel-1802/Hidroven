@@ -518,6 +518,34 @@ function new_islr($cedula, $ingreso, $deduc) {
     global $conn;
     $fiscal = mysqli_fetch_assoc($conn->query("SELECT * FROM fiscal WHERE estado = 1;"));
     $fiscal = $fiscal['id'];
-    $sql = "INSERT INTO recibos VALUES (NULL, '{$cedula}', '{$fiscal}', '{$ingreso}', '{$deduc}');";
+    $sql = "INSERT INTO islr VALUES (NULL, '{$cedula}', '{$fiscal}', '{$ingreso}', '{$deduc}');";
     $conn->query($sql);
+}
+
+function fetch_recibos($fiscal, $cedula) {
+    global $conn;
+    $sql = "SELECT * FROM recibos WHERE fiscal = '{$fiscal}' AND cedula='{$cedula}';";
+    return $conn->query($sql);
+}
+
+function fetch_islr($fiscal, $cedula) {
+    global $conn;
+    $sql = "SELECT * FROM islr WHERE fiscal = '{$fiscal}' AND cedula='{$cedula}';";
+    return $conn->query($sql);
+}
+
+function fetch_fiscal($fiscal) {
+    global $conn;
+    $sql = "SELECT * FROM fiscal WHERE id = '{$fiscal}';";
+    $result = $conn->query($sql);
+    $año = mysqli_fetch_assoc($result);
+    return $año['a_fiscal']; 
+}
+
+function fetch_mes($mes) {
+    global $conn;
+    $sql = "SELECT * FROM meses WHERE id = '{$mes}';";
+    $result = $conn->query($sql);
+    $mes = mysqli_fetch_assoc($result);
+    return $mes['mes']; 
 }

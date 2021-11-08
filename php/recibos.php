@@ -1,5 +1,5 @@
 <?php
-$title = "Solicitudes";
+$title = "Recibos";
 $JS = "recibos.js";
 include "../assets/header.php";
 ?>
@@ -17,7 +17,7 @@ include "../assets/header.php";
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="container d-flex justify-content-center" id="form-container">
-                <form id="solicitud" action="#" method="POST">
+                <form id="solicitud" action="../functions/buscar_recibos.php" method="POST">
                     <div class="form-group">
                         <label for="fiscal" class="my-2"><b>Año Fiscal</b></label>
                         <select class="form-select" id="fiscal" name="fiscal" ria-label="Default select example">
@@ -32,6 +32,7 @@ include "../assets/header.php";
                             ?>
                         </select>
                     </div>
+                    <input type="hidden" id="cedula" name="cedula" value="<?php echo $user['cedula'];?>">
                     <div>
                         <button id="submit_search" name="submit_search" type="submit" class="btn btn-primary my-3">Buscar</button>
                     </div>
@@ -47,11 +48,9 @@ include "../assets/header.php";
             <tr>
                 <th>Año fiscal</th>
                 <th>Mes</th>
-                <th>Recibo</th>
+                <th colspan="4">Recibo</th>
             </tr>
-            <?php
-            // Colocar función para mostrar los resultados de la búsqueda
-            ?>
+            <tbody id="result"></tbody>
         </table>
     </div>
 </div>
